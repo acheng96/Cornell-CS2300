@@ -1,0 +1,139 @@
+/* ========== *
+ * = Global = *
+ * ========== */ 
+
+html * {
+   font-family: Lato;
+}
+
+body {
+	margin: auto;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.active-page {
+    border-bottom: solid 5px #22453D;
+}
+
+/* ============= *
+ * = Home Page = *
+ * ============= */ 
+
+/* - Header - */
+
+.home-header {
+	background-color: #5ACEB5;
+	overflow: auto;
+}
+
+#profile-container {
+	display: -webkit-flex;
+	margin: 40px auto;
+	width: 52%;
+	font-size: 25px;
+	vertical-align: middle;
+}
+
+#profile-pic {
+	width: 250px;
+	height: 250px;
+}
+
+#home-description {
+	color: white;
+	padding-left: 40px;
+	margin: auto 0;
+}
+
+/* - Navbar - */
+
+#navbar-container {
+	margin: 0 auto;
+	width: 52%;
+}
+
+.navbar-items {
+	padding: 0;
+	margin: 15px auto;
+	text-align: center;
+}
+
+.navbar-items li {
+	display: inline-flex;
+}
+
+.navbar-items a {
+	font-size: 20;
+	font-weight: bold;
+	text-decoration: none;
+	color: white;
+	padding: 0px 20px;
+}
+
+/* - Body - */
+
+#body-container {
+	display: -webkit-flex;
+	margin: 50px auto;
+	width: 83%;
+}
+
+#interests-triangle {
+	width: 300px;
+	height: 280px;
+	padding-right: 50px;
+}
+
+#home-body-text {
+	margin: auto 0;
+	font-size: 30;
+	color: #4A4A4A;
+	padding-left: 20px;
+	border-left: solid 10px #5ACEB5;
+}
+
+/* - Footer - */
+
+.footer {
+	background-color: #5ACEB5;
+	overflow: auto;
+}
+
+#copyright {
+	font-weight: bold;
+	font-size: 25px;
+	color: white;
+}
+
+#contact-container {
+	display: -webkit-flex;
+	margin: 0 auto;
+	width: 83%;
+}
+
+.contact-items {
+	display: inline-flex;
+	width: 40px;
+	height: 40px;
+}
+
+.contact-items li {
+	border-radius: 50%;
+	height: 50px;
+    width: 50px;
+    line-height: 50px;
+    background-color: #22453D;
+    padding: 0px 30px;
+}
+
+
+
+
+
+
+
+
+
