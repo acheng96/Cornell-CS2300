@@ -14,8 +14,8 @@ ul {
 	list-style-type: none;
 }
 
-.active-page {
-    border-bottom: solid 5px #22453D;
+.active-page span {
+  border-bottom: solid 5px #22453D;
 }
 
 /* ============= *
@@ -66,11 +66,12 @@ ul {
 }
 
 .navbar-items a {
-	font-size: 20;
+	font-size: 20px;
 	font-weight: bold;
 	text-decoration: none;
+	text-align: center;
 	color: white;
-	padding: 0px 20px;
+	padding: 5px 20px;
 }
 
 /* - Body - */
@@ -89,7 +90,7 @@ ul {
 
 #home-body-text {
 	margin: auto 0;
-	font-size: 30;
+	font-size: 30px;
 	color: #4A4A4A;
 	padding-left: 20px;
 	border-left: solid 10px #5ACEB5;
@@ -102,32 +103,64 @@ ul {
 	overflow: auto;
 }
 
+#footer-container {
+	display: -webkit-flex;
+}
+
 #copyright {
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 20px;
+	text-align: center;
+	margin: 15px 20px;
 	color: white;
+	white-space: nowrap;
 }
 
 #contact-container {
-	display: -webkit-flex;
-	margin: 0 auto;
-	width: 83%;
+	display: inline-block;
+	margin: auto 13px auto auto;
+	text-align: center;
 }
 
 .contact-items {
-	display: inline-flex;
-	width: 40px;
-	height: 40px;
+	display: -webkit-flex;
+	margin: auto;
+	padding: 0;
 }
 
 .contact-items li {
+	margin: auto 7px;
 	border-radius: 50%;
-	height: 50px;
-    width: 50px;
-    line-height: 50px;
-    background-color: #22453D;
-    padding: 0px 30px;
+	height: 32px;
+  width: 32px;
+  line-height: 32px;
+  background-color: #22453D;
 }
+
+.contact-items img {
+	margin-top: 8px;
+	height: 15px;
+}
+
+.contact-items li:hover {
+	transform: scale(1.1, 1.1);
+}
+
+/* ============== *
+ * = About Page = *
+ * ============== */ 
+
+/* ============= *
+ * = Work Page = *
+ * ============= */ 
+
+/* ================= *
+ * = Projects Page = *
+ * ================= */ 
+
+/* ================= *
+ *  = Contact Page = *
+ * ================= */ 
 
 
 

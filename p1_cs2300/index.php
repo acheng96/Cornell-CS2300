@@ -18,7 +18,7 @@
 			<!-- Navigation Bar -->
 			<div id="navbar-container">
 				<ul class="navbar-items">
-					<li class="active-page"><a href="index.php">HOME</a></li>
+					<li class="active-page"><a href="index.php"><span>HOME</span></a></li>
   				<li><a href="files/about.php">ABOUT</a></li>
   				<li><a href="files/work.php">WORK</a></li>
   				<li><a href="files/projects.php">PROJECTS</a></li>
@@ -36,14 +36,16 @@
 
 		<!-- Footer -->
 		<div class="footer">
-			<div id="copyright">© ANNIE CHENG 2016</div>
-			<div id="contact-container">
-				<ul class="contact-items">
-  				<li><a href="mailto:ac962@cornell.edu"><img src="images/email_icon.png" alt="Email"></a></li>
-  				<li><a href="https://github.com/acheng96"><img src="images/github_icon.png" alt="Github"></a></li>
-  				<li><a href="https://www.linkedin.com/in/acheng96"><img src="images/linkedin_icon.png" alt="Linkedin"></a></li>
-  				<li><a href="https://www.facebook.com/annie.cheng.372"><img src="images/facebook_icon.png" alt="Facebook"></a></li>
-				</ul>
+			<div id="footer-container">
+				<div id="copyright">© ANNIE CHENG 2016</div>
+				<div id="contact-container">
+					<ul class="contact-items">
+	  				<li><a href="mailto:ac962@cornell.edu"><img src="images/email_icon.png" alt="Email"></a></li>
+	  				<li><a href="https://github.com/acheng96" target="_blank"><img src="images/github_icon.png" alt="Github"></a></li>
+	  				<li><a href="https://www.linkedin.com/in/acheng96" target="_blank"><img src="images/linkedin_icon.png" alt="Linkedin"></a></li>
+	  				<li><a href="https://www.facebook.com/annie.cheng.372" target="_blank"><img src="images/facebook_icon.png" alt="Facebook"></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 
