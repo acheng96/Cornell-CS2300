@@ -15,7 +15,7 @@
 		<!-- Body -->
 		<div id="about-body-container">
 			<!-- Title -->
-			<div id="about-title">
+			<div id="title">
 				<p>A BIT ABOUT MYSELF</p>
 				<div id="title-underline"></div>
 			</div>
@@ -28,12 +28,12 @@
 					<p>At Cornell, I am a CUAppDev Project Team developer, an Interaction Design Lab researcher, an ACSU Academic Officer, a Python consultant, and a WICC member. I am also involved in intramural basketball and volleyball, CFA, and CSA.</p>
 				</div>
 				<div class="about-category">
-					<img id="developer-icon" src="../images/developer_icon.png" alt="Developer Icon">
+					<img src="../images/developer_icon.png" alt="Developer Icon">
 					<h2>DEVELOPER</h2>
 					<p>I am an iOS mobile developer with 1.5+ years of experience coding in Swift and using Xcode. Currently, I’ve worked on over 10 iOS apps related to social media, music, education etc.  Many of these projects can be found on my Github account.</p>
 				</div>
 				<div class="about-category">
-					<img id="designer-icon" src="../images/designer_icon.png" alt="Designer Icon">
+					<img src="../images/designer_icon.png" alt="Designer Icon">
 					<h2>DESIGNER</h2>
 					<p>With a keen interest for human-computer interaction and UI/UX design, I strongly believe that design and code go hand in hand. Design tools I have worked with include Sketch, Photoshop, and many wireframing/prototyping softwares. </p>
 				</div>

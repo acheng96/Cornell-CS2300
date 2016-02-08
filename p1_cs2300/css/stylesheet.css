@@ -198,7 +198,7 @@ ul {
 
 /* - Title- */
 
-#about-title p {
+#title p {
 	margin: 50px auto 20px auto;
 	font-size: 30px;
 	font-weight: bold;
@@ -252,12 +252,66 @@ ul {
 
 }
 
-
-
-
 /* ============= *
  * = Work Page = *
  * ============= */ 
+
+/* - Categories - */
+.work-categories-container {
+	display: block;
+	padding: 30px 0;
+}
+
+.work-categories-divider {
+	margin: auto;
+	width: 75%;
+	height: 2px;
+	background-color: #4A4A4A;
+}
+
+.work-category {
+	display: -webkit-flex;
+	margin: 50px auto;
+	width: 75%;
+}
+
+.work-category a {
+	margin: auto;
+}
+
+.work-category img {
+	margin: auto 50px auto 0;
+	width: 150px;
+	height: 150px;
+}
+
+.work-category h1 {
+	margin: 0;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.work-category h2 {
+	margin: 0;
+	font-size: 30px;
+	font-weight: bold;
+	color: #4A4A4A;
+}
+
+.work-category p {
+	margin-bottom: 0;
+	font-size: 20px;
+	color: #4A4A4A;
+}
+
+.work-title {
+	border-left: solid 7px #5ACEB5;
+	padding-left: 20px;
+}
+
+.work-description {
+	margin: auto;
+}
 
 /* ================= *
  * = Projects Page = *
