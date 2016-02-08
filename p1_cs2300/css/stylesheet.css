@@ -2,6 +2,10 @@
  * = Global = *
  * ========== */ 
 
+a {
+	text-decoration: none;
+}
+
 html * {
    font-family: Lato;
 }
@@ -257,6 +261,7 @@ ul {
  * ============= */ 
 
 /* - Categories - */
+
 .work-categories-container {
 	display: block;
 	padding: 30px 0;
@@ -316,6 +321,99 @@ ul {
 /* ================= *
  * = Projects Page = *
  * ================= */ 
+
+/* - Categories - */
+
+.projects-categories-container {
+	flex-wrap: wrap;
+	display: inline-flex;
+	padding: 30px 100px;
+}
+
+.project-category-divider {
+	margin: 15px auto;
+	background-color: #5ACEB5;
+	width: 50px;
+	height: 4px;
+}
+
+.projects-category {
+	margin: 1.16% 1.16%;
+	width: 26.5vw;
+	height: 26.5vw;
+	border-radius: 10px;
+	border: solid 1px #4A4A4A;
+	background-size: 100% 100%;
+	background-color: #4A4A4A;
+}
+
+.projects-category h2 {
+	margin: 0 auto;
+	width: 80%;
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	color: white;
+}
+
+.projects-category h4 {
+	margin: 0 auto;
+	font-size: 18px;
+	font-weight: normal;
+	width: 80%;
+	text-align: center;
+	color: white;
+}
+
+.project-details-container {
+	padding: 22% 0;
+}
+
+.github-button {
+	margin: 30px auto 0 auto;
+	padding: 10px;
+	border-radius: 6px;
+	width: 100px;
+	font-size: 25px;
+	text-align: center;
+	color: white;
+	background-color: #5ACEB5;
+}
+
+.overlay {
+    position: relative;
+    width: 26.5vw;
+    height: 26.5vw;
+    border-radius: 8px;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* - Images - */
+
+#icefishing {
+	background-image: url("../images/icefishing_image.png");
+}
+
+#eatery {
+	background-image: url("../images/eatery_image.png");
+}
+
+#fire-emblem {
+	background-image: url("../images/fire_emblem_image.png");
+}
+
+#haven {
+	background-image: url("../images/haven_image.png");
+}
+
+#spaceship-vr {
+	background-image: url("../images/spaceship_vr_image.png");
+}
+
+#hungry-brown {
+	background-image: url("../images/hungry_brown_image.png");
+}
 
 /* ================= *
  *  = Contact Page = *

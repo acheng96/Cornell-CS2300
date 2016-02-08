@@ -13,11 +13,11 @@
 				<div id="navbar-container">
 					<ul class="navbar-items">
 						<li><a href="../index.php">HOME</a></li>
-	  				<li class="active-page"><a href="about.php"><span>ABOUT</span></a></li>
-	  				<li><a href="work.php">WORK</a></li>
-	  				<li><a href="projects.php">PROJECTS</a></li>
-	  				<li><a href="contact.php">CONTACT</a></li>
-	  				<li><a href="https://www.dropbox.com/s/fbztz8d5x64g5uk/Annie_Cheng_Resume.pdf?dl=0" target="_blank">RESUME</a></li>
+		  				<li class="active-page"><a href="about.php"><span>ABOUT</span></a></li>
+		  				<li><a href="work.php">WORK</a></li>
+		  				<li><a href="projects.php">PROJECTS</a></li>
+		  				<li><a href="contact.php">CONTACT</a></li>
+		  				<li><a href="https://www.dropbox.com/s/fbztz8d5x64g5uk/Annie_Cheng_Resume.pdf?dl=0" target="_blank">RESUME</a></li>
 					</ul>
 				</div>
 			</div>
