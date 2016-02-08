@@ -26,6 +26,7 @@ ul {
 
 .home-header {
 	background-color: #5ACEB5;
+	background-image: linear-gradient(#5ACEB5, #33AB91);
 	overflow: auto;
 }
 
@@ -50,7 +51,7 @@ ul {
 
 /* - Navbar - */
 
-#navbar-container {
+#home-navbar-container {
 	margin: 0 auto;
 	width: 52%;
 }
@@ -66,17 +67,19 @@ ul {
 }
 
 .navbar-items a {
-	font-size: 20px;
 	font-weight: bold;
 	text-decoration: none;
-	text-align: center;
 	color: white;
+}
+
+#home-navbar-container .navbar-items a {
+	font-size: 20px;
 	padding: 5px 20px;
 }
 
 /* - Body - */
 
-#body-container {
+#home-body-container {
 	display: -webkit-flex;
 	margin: 50px auto;
 	width: 83%;
@@ -100,6 +103,7 @@ ul {
 
 .footer {
 	background-color: #5ACEB5;
+	background-image: linear-gradient(#5ACEB5, #33AB91);
 	overflow: auto;
 }
 
@@ -132,9 +136,9 @@ ul {
 	margin: auto 7px;
 	border-radius: 50%;
 	height: 32px;
-  width: 32px;
-  line-height: 32px;
-  background-color: #22453D;
+    width: 32px;
+    line-height: 32px;
+    background-color: #22453D;
 }
 
 .contact-items img {
@@ -149,6 +153,107 @@ ul {
 /* ============== *
  * = About Page = *
  * ============== */ 
+
+/* - Header - */
+
+.header {
+	background-color: #5ACEB5;
+	background-image: linear-gradient(#5ACEB5, #33AB91);
+	overflow: auto;
+}
+
+#logo {
+	margin: 15px 30px;
+	width: 50px;
+	height: 50px;
+}
+
+.footer {
+	min-height: 100%;
+    margin-bottom: -52px;
+    height: 52px;
+}
+
+/* - Navbar - */
+
+.header-container {
+	display: -webkit-flex;
+}
+
+#navbar-container {
+	margin: auto 10px auto auto;
+}
+
+#navbar-container .navbar-items a {
+	display: inline-block;
+	font-size: 18px;
+	padding: 5px 20px;
+}
+
+#navbar-container .navbar-items a {
+	font-weight: bold;
+	text-decoration: none;
+	color: white;
+}
+
+/* - Title- */
+
+#about-title p {
+	margin: 50px auto 20px auto;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	color: #22453D;
+}
+
+#title-underline {
+	margin: auto;
+	background-color: #5ACEB5;
+	width: 120px;
+	height: 5px;
+}
+
+/* - Categories - */
+
+.about-categories-container {
+	display: -webkit-flex;
+	margin: 78px auto;
+	width: 90%;
+	overflow: auto;
+}
+
+.about-category {
+	display: block;
+	margin: 0 30px;
+	background-color: #f5f5f5;
+	border-radius: 15px;
+	border: solid 3px #22453D;
+}
+
+.about-category img {
+	display: block;
+	margin: 20px auto;
+}
+
+#student-icon {
+	margin: 45px auto;
+}
+
+.about-category h2 {
+	text-align: center;
+	color: #4A4A4A;
+}
+
+.about-category p {
+	margin: auto auto 30px auto;
+	text-align: center;
+	color: #4A4A4A;
+	width: 80%;
+
+}
+
+
+
 
 /* ============= *
  * = Work Page = *

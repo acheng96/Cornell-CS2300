@@ -1,3 +1,5 @@
+<!doctype html>
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -16,24 +18,25 @@
 				<h1 id="home-description">HI, I'M ANNIE, AND I MAKE IOS APPS.</h1>
 			</div>
 			<!-- Navigation Bar -->
-			<div id="navbar-container">
+			<div id="home-navbar-container">
 				<ul class="navbar-items">
 					<li class="active-page"><a href="index.php"><span>HOME</span></a></li>
   				<li><a href="files/about.php">ABOUT</a></li>
   				<li><a href="files/work.php">WORK</a></li>
   				<li><a href="files/projects.php">PROJECTS</a></li>
   				<li><a href="files/contact.php">CONTACT</a></li>
-  				<li><a href="www.google.com">RESUME</a></li>
+  				<li><a href="https://www.dropbox.com/s/fbztz8d5x64g5uk/Annie_Cheng_Resume.pdf?dl=0" target="_blank">RESUME</a></li>
 				</ul>
 			</div>
 		</div>
 
 		<!-- Body -->
-		<div id="body-container">
+		<div id="home-body-container">
 			<img id="interests-triangle" src="images/interests_triangle.png" alt="Interests">
 			<div id="home-body-text">I am a sophomore at Cornell University studying Computer Science with a double minor in Business and Information Science.  With a heart for problem solving and an eye for design, I strive to create amazing user experiences and develop efficient solutions through coding. </div>
 		</div>
 
+		<!-- Footer -->
 		<!-- Footer -->
 		<div class="footer">
 			<div id="footer-container">
