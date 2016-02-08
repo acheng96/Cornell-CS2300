@@ -106,6 +106,10 @@ ul {
 /* - Footer - */
 
 .footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: 55px;
 	background-color: #5ACEB5;
 	background-image: linear-gradient(#5ACEB5, #33AB91);
 	overflow: auto;
@@ -170,12 +174,6 @@ ul {
 	margin: 15px 30px;
 	width: 50px;
 	height: 50px;
-}
-
-.footer {
-	min-height: 100%;
-    margin-bottom: -52px;
-    height: 52px;
 }
 
 /* - Navbar - */
@@ -386,7 +384,7 @@ ul {
     height: 26.5vw;
     border-radius: 8px;
     z-index: 10;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
 }
 
 /* - Images - */
@@ -419,6 +417,121 @@ ul {
  *  = Contact Page = *
  * ================= */ 
 
+#contact-body-container {
+	display: inline-flex;
+}
+
+/* - Fun Fact - */
+
+#fun-fact {
+	margin: 0;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	color: #4A4A4A;
+}
+
+.fun-fact-section {
+	margin: 50px 80px;
+}
+
+.fun-fact-section select {
+	margin: 0 auto;
+	display: block;
+	width: 175px;
+	height: 45px;
+	font-size: 22px;
+	text-align: center;
+	outline: none;
+    background-color: #4A4A4A;
+    color: white;
+}
+
+.fun-fact-section select option {
+    background-color: #4A4A4A;
+    color: white;
+}
+
+#fun-fact-question {
+	font-size: 25px;
+	font-weight: normal;
+	text-align: center;
+}
+
+#potato {
+	margin: 20px auto;
+	display: block;
+	height: auto;
+	width: 75%;
+}
+
+/* - Contact Form - */
+
+#contact-body-container {
+	margin: 0;
+	width: 100%;
+}
+
+#contact-hdivider {
+	margin: 3px 0 10px 0;
+	width: 100px;
+	height: 5px;
+	background-color: #5ACEB5;
+}
+
+.contact-form-container {
+	margin: auto;
+	width: 30%;
+}
+
+.contact-form-container h1 {
+	margin: 0 auto;
+	width: 100%;
+	font-size: 40px;
+	font-weight: bold;
+	color: #4A4A4A;
+}
+
+.contact-form input, textarea {
+	outline: none;
+	height: 45px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.contact-form input[type=text], textarea {
+	padding-left: 10px;
+	margin: 8px auto;
+	width: 100%;
+	border-radius: 5px;
+	border: solid 2px #4A4A4A;
+	color: #4A4A4A;
+}
+
+.contact-form textarea {
+	padding: 10px 0 0 10px;
+	max-width: 100%;
+	height: 120px;
+}
+
+.contact-form input[type=submit] {
+	margin: 8px auto 0 auto;
+	display: block;
+	width: 120px;
+	padding: 0 15px;
+	border-radius: 7px;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	background-color: #4A4A4A;
+	border-style: none;
+}
+
+.page-wrap {
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+}
 
 
 
