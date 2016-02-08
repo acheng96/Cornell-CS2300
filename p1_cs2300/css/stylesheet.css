@@ -2,10 +2,6 @@
  * = Global = *
  * ========== */ 
 
-a {
-	text-decoration: none;
-}
-
 html * {
    font-family: Lato;
 }
@@ -14,11 +10,15 @@ body {
 	margin: auto;
 }
 
+a {
+	text-decoration: none;
+}
+
 ul {
 	list-style-type: none;
 }
 
-.active-page span {
+.navbar-items a :active {
   border-bottom: solid 5px #22453D;
 }
 
@@ -326,6 +326,7 @@ ul {
 	flex-wrap: wrap;
 	display: inline-flex;
 	padding: 30px 100px;
+	overflow: hidden;
 }
 
 .project-category-divider {
@@ -383,8 +384,13 @@ ul {
     width: 26.5vw;
     height: 26.5vw;
     border-radius: 8px;
-    z-index: 10;
     background-color: rgba(0,0,0,0.6);
+	opacity: 0;
+	-webkit-transition: opacity .25s ease;
+}
+
+.projects-category:hover .overlay {
+	opacity: 1;
 }
 
 /* - Images - */
