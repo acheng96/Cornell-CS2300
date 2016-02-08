@@ -8,6 +8,21 @@
 		<title>Contact Page</title>
 	</head>
 	<body>
+		<!-- Potato Select Form Setup -->
+		<?php
+		    $potato_images = array("hot_potato.png", "baked_potato.png", "french_fries.png", "hashbrown.png", "mashed_potato.png");
+		    (isset($_POST["potato-select"])) ? $selected_potato = $_POST["potato-select"] : $selected_potato = 0;
+		?>
+
+		<!-- Contact Form Setup -->
+		<?php
+		    if (isset($_POST["name"])) {
+				
+			} else {
+
+		    }
+		?>
+
 		<!-- Header -->
 		<?php include("header.php"); ?>
 
@@ -15,27 +30,29 @@
 		<div id="contact-body-container">
 			<div class="fun-fact-section">
 				<h1 id="fun-fact">Fun Fact: I love potatoes.</h1>
-				<img id="potato" src="../images/hot_potato.png" alt="Potato">
+				<img id="potato" src=<?php echo "../images/{$potato_images[$selected_potato]}"?> alt="Potato">
 				<p id="fun-fact-question">What's your favorite type of potato?</p>
-				<select name="potatoes">
-					<option value="0">Hot</option>
-					<option value="1">Baked</option>
-					<option value="2">French Fries</option>
-					<option value="3">Hashbrown</option>
-					<option value="4">Mashed</option>
-				</select>
+				<form class="potato-select-form" action="contact.php" method="POST">
+					<select name="potato-select" onchange="this.form.submit();">
+						<option <?php if ($selected_potato == 0 ) echo 'selected' ; ?> value="0">Hot</option>
+						<option <?php if ($selected_potato == 1 ) echo 'selected' ; ?> value="1">Baked</option>
+						<option <?php if ($selected_potato == 2 ) echo 'selected' ; ?> value="2">French Fries</option>
+						<option <?php if ($selected_potato == 3 ) echo 'selected' ; ?> value="3">Hashbrown</option>
+						<option <?php if ($selected_potato == 4 ) echo 'selected' ; ?> value="4">Mashed</option>
+					</select>
+				</form>
 			</div>
 
 			<!-- Contact Form -->
 			<div class="contact-form-container">
 				<h1>SAY HELLO</h1>
 				<div id="contact-hdivider"></div>
-				<form class="contact-form" action="">
-				  <input type="text" name="Name" placeholder="NAME"><br>
-				  <input type="text" name="Email" placeholder="EMAIL"><br>
-				  <input type="text" name="Subject" placeholder="SUBJECT"><br>
-				  <textarea name="Message" placeholder="MESSAGE"></textarea><br>
-				  <input type="submit" value="Submit">
+				<form class="contact-form" action="contact.php" method="POST">
+				  <input type="text" placeholder="NAME" name="name" value="<?php echo $name;?>"><br>
+				  <input type="text" placeholder="EMAIL" name="email" value="<?php echo $email;?>"><br>
+				  <input type="text" placeholder="SUBJECT" name="subject" value="<?php echo $subject;?>"><br>
+				  <textarea placeholder="MESSAGE" name="message" value="<?php echo $message;?>"></textarea><br>
+				  <input type="submit" name="submit" value="Submit">
 				</form>
 			</div>
 		</div>
