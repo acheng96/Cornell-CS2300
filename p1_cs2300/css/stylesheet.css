@@ -205,7 +205,7 @@ ul {
 	font-size: 30px;
 	font-weight: bold;
 	text-align: center;
-	color: #22453D;
+	color: #4A4A4A;
 }
 
 #title-underline {
@@ -254,6 +254,10 @@ ul {
 
 }
 
+.about-category:hover {
+	background-color: #D5F4ED;
+}
+
 /* ============= *
  * = Work Page = *
  * ============= */ 
@@ -286,6 +290,10 @@ ul {
 	margin: auto 50px auto 0;
 	width: 150px;
 	height: 150px;
+}
+
+.work-category img:hover {
+	transform: scale(1.05,1.05);
 }
 
 .work-category h1 {
@@ -479,8 +487,8 @@ ul {
 }
 
 #contact-hdivider {
-	margin: 3px 0 10px 0;
-	width: 100px;
+	margin: 10px auto 10px auto;
+	width: 120px;
 	height: 5px;
 	background-color: #5ACEB5;
 }
@@ -495,6 +503,16 @@ ul {
 	width: 100%;
 	font-size: 40px;
 	font-weight: bold;
+	text-align: center;
+	color: #4A4A4A;
+}
+
+.contact-form-container h2 {
+	margin: 0 auto 10px auto;
+	width: 100%;
+	font-size: 20px;
+	font-weight: normal;
+	text-align: center;
 	color: #4A4A4A;
 }
 

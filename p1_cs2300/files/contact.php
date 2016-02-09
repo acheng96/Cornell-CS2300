@@ -12,20 +12,55 @@
 		<?php
 		    $potato_images = array("hot_potato.png", "baked_potato.png", "french_fries.png", "hashbrown.png", "mashed_potato.png");
 		    (isset($_POST["potato-select"])) ? $selected_potato = $_POST["potato-select"] : $selected_potato = 0;
+
+		    switch($selected_potato) {
+		    	case 0:
+		    	  $fun_fact = "I love hot potatoes.";
+		    	  break;
+		    	case 1:
+		    	  $fun_fact = "I love baked potatoes.";
+		    	  break;
+		    	case 2:
+		    	  $fun_fact = "I love french fries.";
+		    	  break;
+		    	case 3:
+		    	  $fun_fact = "I love hashbrowns.";
+		    	  break;
+		    	default: 
+		    	  $fun_fact = "I love mashed potatoes.";
+		    	  break;
+		    }
 		?>
 
 		<!-- Contact Form Setup -->
 		<?php 
+		  $title = "SAY HELLO";
+
+		  function isValidEmail($email){ 
+		    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+		  }
+
 			if (isset($_POST["name"]) || isset($_POST["email"]) || isset($_POST["subject"]) || isset($_POST["message"])) {
-				$title = "Form Submitted!";
+				$subtitle = "Thanks for contacting me! I'll get back to you as soon as possible.";
 				$name = $_POST["name"];
 				$email = $_POST["email"];
 				$subject = $_POST["subject"];
 				$message = $_POST["message"];
-				mail($email, "{$subject} - {$name}", $message);
-				print("{$subject} - {$name} - {$email} - {$message}");
+
+				// Check for invalid user inputs
+				$valid_email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+
+				if ($name == "" || $email == "" || $subject == "" || $message == "") {
+					$subtitle = "Please fill in all fields.";
+				} elseif (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+  				$subtitle = "Please enter a name with only letters and white space."; 
+				} elseif (!preg_match($valid_email_exp,$email)) {
+					$subtitle = "Please enter a valid email address.";
+				} else {
+					mail($email, "{$subject} - {$name}", $message);
+				}
 			} else {
-				$title = "SAY HELLO";
+				  $subtitle = "Want to chat? Feel free to drop me a message!";
 			}
 		?> 
 
@@ -35,7 +70,7 @@
 		<!-- Body -->
 		<div id="contact-body-container">
 			<div class="fun-fact-section">
-				<h1 id="fun-fact">Fun Fact: I love potatoes.</h1>
+				<h1 id="fun-fact"><?php echo "Fun Fact: {$fun_fact}" ?></h1>
 				<img id="potato" src=<?php echo "../images/{$potato_images[$selected_potato]}"?> alt="Potato">
 				<p id="fun-fact-question">What's your favorite type of potato?</p>
 				<form class="potato-select-form" action="contact.php" method="POST">
@@ -53,11 +88,12 @@
 			<div class="contact-form-container">
 				<h1><?php echo $title ?></h1>
 				<div id="contact-hdivider"></div>
+				<h2><?php echo $subtitle ?></h2>
 				<form class="contact-form" action="contact.php" method="POST">
-				  <input type="text" placeholder="NAME" name="name"><br>
-				  <input type="text" placeholder="EMAIL" name="email"><br>
-				  <input type="text" placeholder="SUBJECT" name="subject"><br>
-				  <textarea placeholder="MESSAGE" name="message"></textarea><br>
+				  <input type="text" placeholder="NAME" name="name" value="<?php echo $_POST['name'];?>"><br>
+				  <input type="text" placeholder="EMAIL" name="email" value="<?php echo $_POST['email'];?>"><br>
+				  <input type="text" placeholder="SUBJECT" name="subject" value="<?php echo $_POST['subject'];?>"><br>
+				  <textarea placeholder="MESSAGE" name="message" value="<?php echo $_POST['message'];?>"></textarea><br>
 				  <input type="submit" name="submit" value="Submit">
 				</form>
 

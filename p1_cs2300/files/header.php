@@ -9,7 +9,7 @@
 	<body>
 		<div class="header">
 			<div class="header-container">
-				<img id="logo" src="../images/personal_logo.png" alt="Logo">
+				<a href="../index.php"><img id="logo" src="../images/personal_logo.png" alt="Logo"></a>
 				<div id="navbar-container">
 					<ul class="navbar-items">
 						<li><a href="../index.php">HOME</a></li>
