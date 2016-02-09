@@ -32,7 +32,7 @@
 				<div class="work-categories-divider"></div>
 				<div class="work-category">
 					<!-- CREDITS: The Python Logo was taken from the official Python Website. -->
-					<a href="https://www.cornell.edu" target="_blank"><img src="../images/python_image.png" alt="Python"></a>
+					<a href="http://www.cs.cornell.edu/courses/CS1110/2016sp/" target="_blank"><img src="../images/python_image.png" alt="Python"></a>
 					<div class="work-description">
 						<div class="work-title">
 							<h1>Cornell University</h1>
