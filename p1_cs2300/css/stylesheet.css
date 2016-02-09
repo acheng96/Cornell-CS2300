@@ -32,10 +32,7 @@ ul {
 	overflow: auto;
 }
 
-#profile-container {
-	display: -webkit-box;    
-	display: -moz-box;             
-	display: -webkit-flex;    
+#profile-container {   
 	display: flex; 
 	margin: 40px auto;
 	width: 52%;
@@ -89,10 +86,7 @@ ul {
  * = Home Page Body = *
  * ================== */ 
 
-#home-body-container {
-	display: -webkit-box;    
-	display: -moz-box;             
-	display: -webkit-flex;   
+#home-body-container { 
 	display: flex; 
 	margin: 50px auto;
 	width: 83%;
@@ -129,10 +123,7 @@ ul {
 	overflow: auto;
 }
 
-#footer-container {
-	display: -webkit-box;    
-	display: -moz-box;             
-	display: -webkit-flex;    
+#footer-container {   
 	display: flex; 
 }
 
@@ -151,10 +142,7 @@ ul {
 	text-align: center;
 }
 
-.contact-items {
-	display: -webkit-box;    
-	display: -moz-box;             
-	display: -webkit-flex;    
+.contact-items {   
 	display: flex; 
 	margin: auto;
 	padding: 0;
@@ -198,10 +186,7 @@ ul {
  * = About Page Navigation Bar = *
  * ============================= */ 
 
-.header-container {
-	display: -webkit-box;    
-	display: -moz-box;             
-	display: -webkit-flex;    
+.header-container {   
 	display: flex; 
 }
 
@@ -244,10 +229,7 @@ ul {
  * = About Page Categories = *
  * ========================= */ 
 
-.about-categories-container {
-	display: -webkit-box;    
-	display: -moz-box;             
-	display: -webkit-flex;    
+.about-categories-container {    
 	display: flex; 
 	margin: 78px auto;
 	width: 90%;
@@ -303,10 +285,7 @@ ul {
 	background-color: #4A4A4A;
 }
 
-.work-category {
-	display: -webkit-box;    
-	display: -moz-box;             
-	display: -webkit-flex;    
+.work-category {  
 	display: flex; 
 	margin: 50px auto;
 	width: 75%;
@@ -366,7 +345,7 @@ ul {
 
 .projects-categories-container {
 	flex-wrap: wrap;
-	display: inline-flex;
+	display: flex;
 	padding: 30px 100px;
 	overflow: hidden;
 }
@@ -428,9 +407,7 @@ ul {
     border-radius: 8px;
     background-color: rgba(0,0,0,0.6);
 	opacity: 0;
-	-webkit-transition: opacity .25s ease;
-	-webkit-box-transition: opacity .25s ease;
-	-moz-transition: opacity .25s ease;
+	transition: opacity .25s ease;
 }
 
 .projects-category:hover .overlay {

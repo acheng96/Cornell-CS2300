@@ -42,11 +42,11 @@
 
 		  // Check whether all fields have been set
 			if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["message"])) {
-				$subtitle = "Thanks for contacting me! I'll get back to you as soon as possible.";
 				$name = $_POST["name"];
 				$email = $_POST["email"];
 				$subject = $_POST["subject"];
 				$message = $_POST["message"];
+				$subtitle = "Hi {$name}, thanks for contacting me! I'll get back to you at {$email} as soon as possible.";
 
 				// Check for invalid emails
 				$valid_email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
