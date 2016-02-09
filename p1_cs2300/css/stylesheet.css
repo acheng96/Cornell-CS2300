@@ -578,6 +578,8 @@ ul {
 
 .contact-form input, textarea {
 	outline: none;
+	min-height: 45px;
+	min-width: 100%;
 	height: 45px;
 	font-size: 22px;
 	font-weight: bold;
