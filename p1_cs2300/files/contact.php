@@ -1,15 +1,19 @@
 <!doctype html>
 
 <html>
+
 	<head>
 		<meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Contact Page</title>
 	</head>
+
 	<body>
+
 		<!-- Potato Select Form Setup -->
 		<?php
+				// CREDITS: I created all the potato images.
 		    $potato_images = array("hot_potato.png", "baked_potato.png", "french_fries.png", "hashbrown.png", "mashed_potato.png");
 		    (isset($_POST["potato-select"])) ? $selected_potato = $_POST["potato-select"] : $selected_potato = 0;
 
@@ -36,27 +40,24 @@
 		<?php 
 		  $title = "SAY HELLO";
 
-		  function isValidEmail($email){ 
-		    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-		  }
-
-			if (isset($_POST["name"]) || isset($_POST["email"]) || isset($_POST["subject"]) || isset($_POST["message"])) {
+		  // Check whether all fields have been set
+			if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["message"])) {
 				$subtitle = "Thanks for contacting me! I'll get back to you as soon as possible.";
 				$name = $_POST["name"];
 				$email = $_POST["email"];
 				$subject = $_POST["subject"];
 				$message = $_POST["message"];
 
-				// Check for invalid user inputs
+				// Check for invalid emails
 				$valid_email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
 
-				if ($name == "" || $email == "" || $subject == "" || $message == "") {
+				if ($name == "" || $email == "" || $subject == "" || $message == "") { // Check for empty field
 					$subtitle = "Please fill in all fields.";
-				} elseif (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+				} elseif (!preg_match("/^[a-zA-Z ]*$/",$name)) { // Check for invalid name
   				$subtitle = "Please enter a name with only letters and white space."; 
-				} elseif (!preg_match($valid_email_exp,$email)) {
+				} elseif (!preg_match($valid_email_exp,$email)) { // Check for invalid email
 					$subtitle = "Please enter a valid email address.";
-				} else {
+				} else { // Send email with form info
 					mail($email, "{$subject} - {$name}", $message);
 				}
 			} else {
@@ -69,10 +70,14 @@
 
 		<!-- Body -->
 		<div id="contact-body-container">
+			<!-- Potato Select Form -->
 			<div class="fun-fact-section">
+				<!-- Fun Fact Text -->
 				<h1 id="fun-fact"><?php echo "Fun Fact: {$fun_fact}" ?></h1>
 				<img id="potato" src=<?php echo "../images/{$potato_images[$selected_potato]}"?> alt="Potato">
 				<p id="fun-fact-question">What's your favorite type of potato?</p>
+
+				<!-- Select Form Body -->
 				<form class="potato-select-form" action="contact.php" method="POST">
 					<select name="potato-select" onchange="this.form.submit();">
 						<option <?php if ($selected_potato == 0) echo 'selected' ; ?> value="0">Hot</option>
@@ -86,9 +91,12 @@
 
 			<!-- Contact Form -->
 			<div class="contact-form-container">
+				<!-- Contact Form Title -->
 				<h1><?php echo $title ?></h1>
 				<div id="contact-hdivider"></div>
 				<h2><?php echo $subtitle ?></h2>
+
+				<!-- Contact Form Body -->
 				<form class="contact-form" action="contact.php" method="POST">
 				  <input type="text" placeholder="NAME" name="name" value="<?php echo $_POST['name'];?>"><br>
 				  <input type="text" placeholder="EMAIL" name="email" value="<?php echo $_POST['email'];?>"><br>
@@ -96,11 +104,12 @@
 				  <textarea placeholder="MESSAGE" name="message" value="<?php echo $_POST['message'];?>"></textarea><br>
 				  <input type="submit" name="submit" value="Submit">
 				</form>
-
 			</div>
 		</div>
 
 	    <!-- Footer -->
 	    <?php include("footer.php"); ?>
+
 	</body>
+
 </html>

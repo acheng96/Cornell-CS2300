@@ -1,4 +1,7 @@
+<!doctype html>
+
 <html>
+
 	<head>
 		<meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
@@ -6,17 +9,22 @@
 		<title>Footer</title>
 	</head>
 
-	<!-- Function to set active page -->
+	<!-- PHP Function to set active page -->
 	<?php 
 		function getClass($page) {
-			return (basename($_SERVER['PHP_SELF']) == $page) ? "active-page" :"inactive-page";
+			return (basename($_SERVER['PHP_SELF']) == $page) ? "active-page" : "inactive-page";
 		}
 	;?>
 
 	<body>
+
+		<!-- Header -->
 		<div class="header">
 			<div class="header-container">
+				<!-- CREDITS: I created this personal logo. -->
 				<a href="../index.php"><img id="logo" src="../images/personal_logo.png" alt="Logo"></a>
+
+				<!-- Navigation Bar -->
 				<div id="navbar-container">
 					<ul class="navbar-items">
 						<li class=<?php echo getClass("../index.php") ?>><a href="../index.php"><span>HOME</span></a></li>
@@ -29,6 +37,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</body>
 
 </html>

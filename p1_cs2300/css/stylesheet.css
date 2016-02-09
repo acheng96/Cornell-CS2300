@@ -22,11 +22,9 @@ ul {
   border-bottom: solid 5px #22453D;
 }
 
-/* ============= *
- * = Home Page = *
- * ============= */ 
-
-/* - Header - */
+/* ==================== *
+ * = Home Page Header = *
+ * ==================== */ 
 
 .home-header {
 	background-color: #5ACEB5;
@@ -35,7 +33,9 @@ ul {
 }
 
 #profile-container {
+	display: inline-flex;
 	display: -webkit-flex;
+	display: -webkit-box-flex;
 	margin: 40px auto;
 	width: 52%;
 	font-size: 25px;
@@ -43,6 +43,7 @@ ul {
 }
 
 #profile-pic {
+	display: block;
 	width: 250px;
 	height: 250px;
 }
@@ -53,7 +54,9 @@ ul {
 	margin: auto 0;
 }
 
-/* - Navbar - */
+/* ============================ *
+ * = Home Page Navigation Bar = *
+ * ============================ */ 
 
 #home-navbar-container {
 	margin: 0 auto;
@@ -81,18 +84,23 @@ ul {
 	margin: 5px 20px;
 }
 
-/* - Body - */
+/* ================== *
+ * = Home Page Body = *
+ * ================== */ 
 
 #home-body-container {
+	display: inline-flex;
 	display: -webkit-flex;
+	display: -webkit-box-flex;
 	margin: 50px auto;
 	width: 83%;
 }
 
 #interests-triangle {
+	display: block;
+	padding-right: 50px;
 	width: 300px;
 	height: 280px;
-	padding-right: 50px;
 }
 
 #home-body-text {
@@ -103,20 +111,26 @@ ul {
 	border-left: solid 10px #5ACEB5;
 }
 
-/* - Footer - */
+/* ==================== *
+ * = Home Page Footer = *
+ * ==================== */ 
 
 .footer {
 	position: relative;
 	bottom: 0;
 	width: 100%;
 	height: 55px;
+	min-height: 100%;
+	margin: 0 auto -55px;
 	background-color: #5ACEB5;
 	background-image: linear-gradient(#5ACEB5, #33AB91);
 	overflow: auto;
 }
 
 #footer-container {
+	display: inline-flex;
 	display: -webkit-flex;
+	display: -webkit-box-flex;
 }
 
 #copyright {
@@ -135,7 +149,9 @@ ul {
 }
 
 .contact-items {
+	display: inline-flex;
 	display: -webkit-flex;
+	display: -webkit-box-flex;
 	margin: auto;
 	padding: 0;
 }
@@ -158,11 +174,9 @@ ul {
 	transform: scale(1.1, 1.1);
 }
 
-/* ============== *
- * = About Page = *
- * ============== */ 
-
-/* - Header - */
+/* ===================== *
+ * = About Page Header = *
+ * ===================== */ 
 
 .header {
 	background-color: #5ACEB5;
@@ -176,10 +190,14 @@ ul {
 	height: 50px;
 }
 
-/* - Navbar - */
+/* ============================= *
+ * = About Page Navigation Bar = *
+ * ============================= */ 
 
 .header-container {
+	display: inline-flex;
 	display: -webkit-flex;
+	display: -webkit-box-flex;
 }
 
 #navbar-container {
@@ -198,7 +216,9 @@ ul {
 	color: white;
 }
 
-/* - Title- */
+/* ===================== *
+ * = About Page Title = *
+ * ===================== */ 
 
 #title p {
 	margin: 50px auto 20px auto;
@@ -215,10 +235,14 @@ ul {
 	height: 5px;
 }
 
-/* - Categories - */
+/* ========================= *
+ * = About Page Categories = *
+ * ========================= */ 
 
 .about-categories-container {
+	display: inline-flex;
 	display: -webkit-flex;
+	display: -webkit-box-flex;
 	margin: 78px auto;
 	width: 90%;
 	overflow: auto;
@@ -251,18 +275,15 @@ ul {
 	text-align: center;
 	color: #4A4A4A;
 	width: 80%;
-
 }
 
 .about-category:hover {
 	background-color: #D5F4ED;
 }
 
-/* ============= *
- * = Work Page = *
- * ============= */ 
-
-/* - Categories - */
+/* ======================== *
+ * = Work Page Categories = *
+ * ======================== */ 
 
 .work-categories-container {
 	display: block;
@@ -277,17 +298,19 @@ ul {
 }
 
 .work-category {
+	display: inline-flex;
 	display: -webkit-flex;
+	display: -webkit-box-flex;
 	margin: 50px auto;
 	width: 75%;
 }
 
 .work-category a {
-	margin: auto;
+	margin: auto 0;
 }
 
 .work-category img {
-	margin: auto 50px auto 0;
+	margin: auto 0;
 	width: 150px;
 	height: 150px;
 }
@@ -321,14 +344,12 @@ ul {
 }
 
 .work-description {
-	margin: auto;
+	margin: auto 0 auto 50px;
 }
 
-/* ================= *
- * = Projects Page = *
- * ================= */ 
-
-/* - Categories - */
+/* ============================ *
+ * = Projects Page Categories = *
+ * ============================ */ 
 
 .projects-categories-container {
 	flex-wrap: wrap;
@@ -395,13 +416,35 @@ ul {
     background-color: rgba(0,0,0,0.6);
 	opacity: 0;
 	-webkit-transition: opacity .25s ease;
+	-webkit-box-transition: opacity .25s ease;
+	-moz-transition: opacity .25s ease;
 }
 
 .projects-category:hover .overlay {
 	opacity: 1;
 }
 
-/* - Images - */
+.image-credits h1 {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	color: #4A4A4A;
+}
+
+.image-credits li {
+	font-size: 20px;
+	font-weight: normal;
+	padding: 5px 0;
+}
+
+.image-credits ul {
+	margin: 30px auto;
+	width: 75%;
+}
+
+/* ======================== *
+ * = Projects Page Images = *
+ * ======================== */ 
 
 #icefishing {
 	background-image: url("../images/icefishing_image.png");
@@ -435,7 +478,9 @@ ul {
 	display: inline-flex;
 }
 
-/* - Fun Fact - */
+/* ================================== *
+ *  = Contact Page Fun Fact Section = *
+ * ================================== */ 
 
 #fun-fact {
 	margin: 0;
@@ -479,7 +524,9 @@ ul {
 	width: 75%;
 }
 
-/* - Contact Form - */
+/* ============================== *
+ *  = Contact Page Contact Form = *
+ * ============================== */ 
 
 #contact-body-container {
 	margin: 0;
@@ -556,11 +603,3 @@ ul {
 	height: 100%;
 	min-height: 100%;
 }
-
-
-
-
-
-
-
-

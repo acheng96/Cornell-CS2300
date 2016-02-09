@@ -1,4 +1,7 @@
+<!doctype html>
+
 <html>
+
 	<head>
 		<meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
@@ -7,10 +10,13 @@
 	</head>
 
 	<body>
+
 		<!-- Footer -->
 		<div class="footer">
 			<div id="footer-container">
 				<div id="copyright">© ANNIE CHENG 2016</div>
+
+				<!-- CREDITS: Icons were downloaded from the free Font Awesome package. -->
 				<div id="contact-container">
 					<ul class="contact-items">
 	  				<li><a href="mailto:ac962@cornell.edu"><img src="../images/email_icon.png" alt="Email"></a></li>
@@ -21,6 +27,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</body>
 
 </html>
