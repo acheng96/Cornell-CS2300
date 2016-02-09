@@ -581,6 +581,7 @@ ul {
 	margin: 8px auto 0 auto;
 	display: block;
 	width: 120px;
+	min-width: 120px;
 	padding: 0 15px;
 	border-radius: 7px;
 	text-transform: uppercase;
