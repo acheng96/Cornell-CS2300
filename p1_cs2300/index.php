@@ -21,11 +21,11 @@
 			<div id="home-navbar-container">
 				<ul class="navbar-items">
 					<li class="active-page"><a href="index.php"><span>HOME</span></a></li>
-  				<li><a href="files/about.php">ABOUT</a></li>
-  				<li><a href="files/work.php">WORK</a></li>
-  				<li><a href="files/projects.php">PROJECTS</a></li>
-  				<li><a href="files/contact.php">CONTACT</a></li>
-  				<li><a href="https://www.dropbox.com/s/fbztz8d5x64g5uk/Annie_Cheng_Resume.pdf?dl=0" target="_blank">RESUME</a></li>
+	  				<li><a href="files/about.php"><span>ABOUT</span></a></li>
+	  				<li><a href="files/work.php"><span>WORK</a></span></li>
+	  				<li><a href="files/projects.php"><span>PROJECTS</span></a></li>
+	  				<li><a href="files/contact.php"><span>CONTACT</span></a></li>
+	  				<li><a href="https://www.dropbox.com/s/fbztz8d5x64g5uk/Annie_Cheng_Resume.pdf?dl=0" target="_blank">RESUME</a></li>
 				</ul>
 			</div>
 		</div>

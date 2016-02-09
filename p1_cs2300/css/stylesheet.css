@@ -18,7 +18,7 @@ ul {
 	list-style-type: none;
 }
 
-.navbar-items a :active {
+.active-page span {
   border-bottom: solid 5px #22453D;
 }
 
@@ -78,7 +78,7 @@ ul {
 
 #home-navbar-container .navbar-items a {
 	font-size: 20px;
-	padding: 5px 20px;
+	margin: 5px 20px;
 }
 
 /* - Body - */
