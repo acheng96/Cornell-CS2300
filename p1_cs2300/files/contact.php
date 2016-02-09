@@ -17,23 +17,31 @@
 		    $potato_images = array("hot_potato.png", "baked_potato.png", "french_fries.png", "hashbrown.png", "mashed_potato.png");
 		    (isset($_POST["potato-select"])) ? $selected_potato = $_POST["potato-select"] : $selected_potato = 0;
 
-		    switch($selected_potato) {
+		    function getPotatoType($potato) {
+		    	switch($potato) {
 		    	case 0:
-		    	  $fun_fact = "I love hot potatoes.";
+		    	  $potato_type = "hot potatoes";
 		    	  break;
 		    	case 1:
-		    	  $fun_fact = "I love baked potatoes.";
+		    	  $potato_type = "baked potatoes";
 		    	  break;
 		    	case 2:
-		    	  $fun_fact = "I love french fries.";
+		    	  $potato_type = "french fries";
 		    	  break;
 		    	case 3:
-		    	  $fun_fact = "I love hashbrowns.";
+		    	  $potato_type = "hashbrowns";
 		    	  break;
 		    	default: 
-		    	  $fun_fact = "I love mashed potatoes.";
+		    	  $potato_type = "mashed potatoes";
 		    	  break;
+		    	}
+
+		    	return $potato_type;
 		    }
+
+		    $selected_potato_type = getPotatoType($selected_potato);
+		    print($selected_potato_type);
+		    $fun_fact = "I love {$selected_potato_type}.";
 		?>
 
 		<!-- Contact Form Setup -->
@@ -73,8 +81,8 @@
 			<!-- Potato Select Form -->
 			<div class="fun-fact-section">
 				<!-- Fun Fact Text -->
-				<h1 id="fun-fact"><?php echo "Fun Fact: {$fun_fact}" ?></h1>
-				<img id="potato" src=<?php echo "../images/{$potato_images[$selected_potato]}"?> alt="Potato">
+				<h1 id="fun-fact"><?php echo "Fun Fact: {$fun_fact}"; ?></h1>
+				<img id="potato" src=<?php echo "../images/{$potato_images[$selected_potato]}"; ?> alt="Potato">
 				<p id="fun-fact-question">What's your favorite type of potato?</p>
 
 				<!-- Select Form Body -->

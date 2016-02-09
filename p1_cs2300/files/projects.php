@@ -11,6 +11,15 @@
 
 	<body>
 
+		<!-- Define Projects Info -->
+		<?php 
+			$project_ids = array("icefishing", "eatery", "fire-emblem", "haven", "spaceship-vr", "hungry-brown");
+			$project_titles = array("ICEFISHING", "EATERY", "FIRE EMBLEM", "HAVEN", "SPACESHIP VR", "HUNGRY@BROWN");
+			$project_description = array("Music Discovery &amp; Sharing", "Cornell University Dining", "OCaml Final Project", "Anonymous Social", "3D Interactive Virtual", "Brown University Dining");
+			$project_type = array("iOS App", "iOS App", "Strategy Game", "Communication Web App", "Reality Game", "iOS App");
+			$project_github = array("https://github.com/cuappdev/icefishing", "https://github.com/cuappdev/eatery", "https://github.com/Houka/OCaml_Fire_Emblem", "https://github.com/ghostling/haven", "https://github.com/acheng96/SpaceshipVR", "https://github.com/ss50/hungryatbrown-web");
+		?>
+
 		<!-- Header -->
 		<?php include("header.php"); ?>
 
@@ -24,66 +33,18 @@
 
 			<!-- Categories -->
 			<div class="projects-categories-container">
-				<div id="icefishing" class="projects-category">
-					<div class="overlay">
-						<div class="project-details-container">
-							<h2>ICEFISHING</h2>
-						    <div class="project-category-divider"></div>
-						    <h4>Music Discovery &amp; Sharing<br>iOS App</h4>
-						    <a href="https://github.com/cuappdev/icefishing" target="_blank"><div class="github-button">GITHUB</div></a>
-						</div>
-					</div>
-				</div>
-				<div id="eatery" class="projects-category">
-					<div class="overlay">
-						<div class="project-details-container">
-							<h2>EATERY</h2>
-							<div class="project-category-divider"></div>
-							<h4>Cornell University Dining<br>iOS App</h4>
-							<a href="https://github.com/cuappdev/eatery" target="_blank"><div class="github-button">GITHUB</div></a>
-				        </div>
-				    </div>
-				</div>
-				<div id="fire-emblem" class="projects-category">
-					<div class="overlay">
-						<div class="project-details-container">
-							<h2>FIRE EMBLEM</h2>
-							<div class="project-category-divider"></div>
-							<h4>OCaml Final Project<br>Strategy Game</h4>
-							<a href="https://github.com/Houka/OCaml_Fire_Emblem" target="_blank"><div class="github-button">GITHUB</div></a>
+				<?php for ($i = 0; $i < count($project_ids); $i++) { ?>
+						<div id=<?php echo $project_ids[$i]; ?> class="projects-category">
+							<div class="overlay">
+								<div class="project-details-container">
+									<h2><?php echo $project_titles[$i]; ?></h2>
+								    <div class="project-category-divider"></div>
+								    <h4><?php echo $project_description[$i]; ?><br><?php echo $project_type[$i]; ?></h4>
+								    <a href=<?php echo $project_github[$i]; ?> target="_blank"><div class="github-button">GITHUB</div></a>
+								</div>
+							</div>
 					    </div>
-				    </div>
-				</div>
-				<div id="haven" class="projects-category">
-					<div class="overlay">
-						<div class="project-details-container">
-							<h2>HAVEN</h2>
-							<div class="project-category-divider"></div>
-							<h4>Anonymous Social<br>Communication Web App</h4>
-							<a href="https://github.com/ghostling/haven" target="_blank"><div class="github-button">GITHUB</div></a>
-				        </div>
-				    </div>
-				</div>
-				<div id="spaceship-vr" class="projects-category">
-					<div class="overlay">
-						<div class="project-details-container">
-							<h2>SPACESHIP VR</h2>
-							<div class="project-category-divider"></div>
-							<h4>3D Interactive Virtual<br>Reality Game</h4>
-							<a href="https://github.com/acheng96/SpaceshipVR" target="_blank"><div class="github-button">GITHUB</div></a>
-				        </div>
-				    </div>
-				</div>
-				<div id="hungry-brown" class="projects-category">
-					<div class="overlay">
-						<div class="project-details-container">
-							<h2>HUNGRY@BROWN</h2>
-							<div class="project-category-divider"></div>
-							<h4>Brown University Dining<br>iOS App</h4>
-							<a href="https://github.com/ss50/hungryatbrown-web" target="_blank"><div class="github-button">GITHUB</div></a>
-				        </div>
-				   </div>
-				</div>
+    			<?php } ?>
 			</div>
 		</div>
 
