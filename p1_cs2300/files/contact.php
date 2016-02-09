@@ -13,7 +13,7 @@
 
 		<!-- Potato Select Form Setup -->
 		<?php
-				// CREDITS: I created all the potato images.
+			// CREDITS: I created all the potato images.
 		    $potato_images = array("hot_potato.png", "baked_potato.png", "french_fries.png", "hashbrown.png", "mashed_potato.png");
 		    (isset($_POST["potato-select"])) ? $selected_potato = $_POST["potato-select"] : $selected_potato = 0;
 

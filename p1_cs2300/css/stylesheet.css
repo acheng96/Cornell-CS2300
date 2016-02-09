@@ -346,7 +346,7 @@ ul {
 .projects-categories-container {
 	flex-wrap: wrap;
 	display: flex;
-	padding: 30px 100px;
+	margin: 30px 100px;
 	overflow: hidden;
 }
 
