@@ -17,6 +17,7 @@
 		    $potato_images = array("hot_potato.png", "baked_potato.png", "french_fries.png", "hashbrown.png", "mashed_potato.png");
 		    (isset($_POST["potato-select"])) ? $selected_potato = $_POST["potato-select"] : $selected_potato = 0;
 
+		    // Get type of potato for fun fact display
 		    function getPotatoType($potato) {
 		    	switch($potato) {
 		    	case 0:
@@ -39,8 +40,8 @@
 		    	return $potato_type;
 		    }
 
+		    // Update fun fact
 		    $selected_potato_type = getPotatoType($selected_potato);
-		    print($selected_potato_type);
 		    $fun_fact = "I love {$selected_potato_type}.";
 		?>
 

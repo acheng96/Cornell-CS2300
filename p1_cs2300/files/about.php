@@ -13,6 +13,7 @@
 
 		<!-- Define About Info -->
 		<?php 
+			// CREDITS: I created the student, developer, and designer icons.
 			$about_ids = array("student-icon", "developer-icon", "designer-icon");
 			$about_images = array("student_icon.png", "developer_icon.png", "designer_icon.png");
 			$about_titles = array("STUDENT", "DEVELOPER", "DESIGNER");
@@ -36,7 +37,7 @@
 
 			<!-- Categories -->
 			<div class="about-categories-container">
-				<!-- CREDITS: I created the student, developer, and designer icons. -->
+				<!-- Set up each about category -->
 				<?php for ($i = 0; $i < count($about_ids); $i++) { ?>
 						<div class="about-category">
 							<img id=<?php echo $about_ids[$i]; ?> src=<?php echo "../images/{$about_images[$i]}"; ?> alt="About Icon">

@@ -33,6 +33,7 @@
 
 			<!-- Categories -->
 			<div class="projects-categories-container">
+				<!-- Set up each project category -->
 				<?php for ($i = 0; $i < count($project_ids); $i++) { ?>
 						<div id=<?php echo $project_ids[$i]; ?> class="projects-category">
 							<div class="overlay">
