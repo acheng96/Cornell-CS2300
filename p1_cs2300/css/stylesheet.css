@@ -317,6 +317,11 @@ ul {
 }
 
 .work-category img {
+	width: 150px;
+	height: 150px;
+}
+
+.work-category a {
 	margin: auto 0;
 	width: 150px;
 	height: 150px;
@@ -352,6 +357,7 @@ ul {
 
 .work-description {
 	margin: auto 0 auto 50px;
+	width: 90%;
 }
 
 /* ============================ *
