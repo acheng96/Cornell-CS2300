@@ -92,7 +92,7 @@ ul {
 #home-body-container {
 	display: -webkit-box;    
 	display: -moz-box;             
-	display: -webkit-flex;    
+	display: -webkit-flex;   
 	display: flex; 
 	margin: 50px auto;
 	width: 83%;
