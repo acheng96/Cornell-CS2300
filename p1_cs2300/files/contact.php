@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html>
 
@@ -107,10 +107,10 @@
 
 				<!-- Contact Form Body -->
 				<form class="contact-form" action="contact.php" method="POST">
-				  <input type="text" placeholder="NAME" name="name" value="<?php echo $_POST['name'];?>"><br>
-				  <input type="text" placeholder="EMAIL" name="email" value="<?php echo $_POST['email'];?>"><br>
-				  <input type="text" placeholder="SUBJECT" name="subject" value="<?php echo $_POST['subject'];?>"><br>
-				  <textarea placeholder="MESSAGE" name="message" value="<?php echo $_POST['message'];?>"></textarea><br>
+				  <input type="text" placeholder="NAME" name="name"><br>
+				  <input type="text" placeholder="EMAIL" name="email"><br>
+				  <input type="text" placeholder="SUBJECT" name="subject"><br>
+				  <textarea placeholder="MESSAGE" name="message"></textarea><br>
 				  <input type="submit" name="submit" value="Submit">
 				</form>
 			</div>

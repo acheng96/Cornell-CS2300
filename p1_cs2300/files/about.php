@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html>
 
@@ -32,7 +32,7 @@
 			<!-- Title -->
 			<div id="title">
 				<p>A BIT ABOUT MYSELF</p>
-				<div id="title-underline"></div>
+				<div class="title-underline"></div>
 			</div>
 
 			<!-- Categories -->
