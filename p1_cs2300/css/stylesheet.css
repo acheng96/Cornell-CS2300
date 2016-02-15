@@ -218,7 +218,7 @@ ul {
 	color: #4A4A4A;
 }
 
-#title-underline {
+.title-underline {
 	margin: auto;
 	background-color: #5ACEB5;
 	width: 120px;

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html>
 
@@ -28,7 +28,7 @@
 			<!-- Title -->
 			<div id="title">
 				<p>A BIT ABOUT MYSELF</p>
-				<div id="title-underline"></div>
+				<div class="title-underline"></div>
 			</div>
 
 			<!-- Categories -->
@@ -52,7 +52,7 @@
 		<!-- Image Credits -->
 		<div class="image-credits">
 			<h1>IMAGE CREDITS</h1>
-			<div id="title-underline"></div>
+			<div class="title-underline"></div>
 			<ul>
 				<li><b>Icefishing:</b> The Icefishing image was created by Cornell University's CUAppDev Core Design Team.</li>
 				<li><b>Eatery:</b> The Eatery image was created by Cornell University's CUAppDev Core Design Team.</li>
@@ -62,7 +62,6 @@
 				<li><b>Hungry@Brown:</b> The Hungry@Brown image was created by my former hackathon teammates, Ria Mirchandani and Shreya Srinivas.</li>
 			</ul>
 		</div>
-
 
 		<!-- Footer -->
 		<?php include("footer.php"); ?>
