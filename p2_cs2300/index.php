@@ -152,11 +152,8 @@
 			<h3 id="catalog-title">PUPS</h3>
 			<div class="catalog-container">
 				<?php for ($i = 0; $i < count($pupsArray); $i++) { ?>
-						<?php 
-							$breedImage = getBreedImage($breeds[$i]); 
-							$backgroundImageStyle = "background-image: url('assets/$breedImage');";
-							print "<div class='catalog-item' style=".$backgroundImageStyle." ?>";
-						?>
+						<div class="catalog-item">
+							<img id="breed-image" src=<?php echo "assets/" . getBreedImage($breeds[$i]); ?> alt="breed"> 
 							<div class="inner-catalog-container">
 								<div class="top-item-container">
 									<div class="item-description">

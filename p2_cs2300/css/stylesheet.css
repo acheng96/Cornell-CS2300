@@ -244,6 +244,11 @@ ul {
 	overflow: hidden;
 }
 
+#breed-image {
+	width: 100%;
+	height: 100%;
+}
+
 .inner-catalog-container {
 	position: absolute;
 	width: 100%;
