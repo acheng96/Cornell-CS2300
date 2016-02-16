@@ -28,6 +28,14 @@
 			}
 		?>
 
+		<!-- Puppy Select Category Options -->
+		<?php 
+			$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagles');
+			$weightOptions = array('2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '20+');
+			$personalityOptions = array('Clumsy', 'Romantic', 'Playful', 'Lazy', 'Curious', 'Adventurous', 'Timid', 'Mixed');
+			$emojis = array('clumsy.png', 'romantic.png', 'playful.png', 'lazy.png', 'curious.png', 'adventurous.png', 'timid.png', 'mixed.png');
+		?>
+
 		<!-- Read puppies info from data file -->
 		<?php
 			$names = array();
@@ -92,13 +100,22 @@
 
 					<div id="select-options">
 						<select id="breed-select" name="breed-select">
-							<option 'selected' value="0">BREED</option>
+							<option 'selected' value="-1">BREED</option>
+							<?php for ($i = 0; $i < count($breedOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $breedOptions[$i] ?></option>
+							<?php } ?>
 						</select>
 						<select id="weight-select" name="weight-select">
-							<option 'selected' value="0">WEIGHT</option>
+							<option 'selected' value="-1">WEIGHT</option>
+							<?php for ($i = 0; $i < count($weightOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $weightOptions[$i] ?></option>
+							<?php } ?>
 						</select>
 						<select id="personality-select" name="personality-select">
-							<option 'selected' value="0">PERSONALITY</option>
+							<option 'selected' value="-1">PERSONALITY</option>
+							<?php for ($i = 0; $i < count($personalityOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $personalityOptions[$i] ?></option>
+							<?php } ?>
 						</select>
 					</div>
 
