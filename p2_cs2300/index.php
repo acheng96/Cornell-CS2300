@@ -11,7 +11,7 @@
 
 		<!-- Puppy Select Category Options -->
 		<?php 
-			$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagle<?php echo $names[$i]; ?>');
+			$breedOptions = array('Pomeranian', 'Chow Chow', 'Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'Bulldog', 'Beagle<?php echo $names[$i]; ?>');
 			$weightOptions = array('2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '20+');
 			$personalityOptions = array('Clumsy', 'Romantic', 'Playful', 'Lazy', 'Curious', 'Adventurous', 'Timid', 'Mixed');
 			$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagle.png');
@@ -46,7 +46,7 @@
 
 			// Get breed image corresponding to personality and return image location
 			function getBreedImage($breed) {
-				$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagle');
+				$breedOptions = array('Pomeranian', 'Chow Chow', 'Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'Bulldog', 'Beagle');
 				$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagle.png');
 
 				for ($i = 0; $i < count($breedOptions); $i++) {
