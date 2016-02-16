@@ -11,10 +11,10 @@
 
 		<!-- Puppy Select Category Options -->
 		<?php 
-			$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagles');
+			$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagle<?php echo $names[$i]; ?>');
 			$weightOptions = array('2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '20+');
 			$personalityOptions = array('Clumsy', 'Romantic', 'Playful', 'Lazy', 'Curious', 'Adventurous', 'Timid', 'Mixed');
-			$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagles.png');
+			$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagle.png');
 		?>
 
 		<!-- PHP Functions -->
@@ -46,8 +46,8 @@
 
 			// Get breed image corresponding to personality and return image location
 			function getBreedImage($breed) {
-				$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagles');
-				$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagles.png');
+				$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagle');
+				$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagle.png');
 
 				for ($i = 0; $i < count($breedOptions); $i++) {
 					if ($breedOptions[$i] == $breed) {
@@ -153,7 +153,7 @@
 			<div class="catalog-container">
 				<?php for ($i = 0; $i < count($pupsArray); $i++) { ?>
 						<div class="catalog-item">
-							<img id="breed-image" src=<?php echo "assets/" . getBreedImage($breeds[$i]); ?> alt="breed"> 
+							<img id="breed-image" src=<?php echo "assets/" . getBreedImage($breeds[$i]); ?> alt=<?php echo $breeds[$i]; ?>> 
 							<div class="inner-catalog-container">
 								<div class="top-item-container">
 									<div class="item-description">
