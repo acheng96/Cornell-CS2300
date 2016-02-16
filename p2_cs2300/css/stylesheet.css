@@ -235,7 +235,6 @@ ul {
 
 .catalog-item {
 	position: relative;
-	background-image: url(../assets/corgi.png);
 	background-size: 100%;
 	margin: 12px;
 	width: 25vw;
@@ -278,6 +277,7 @@ ul {
 
 #emoji {
 	margin: auto 15px auto auto;
+	min-width: 60px;
 	width: 60px;
 	height: 60px;
 }
@@ -286,7 +286,6 @@ ul {
 	padding: 10px 0 25vw 0;
 	height: 100%;
 	background-color: rgba(74, 144, 226, 0.5);
-	
 }
 
 .bottom-item-container h3 {

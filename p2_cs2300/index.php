@@ -9,31 +9,52 @@
 
 	<body>
 
-		<?php
-			$addIsActive = true;
-
-			// PHP Function to set active page
-			function getClass($page) {
-				print("Hello World");
-				if ($addIsActive && ($page == 'add')) {
-					echo "yes";
-					$addIsActive = !$addIsActive;
-					return 'inactive';
-				} else {
-					$addIsActive = !$addIsActive;
-					return 'active';
-
-				}
-
-			}
-		?>
-
 		<!-- Puppy Select Category Options -->
 		<?php 
 			$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagles');
 			$weightOptions = array('2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '20+');
 			$personalityOptions = array('Clumsy', 'Romantic', 'Playful', 'Lazy', 'Curious', 'Adventurous', 'Timid', 'Mixed');
-			$emojis = array('clumsy.png', 'romantic.png', 'playful.png', 'lazy.png', 'curious.png', 'adventurous.png', 'timid.png', 'mixed.png');
+			$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagles.png');
+		?>
+
+		<!-- PHP Functions -->
+		<?php
+			$addIsActive = true;
+
+			// Set add or search to active
+			function getClass($page) {
+				if ($addIsActive && ($page == 'add')) {
+					$addIsActive = !$addIsActive;
+					return 'inactive';
+				} else {
+					$addIsActive = !$addIsActive;
+					return 'active';
+				}
+			}
+
+			// Get emoji image corresponding to personality and return image location
+			function getEmoji($personality) {
+				$personalityOptions = array('Clumsy', 'Romantic', 'Playful', 'Lazy', 'Curious', 'Adventurous', 'Timid', 'Mixed');
+				$emojis = array('clumsy.png', 'romantic.png', 'playful.png', 'lazy.png', 'curious.png', 'adventurous.png', 'timid.png', 'mixed.png');
+
+				for ($i = 0; $i < count($personalityOptions); $i++) {
+					if ($personalityOptions[$i] == $personality) {
+						return ("assets/".$emojis[$i]);
+					}
+				}
+			}
+
+			// Get breed image corresponding to personality and return image location
+			function getBreedImage($breed) {
+				$breedOptions = array('Pomeranian', 'Chow Chow', 'Teacup Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Golden Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'English Bull Dog', 'Beagles');
+				$breedImages = array('pomeranian.png', 'chow-chow.png', 'teacup-poodle.png', 'pomsky.png', 'black-lab.png', 'pug.png', 'dachshund.png', 'westie.png', 'golden-retriever.png', 'bull-dog.png', 'shiba-inu.png', 'rottweiler.png', 'corgi.png', 'english-bull-dog.png', 'beagles.png');
+
+				for ($i = 0; $i < count($breedOptions); $i++) {
+					if ($breedOptions[$i] == $breed) {
+						return ($breedImages[$i]);
+					}
+				}
+			}
 		?>
 
 		<!-- Read puppies info from data file -->
@@ -50,11 +71,9 @@
 				$dataFile = fopen('files/data.txt', 'r');
 				$pupsArray = file('files/data.txt');
 
-				// TODO: Make runtime better; maybe use array_map()
 				foreach($pupsArray as $pup) {
 					$line = str_replace('\n', '', $pup);
 					$pupArray = explode( '\t', $line);
-
 					$names[] = $pupArray[0];
 					$breeds[] = $pupArray[1];
 					$weights[] = $pupArray[2];
@@ -133,20 +152,24 @@
 			<h3 id="catalog-title">PUPS</h3>
 			<div class="catalog-container">
 				<?php for ($i = 0; $i < count($pupsArray); $i++) { ?>
-						<div class="catalog-item">
+						<?php 
+							$breedImage = getBreedImage($breeds[$i]); 
+							$backgroundImageStyle = "background-image: url('assets/$breedImage');";
+							print "<div class='catalog-item' style=".$backgroundImageStyle." ?>";
+						?>
 							<div class="inner-catalog-container">
 								<div class="top-item-container">
 									<div class="item-description">
 										<h3 id="name"><?php echo $names[$i]; ?></h3>
 										<h4 id="description"><?php echo $breeds[$i].' • '.$weights[$i].' lbs'; ?></h4>
 									</div>
-									<img id="emoji" src="assets/curious.png" alt="Emoji">
+									<img id="emoji" src=<?php echo getEmoji($personalities[$i]); ?> alt="Emoji"> 
 								</div>
 								<div class="bottom-item-container">
 									<h3><b>Personality: </b><?php echo $personalities[$i]; ?></h3>
 									<h3><b>Favorite Toy: </b><?php echo $favoriteToys[$i]; ?></h3>
 									<h3><b>Special Talent: </b><?php echo $specialTalents[$i]; ?></h3>
-									<h3>Image from <a href=<?php echo $imageURLs[$i]; ?>><b>here</b></a>.</h3>
+									<h3>Image from <a href=<?php echo $imageURLs[$i]; ?> target="_blank"><b>here</b></a>.</h3>
 								</div>
 							</div>
 						</div>
