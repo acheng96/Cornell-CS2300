@@ -28,6 +28,38 @@
 			}
 		?>
 
+		<!-- Read puppies info from data file -->
+		<?php
+			$names = array();
+			$breeds = array();
+			$weights = array();
+			$personalities = array();
+			$favoriteToys = array();
+			$specialTalents = array();
+			$imageURLs = array();
+
+			if (file_exists('files/data.txt')) {
+				$dataFile = fopen('files/data.txt', 'r');
+				$pupsArray = file('files/data.txt');
+
+				// TODO: Make runtime better; maybe use array_map()
+				foreach($pupsArray as $pup) {
+					$line = str_replace('\n', '', $pup);
+					$pupArray = explode( '\t', $line);
+
+					$names[] = $pupArray[0];
+					$breeds[] = $pupArray[1];
+					$weights[] = $pupArray[2];
+					$personalities[] = $pupArray[3];
+					$favoriteToys[] = $pupArray[4];
+					$specialTalents[] = $pupArray[5];
+					$imageURLs[] = $pupArray[6];
+				}
+				
+				fclose($dataFile);
+			}
+		?>
+
 		<!-- Header -->
 		<div id="header">
 			<div id="header-content-container">
@@ -83,74 +115,25 @@
 		<div class="catalog">
 			<h3 id="catalog-title">PUPS</h3>
 			<div class="catalog-container">
-				<div class="catalog-item">
-					<div class="inner-catalog-container">
-						<div class="top-item-container">
-							<div class="item-description">
-								<h3 id="name">SPLAT</h3>
-								<h4 id="description">Corgi • 5 lbs</h4>
+				<?php for ($i = 0; $i < count($pupsArray); $i++) { ?>
+						<div class="catalog-item">
+							<div class="inner-catalog-container">
+								<div class="top-item-container">
+									<div class="item-description">
+										<h3 id="name"><?php echo $names[$i]; ?></h3>
+										<h4 id="description"><?php echo $breeds[$i].' • '.$weights[$i].' lbs'; ?></h4>
+									</div>
+									<img id="emoji" src="assets/curious.png" alt="Emoji">
+								</div>
+								<div class="bottom-item-container">
+									<h3><b>Personality: </b><?php echo $personalities[$i]; ?></h3>
+									<h3><b>Favorite Toy: </b><?php echo $favoriteToys[$i]; ?></h3>
+									<h3><b>Special Talent: </b><?php echo $specialTalents[$i]; ?></h3>
+									<h3>Image from <a href=<?php echo $imageURLs[$i]; ?>><b>here</b></a>.</h3>
+								</div>
 							</div>
-							<img id="emoji" src="assets/curious.png" alt="Emoji">
 						</div>
-						<div class="bottom-item-container">
-							<h3><b>Personality: </b>Curious</h3>
-							<h3><b>Favorite Toy: </b>Rubber Bone</h3>
-							<h3><b>Special Talent: </b>Splatting</h3>
-							<h3>Image from <a href="index.php"><b>here</b></a>.</h3>
-						</div>
-					</div>
-				</div>
-				<div class="catalog-item">
-					<div class="inner-catalog-container">
-						<div class="top-item-container">
-							<div class="item-description">
-								<h3 id="name">SPLAT</h3>
-								<h4 id="description">Corgi • 5 lbs</h4>
-							</div>
-							<img id="emoji" src="assets/curious.png" alt="Emoji">
-						</div>
-						<div class="bottom-item-container">
-							<h3><b>Personality: </b>Curious</h3>
-							<h3><b>Favorite Toy: </b>Rubber Bone</h3>
-							<h3><b>Special Talent: </b>Splatting</h3>
-							<h3>Image from <a href="index.php"><b>here</b></a>.</h3>
-						</div>
-					</div>
-				</div>
-				<div class="catalog-item">
-					<div class="inner-catalog-container">
-						<div class="top-item-container">
-							<div class="item-description">
-								<h3 id="name">SPLAT</h3>
-								<h4 id="description">Corgi • 5 lbs</h4>
-							</div>
-							<img id="emoji" src="assets/curious.png" alt="Emoji">
-						</div>
-						<div class="bottom-item-container">
-							<h3><b>Personality: </b>Curious</h3>
-							<h3><b>Favorite Toy: </b>Rubber Bone</h3>
-							<h3><b>Special Talent: </b>Splatting</h3>
-							<h3>Image from <a href="index.php"><b>here</b></a>.</h3>
-						</div>
-					</div>
-				</div>
-				<div class="catalog-item">
-					<div class="inner-catalog-container">
-						<div class="top-item-container">
-							<div class="item-description">
-								<h3 id="name">SPLAT</h3>
-								<h4 id="description">Corgi • 5 lbs</h4>
-							</div>
-							<img id="emoji" src="assets/curious.png" alt="Emoji">
-						</div>
-						<div class="bottom-item-container">
-							<h3><b>Personality: </b>Adventurous</h3>
-							<h3><b>Favorite Toy: </b>Rubber Bone</h3>
-							<h3><b>Special Talent: </b>Splatting</h3>
-							<h3>Image from <a href="index.php"><b>here</b></a>.</h3>
-						</div>
-					</div>
-				</div>
+    			<?php } ?>
 			</div>
 		</div>
 
