@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<script src = "script/valid.js"></script>
 		<title>PUPPYTAG</title>
 	</head>
 
@@ -110,28 +111,28 @@
 			</div>
 
 			<!-- Add and Search Form -->
-			<form class="form" action="index.php" method="POST">
+			<form class="form" name="pupForm" action="index.php" onsubmit="return validForm();" method="POST">
 				<div class="form-container">
 					<div id="basic-profile-form">
-						<input id="name-field" type="text" placeholder="NAME" name="name"><br>
-						<input id="image-url-field" type="text" placeholder="IMAGE URL (OPTIONAL)" name="image-url"><br>
+						<input id="name-field" type="text" placeholder="NAME" name="inputName" required title="Letters and spaces only."><br>
+						<input id="image-url-field" type="text" placeholder="IMAGE URL" name="inputImageURL" required title="We want to see your pup too!"><br>
 					</div>
 
 					<div id="select-options">
-						<select id="breed-select" name="breed-select">
-							<option 'selected' value="-1">BREED</option>
+						<select id="breed-select" name="breedSelect" required title="Your pup needs an identity!">
+							<option 'selected' value>BREED</option>
 							<?php for ($i = 0; $i < count($breedOptions); $i++) { ?>
 								<option value=<?php echo "{$i}" ?>><?php echo $breedOptions[$i] ?></option>
 							<?php } ?>
 						</select>
-						<select id="weight-select" name="weight-select">
-							<option 'selected' value="-1">WEIGHT</option>
+						<select id="weight-select" name="weightSelect" required title="Don't tell me your pup weighs nothing!">
+							<option 'selected' value>WEIGHT</option>
 							<?php for ($i = 0; $i < count($weightOptions); $i++) { ?>
 								<option value=<?php echo "{$i}" ?>><?php echo $weightOptions[$i] ?></option>
 							<?php } ?>
 						</select>
-						<select id="personality-select" name="personality-select">
-							<option 'selected' value="-1">PERSONALITY</option>
+						<select id="personality-select" name="personalitySelect" required title="Your pup needs a personality!">
+							<option 'selected' value>PERSONALITY</option>
 							<?php for ($i = 0; $i < count($personalityOptions); $i++) { ?>
 								<option value=<?php echo "{$i}" ?>><?php echo $personalityOptions[$i] ?></option>
 							<?php } ?>
@@ -139,9 +140,9 @@
 					</div>
 
 					<div id="specific-profile-form">
-						<input id="favorite-toy-field" type="text" placeholder="FAVORITE TOY" name="favorite-toy"><br>
-						<input id="special-talent-field" type="text" placeholder="SPECIAL TALENT" name="special-talent"><br>
-						<input type="submit" name="submit" value="Submit">
+						<input id="favorite-toy-field" type="text" placeholder="FAVORITE TOY" name="favoriteToy" required title="Every pup needs a little friend!"><br>
+						<input id="special-talent-field" type="text" placeholder="SPECIAL TALENT" name="specialTalent" required title="Have more confidence in your pup!"><br>
+ 						<input type="submit" value="Submit"> 
 					</div>
 				</div>
 			</form>
