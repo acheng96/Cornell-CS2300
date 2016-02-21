@@ -12,6 +12,7 @@ body {
 
 a {
 	text-decoration: none;
+	color: #4A4A4A;
 }
 
 ul {
@@ -80,6 +81,14 @@ ul {
   border-bottom: solid 8px #4A90E2;
 }
 
+.active-form {
+	display: block;
+}
+
+.inactive-form {
+	display: none;
+}
+
 #navbar-items {
 	margin: 0 auto;
 	width: 100%;
@@ -129,13 +138,12 @@ ul {
 	border: solid 1px #979797;
 }
 
-.form-container input:placeholder-shown {
+#form-container input:placeholder-shown {
 	color: #9B9B9B;
 }
 
-.form-container input[type=submit] {
+.form-container input[class="form-button"] {
 	width: 20%;
-	border-radius: 0 0 8px 0;
 	font-size: 40px;
 	font-weight: normal;
     text-transform: uppercase;
@@ -144,7 +152,21 @@ ul {
     border: none;
 }
 
-.form-container input[type=submit]:hover {
+.form-container input[id="add-submit"] {
+	border-radius: 0 0 8px 0;
+}
+
+.form-container input[id="search-submit"] {
+	width: 17%;
+	border-right: solid 1px #979797;
+}
+
+.form-container input[id="search-reset"] {
+	width: 17%;
+	border-radius: 0 0 8px 0;
+}
+
+.form-container input[class="form-button"]:hover {
 	background-color: 323132;
 	transition: background-color 0.5s ease;
 }
@@ -163,6 +185,33 @@ ul {
 
 #image-url-field {
 	width: 70%;
+	border-radius: 0 8px 0 0;
+}
+
+#search-field {
+	width: 70%;
+	border-radius: 8px 0 0 0;
+	background-color: white;
+	border: solid 1px #979797;
+	border-radius: 8px 0 0 0;
+	display: flex;
+}
+
+#search-input-field {
+	border: none;
+	padding-left: 10px;
+}
+
+#search-icon {
+	margin: auto 0 auto 25px;
+	padding-top: 3px;
+	height: 37px;
+	width: 37px;
+}
+
+#name-search-field {
+	width: 30%;
+	height: 82px;
 	border-radius: 0 8px 0 0;
 }
 
@@ -190,10 +239,6 @@ ul {
 	padding: 0 1%;
 }
 
-#personality-select {
-/*	border-radius: 0 0 8px 0;*/
-}
-
 /* Specific Profile Fields */
 
 #specific-profile-form {
@@ -208,6 +253,15 @@ ul {
 
 #special-talent-field {
 	width: 40%;
+}
+
+#favorite-toy-search-field {
+	width: 31.5%;
+	border-radius: 0 0 0 8px;
+}
+
+#special-talent-search-field {
+	width: 34.5%;
 }
 
  /* =========== *
@@ -298,13 +352,4 @@ ul {
 	padding: 5px 20px;
 	font-size: 20px;
 	font-weight: normal;
-}
-
-
-.name-field .popup {
-  display: none;
-}
-
-.name-field:hover .popup {
-  display: block;
 }

@@ -10,6 +10,19 @@
 
 	<body>
 
+		<!-- Set active form -->
+		<script>
+			// Set and display active form 
+			function show(active, inactive) {
+			  document.getElementById(active).style.display='block';
+			  document.getElementById(inactive).style.display='none';
+			  document.getElementById("add-title").className = (active == "add-form") ? "active" : "inactive"
+			  document.getElementById("search-title").className = (active == "search-form") ? "active" : "inactive"
+
+			  return false;
+			}
+		</script>
+
 		<!-- Puppy Select Category Options -->
 		<?php 
 			$breedOptions = array('Pomeranian', 'Chow Chow', 'Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'Bulldog', 'Beagle<?php echo $names[$i]; ?>');
@@ -20,19 +33,6 @@
 
 		<!-- PHP Functions -->
 		<?php
-			$addIsActive = true;
-
-			// Set add or search to active
-			function getClass($page) {
-				if ($addIsActive && ($page == 'add')) {
-					$addIsActive = !$addIsActive;
-					return 'inactive';
-				} else {
-					$addIsActive = !$addIsActive;
-					return 'active';
-				}
-			}
-
 			// Get emoji image corresponding to personality and return image location
 			function getEmoji($personality) {
 				$personalityOptions = array('Clumsy', 'Romantic', 'Playful', 'Lazy', 'Curious', 'Adventurous', 'Timid', 'Mixed');
@@ -106,12 +106,12 @@
 		<div class="add-search-form">
 			<!-- Navigation Bar -->
 			<div id="navbar-items">
-				<h2 id="add-title" class=<?php echo getClass('add'); ?>><a href="index.php"><span>ADD</span></a></h2>
-				<h2 id="search-title" class=<?php echo getClass('search'); ?>><a href="index.php"><span>SEARCH</span></a></h2>
+				<h2 id="add-title" class="active"><a href="index.php" onclick="return show('add-form','search-form');"><span>ADD</span></a></h2>
+				<h2 id="search-title" class="inactive"><a href="index.php" onclick="return show('search-form','add-form');"><span>SEARCH</span></a></h2>
 			</div>
 
-			<!-- Add and Search Form -->
-			<form class="form" name="pupForm" action="index.php" onsubmit="return validForm();" method="POST">
+			<!-- Add Form -->
+			<form id="add-form" class="form active-form" name="pupForm" action="index.php" onsubmit="return validForm();" method="POST">
 				<div class="form-container">
 					<div id="basic-profile-form">
 						<input id="name-field" type="text" placeholder="NAME" name="inputName" required title="Letters and spaces only."><br>
@@ -119,19 +119,19 @@
 					</div>
 
 					<div id="select-options">
-						<select id="breed-select" name="breedSelect" required title="Your pup needs an identity!">
+						<select name="breedSelect" required title="Your pup needs an identity!">
 							<option 'selected' value>BREED</option>
 							<?php for ($i = 0; $i < count($breedOptions); $i++) { ?>
 								<option value=<?php echo "{$i}" ?>><?php echo $breedOptions[$i] ?></option>
 							<?php } ?>
 						</select>
-						<select id="weight-select" name="weightSelect" required title="Don't tell me your pup weighs nothing!">
+						<select name="weightSelect" required title="Don't tell me your pup weighs nothing!">
 							<option 'selected' value>WEIGHT</option>
 							<?php for ($i = 0; $i < count($weightOptions); $i++) { ?>
 								<option value=<?php echo "{$i}" ?>><?php echo $weightOptions[$i] ?></option>
 							<?php } ?>
 						</select>
-						<select id="personality-select" name="personalitySelect" required title="Your pup needs a personality!">
+						<select name="personalitySelect" required title="Your pup needs a personality!">
 							<option 'selected' value>PERSONALITY</option>
 							<?php for ($i = 0; $i < count($personalityOptions); $i++) { ?>
 								<option value=<?php echo "{$i}" ?>><?php echo $personalityOptions[$i] ?></option>
@@ -142,7 +142,48 @@
 					<div id="specific-profile-form">
 						<input id="favorite-toy-field" type="text" placeholder="FAVORITE TOY" name="favoriteToy" required title="Every pup needs a little friend!"><br>
 						<input id="special-talent-field" type="text" placeholder="SPECIAL TALENT" name="specialTalent" required title="Have more confidence in your pup!"><br>
- 						<input type="submit" value="Submit"> 
+						<input id="add-submit" class="form-button" type="submit" value="Submit"> 
+					</div>
+				</div>
+			</form>
+
+			<!-- Search Form -->
+			<form id="search-form" class="form inactive-form" name="pupForm" action="index.php" method="POST">
+				<div class="form-container">
+					<div id="basic-profile-form">
+						<div id="search-field">
+							<img id="search-icon" src="assets/search-icon.png">
+							<input id="search-input-field" type="text" placeholder="SEARCH" name="search"><br>
+						</div>
+						<input id="name-search-field" type="text" placeholder="NAME" name="inputName"><br>
+					</div>
+
+					<div id="select-options">
+						<select id="breed-select" class="search-select" name="breedSelect">
+							<option 'selected' value>BREED</option>
+							<?php for ($i = 0; $i < count($breedOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $breedOptions[$i] ?></option>
+							<?php } ?>
+						</select>
+						<select id="weight-select" class="search-select" name="weightSelect">
+							<option 'selected' value>WEIGHT</option>
+							<?php for ($i = 0; $i < count($weightOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $weightOptions[$i] ?></option>
+							<?php } ?>
+						</select>
+						<select id="personality-select" class="search-select" name="personalitySelect">
+							<option 'selected' value>PERSONALITY</option>
+							<?php for ($i = 0; $i < count($personalityOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $personalityOptions[$i] ?></option>
+							<?php } ?>
+						</select>
+					</div>
+
+					<div id="specific-profile-form">
+						<input id="favorite-toy-search-field" type="text" placeholder="FAVORITE TOY" name="favoriteToy"><br>
+						<input id="special-talent-search-field" type="text" placeholder="SPECIAL TALENT" name="specialTalent"><br>
+						<input id="search-submit" class="form-button" type="submit" value="Submit"> 
+						<input id="search-reset" class="form-button" type="button" value="Reset"> 
 					</div>
 				</div>
 			</form>
