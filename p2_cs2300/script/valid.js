@@ -3,12 +3,12 @@
  * = Validation Functions = *
  * ======================== */ 
 
-// Check name field contains only letters and spaces
+// Check name field contains only word characters (a-z, A-Z, 0-9, and '_')
 function validName(name) {
-	var validNameExp = /^[A-Za-z ]+$/;
-	updateFieldBorder("name-field", validNameExp.test(name));
+	var illegalChars = /\W/;
+	updateFieldBorder("name-field", !illegalChars.test(name));
 
-	return validNameExp.test(name);
+	return !illegalChars.test(name);
 }
 
 // Check image url field for valid url

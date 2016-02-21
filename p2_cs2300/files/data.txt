@@ -1,15 +1,16 @@
 Splat\tCorgi\t10\tClumsy\tWoopy cushion\tSplatting\thttp://www.pawderosa.com/images/puppies.jpg\n
 Fluff\tPomeranian\t4\tAdventurous\tCotton balls\tRolling\thttps://s-media-cache-ak0.pinimg.com/564x/2b/1b/c8/2b1bc8eb8bdb4d8f66ab9c6c0d585350.jpg\n
 Nappy\tShiba Inu\t20\tLazy\tNap blanket\tSleeping anywhere anytime\thttp://veryviral.com/wp-content/uploads/2014/06/happy-dog-maru-shiba-inu-34.jpg\n
-Ruff\tPomsky\t18\tTimid\tJingle Bells\tSledding\thttp://d75822.medialib.glogster.com/szayle/media/15/153dafa1663a8dca8f739894a5401ed657cc4d5f/pug-puppy.jpg\n
+Ruff\tPomsky\t18\tTimid\tJingle Bells\tSledding\thttps://s-media-cache-ak0.pinimg.com/736x/5d/78/db/5d78dbc3e306306ba7b693d32b46b405.jpg\n
 Derpy\tPug\t8\tClumsy\tBubbles\tRunning into poles\thttp://d75822.medialib.glogster.com/szayle/media/15/153dafa1663a8dca8f739894a5401ed657cc4d5f/pug-puppy.jpg\n
 Mr.Tickles\tRetriever\t20+\tRomantic\tBow ties\tAttracting the ladies\thttps://i.ytimg.com/vi/Ez2OSSgCMlM/maxresdefault.jpg\n
 Wiggles\tBeagle\t12\tPlayful\tRubber bone\tShaking\thttps://cdn.mysmelly.com/image:/sitefs/perm/pi/b/q/p/x/401.300.0_f2.jpg\n
 Nibbles\tBlack Lab\t18\tCurious\tRubber Bone\tTug of War\thttp://puppytoob.toobnetwork.com/wp-content/uploads/sites/3/2012/08/puppies15.jpg\n
 Split\tBull Dog\t16\tAdventurous\tHula Hoop\tAcrobatics\thttp://travelsandliving.com/wp-content/uploads/2015/04/cute-bulldog-puppies-1-e1429705716339.jpg\n
 Tubby\tBulldog\t20+\tLazy\tPillow\tSlumping\thttps://lh3.ggpht.com/WWhVjw6kHGldtpvkfbMXYJcYf0HDIIyth3By1Kl7UAKBdo333wLQ6YNSfXGezVa3eg=h900\n
-Brownie\tPoodle\t6\tTimid\tPlushes\tPuppy eyes\thttp://dailynewsdig.com/wp-content/uploads/2013/05/top-10-cutest-puppies-in-the-world-4.jpg\n
+Brownie\tPoodle\t6\tTimid\tPlushes\tPuppy eyes\thttp://orig01.deviantart.net/5e13/f/2013/094/c/b/teacup_poodle_by_cherie1992-d60h8j0.png\n
 Boo\tWestie\t16\tCurious\tPop-up books\tHide and seek\thttp://cdn.hasinstinct.com/2015/07/18/westies-cute-westie-puppy.jpg\n
 Chubs\tChow Chow\t20\tMixed\tFireworks\tSetting things on fire\thttps://s-media-cache-ak0.pinimg.com/564x/26/31/6c/26316c2be65cedf7e57292fc417d66dc.jpg\n
 Dandy\tRottweiler\t14\tRomantic\tFlowers\tAttracting the ladies\thttps://s3-eu-west-1.amazonaws.com/bowwowtimes-new/wp-content/uploads/2015/06/Rottweiler-Puppies1-1.jpg\n
 Stubby\tDachshund\t10\tMixed\tMirror\tFashion Model\thttps://freevalscribes.files.wordpress.com/2014/03/dachshund-puppies-wallpaper-013.jpg\n
+Cuddly\tRetriever\t10\tTimid\tSand\tStalking\thttps://upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg
