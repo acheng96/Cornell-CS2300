@@ -12,5 +12,4 @@ Brownie\tPoodle\t6\tTimid\tPlushes\tPuppy eyes\thttp://orig01.deviantart.net/5e1
 Boo\tWestie\t16\tCurious\tPop-up books\tHide and seek\thttp://cdn.hasinstinct.com/2015/07/18/westies-cute-westie-puppy.jpg\n
 Chubs\tChow Chow\t20\tMixed\tFireworks\tSetting things on fire\thttps://s-media-cache-ak0.pinimg.com/564x/26/31/6c/26316c2be65cedf7e57292fc417d66dc.jpg\n
 Dandy\tRottweiler\t14\tRomantic\tFlowers\tAttracting the ladies\thttps://s3-eu-west-1.amazonaws.com/bowwowtimes-new/wp-content/uploads/2015/06/Rottweiler-Puppies1-1.jpg\n
-Stubby\tDachshund\t10\tMixed\tMirror\tFashion Model\thttps://freevalscribes.files.wordpress.com/2014/03/dachshund-puppies-wallpaper-013.jpg\n
-Cuddly\tRetriever\t10\tTimid\tSand\tStalking\thttps://upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg
+Stubby\tDachshund\t10\tMixed\tMirror\tFashion Model\thttps://freevalscribes.files.wordpress.com/2014/03/dachshund-puppies-wallpaper-013.jpg\n#\tPomeranian\t4\tPlayful\tR\tR\thttps/upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg

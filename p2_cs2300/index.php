@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html>
 
 	<head>
@@ -131,11 +133,16 @@
 				<h2 id="search-title" class="inactive"><a href="index.php" onclick="return show('search-form','add-form');"><span>SEARCH</span></a></h2>
 			</div>
 
+			<div id="form-title-items">
+				<h3 id="form-title">ADD A PUP!</h3>
+				<h3 id="form-error-title"></h3>
+			</div>
+
 			<!-- Add Form -->
 			<form id="add-form" class="form active-form" name="pupForm" action="index.php" onsubmit="return validForm();" method="POST">
 				<div class="form-container">
 					<div id="basic-profile-form">
-						<input id="name-field" type="text" placeholder="NAME" name="inputName" required title="Letters, numbers, spaces, and underscores only."><br>
+						<input id="name-field" type="text" placeholder="NAME" name="inputName"  maxlength="30" required title="Letters, spaces, dashes, and underscores only."><br>
 						<input id="image-url-field" type="text" placeholder="IMAGE URL" name="inputImageURL" required title="We want to see your pup too!"><br>
 					</div>
 
@@ -161,8 +168,8 @@
 					</div>
 
 					<div id="specific-profile-form">
-						<input id="favorite-toy-field" type="text" placeholder="FAVORITE TOY" name="favoriteToy" required title="Every pup needs a little friend!"><br>
-						<input id="special-talent-field" type="text" placeholder="SPECIAL TALENT" name="specialTalent" required title="Have more confidence in your pup!"><br>
+						<input id="favorite-toy-field" type="text" placeholder="FAVORITE TOY" name="favoriteToy" maxlength="50" required title="Every pup needs a little friend!"><br>
+						<input id="special-talent-field" type="text" placeholder="SPECIAL TALENT" name="specialTalent" maxlength="50" required title="Have more confidence in your pup!"><br>
 						<input id="add-submit" class="form-button" type="submit" name="add-submit" value="Submit"> 
 					</div>
 				</div>
