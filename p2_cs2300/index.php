@@ -298,7 +298,17 @@
 
 		<!-- Puppy Catalog -->
 		<div class="catalog">
-			<h3 id="catalog-title">PUPS</h3>
+			<div id="catalog-header">
+				<h3 id="catalog-title">PUPS</h3>
+				<div id="catalog-right-side">
+					<h4 id="sort-title">Sort by</h2>
+					<select id="sort-select" name="sortSelect">
+						<option 'selected' value="NAME">NAME</option>
+						<option 'selected' value="WEIGHT">WEIGHT</option>
+					</select>
+				</div>
+			</div>
+
 			<div class="catalog-container">
 				<?php $displayedPups = $filteredPups; ?>
 				<?php for ($i = 0; $i < count($displayedPups); $i++) { ?>
