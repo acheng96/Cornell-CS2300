@@ -5,6 +5,7 @@
 
 // Check name field contains 1) only letters, spaces, dashes, and underscore and 2) not just all spaces
 function validName(name) {
+	console.log("validate name");
 	var allLegalChars = /^[A-Za-z\s-_]+$/.test(name); // Return False if contains illegal chars
 	var notAllSpaces = /\S/.test(name); // Return False if all spaces
 	var isValidName = allLegalChars && notAllSpaces;
@@ -24,6 +25,7 @@ function validName(name) {
 
 // Check that input field does not only contain spaces
 function validTextInput(id, text) {
+	console.log("validate text input");
 	var isValidTextInput = /\S/.test(text); // Return False if all spaces
 	updateFieldBorder(id, isValidTextInput);
 
@@ -36,6 +38,7 @@ function validTextInput(id, text) {
 
 // Check image url field for valid url
 function validImageURL(url) {
+	console.log("validate image url");
     var image = new Image();
     image.src = url;
     var isValidImageURL = (image.height != 0); // Return False if no image
@@ -75,7 +78,5 @@ function updateErrorMessage(id, errorMessage) {
 
 	document.getElementById("form-error-title").innerHTML = (errorMessage == "") ? "" : (field + ": " + errorMessage);
 }
-
-
 
 

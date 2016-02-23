@@ -8,6 +8,7 @@
 
 body {
 	margin: auto;
+	background-color: #f2f2f2;
 }
 
 a {
@@ -81,7 +82,7 @@ ul {
   * = Add & Search NavBar = *
   * ======================= */ 
 
-.active span {
+.active-form span {
   border-bottom: solid 8px #4A90E2;
 }
 
@@ -97,6 +98,7 @@ ul {
 	margin: 0 auto;
 	width: 100%;
 	display: flex;
+	background-color: #f2f2f2;
 }
 
 #navbar-items h2 {
@@ -126,24 +128,26 @@ ul {
   * ===================== */ 
 
 .add-search-form {
+	margin: 0;
+	padding-top: 0;
 	padding-bottom: 55px;
 	background-color: #f2f2f2;
 }
 
-#form-title-items {
+.form-title-items {
 	margin: 20px auto 15px auto;
 	display: flex;
 	width: 80%;
 }
 
-#form-title {
+.form-title {
 	margin: auto 0;
 	width: 25%;
 	font-size: 40px;
 	font-weight: bold;
 }
 
-#form-subtitle {
+.form-subtitle {
 	margin: auto 0;
 	text-align: right;
 	width: 75%;
@@ -204,7 +208,7 @@ ul {
 
 /* Basic Profile Fields */
 
-#basic-profile-form {
+.basic-profile-form {
 	display: flex;
 	padding: 1% 1% 0 1%;
 }
@@ -265,14 +269,14 @@ ul {
     padding-right: 25px;
 }
 
-#select-options {
+.select-options {
 	display: flex;
 	padding: 0 1%;
 }
 
 /* Specific Profile Fields */
 
-#specific-profile-form {
+.specific-profile-form {
 	display: flex;
 	padding: 0 1% 1% 1%;
 }
