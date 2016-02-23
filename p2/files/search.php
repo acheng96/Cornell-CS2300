@@ -66,14 +66,15 @@
                 	$searchMatchingTitle = "Please fill in at least one field.";
 
         		} else {
-        			// Get user input if available 
-        			$searchAll = isset($_POST['searchAll']) ? strtolower($_POST['searchAll']) : false;
-					$searchName = isset($_POST['searchName']) ? strtolower($_POST['searchName']) : false;
-					$searchBreed = isset($_POST['searchBreedSelect']) ? strtolower($_POST['searchBreedSelect']) : false;
-					$searchWeight = isset($_POST['searchWeightSelect']) ? strtolower($_POST['searchWeightSelect']) : false;
-					$searchPersonality = isset($_POST['searchPersonalitySelect']) ? strtolower($_POST['searchPersonalitySelect']) : false;
-					$searchFavoriteToy = isset($_POST['searchFavoriteToy']) ? strtolower($_POST['searchFavoriteToy']) : false;
-					$searchSpecialTalent = isset($_POST['searchSpecialTalent']) ? strtolower($_POST['searchSpecialTalent']) : false;
+        			
+        			// Get user input if available (Strip tags to prevent HTML injection & turn everything to lowercase so search is case insensitive)
+        			$searchAll = isset($_POST['searchAll']) ? strip_tags(strtolower($_POST['searchAll'])) : false;
+					$searchName = isset($_POST['searchName']) ? strip_tags(strtolower($_POST['searchName'])) : false;
+					$searchBreed = isset($_POST['searchBreedSelect']) ? strip_tags(strtolower($_POST['searchBreedSelect'])) : false;
+					$searchWeight = isset($_POST['searchWeightSelect']) ? strip_tags(strtolower($_POST['searchWeightSelect'])) : false;
+					$searchPersonality = isset($_POST['searchPersonalitySelect']) ? strip_tags(strtolower($_POST['searchPersonalitySelect'])) : false;
+					$searchFavoriteToy = isset($_POST['searchFavoriteToy']) ? strip_tags(strtolower($_POST['searchFavoriteToy'])) : false;
+					$searchSpecialTalent = isset($_POST['searchSpecialTalent']) ? strip_tags(strtolower($_POST['searchSpecialTalent'])) : false;
 
 					// Find matching in data.txt using search terms
 					foreach ($pupsArray as $pup) {
@@ -83,9 +84,9 @@
 
 						$searchAllMatching = (empty($searchAll) || preg_match("/$searchAll/", $searchEntry));
 						$nameMatching = (empty($searchName) || preg_match("/$searchName/", $lowercasePupArray[0]));
-						$breedMatching = (empty($searchBreed) || preg_match("/$searchBreed/", $lowercasePupArray[1]));
-						$weightMatching = (empty($searchWeight) || preg_match("/$searchWeight/", $lowercasePupArray[2]));
-						$personalityMatching = (empty($searchPersonality) || preg_match("/$searchPersonality/", $lowercasePupArray[3]));
+						$breedMatching = (empty($searchBreed) || ($searchBreed == $lowercasePupArray[1]));
+						$weightMatching = (empty($searchWeight) || ($searchWeight == $lowercasePupArray[2]));
+						$personalityMatching = (empty($searchPersonality) || ($searchPersonality == $lowercasePupArray[3]));
 						$favoriteToyMatching = (empty($searchFavoriteToy) || preg_match("/$searchFavoriteToy/", $lowercasePupArray[4]));
 						$specialTalentMatching = (empty($searchSpecialTalent) || preg_match("/$searchSpecialTalent/", $lowercasePupArray[5]));
 
