@@ -97,7 +97,13 @@
 					}
 
 					// Display no matches message if no matches found
-					$searchMatchingTitle = (count($pups) == 0) ? "No matches found." : (count($pups) . " matches found.");
+					if (count($pups) == 0) {
+						$searchMatchingTitle = "No matches found.";
+					} elseif (count($pups) == 1) {
+						$searchMatchingTitle = "1 match found.";
+					} else {
+						$searchMatchingTitle = (count($pups) . " matches found.");
+					}
         		}
 			}
 		?>
