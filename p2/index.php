@@ -186,7 +186,7 @@
 
 			<!-- Puppy Sorting Area -->
 			<div class="catalog-header">
-				<h3 class="catalog-title">PUPS</h3>
+				<h3 class="catalog-title">ALL PUPS</h3>
 				<div class="catalog-right-side">
 					<h4 class="sort-title">Sort by</h4>
 					<form class="sort-select-form" action="index.php" method="POST">

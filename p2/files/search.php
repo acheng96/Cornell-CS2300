@@ -66,7 +66,7 @@
                 	$searchMatchingTitle = "Please fill in at least one field.";
 
         		} else {
-        			
+
         			// Get user input if available (Strip tags to prevent HTML injection & turn everything to lowercase so search is case insensitive)
         			$searchAll = isset($_POST['searchAll']) ? strip_tags(strtolower($_POST['searchAll'])) : false;
 					$searchName = isset($_POST['searchName']) ? strip_tags(strtolower($_POST['searchName'])) : false;
@@ -84,9 +84,9 @@
 
 						$searchAllMatching = (empty($searchAll) || preg_match("/$searchAll/", $searchEntry));
 						$nameMatching = (empty($searchName) || preg_match("/$searchName/", $lowercasePupArray[0]));
-						$breedMatching = (empty($searchBreed) || ($searchBreed == $lowercasePupArray[1]));
-						$weightMatching = (empty($searchWeight) || ($searchWeight == $lowercasePupArray[2]));
-						$personalityMatching = (empty($searchPersonality) || ($searchPersonality == $lowercasePupArray[3]));
+						$breedMatching = (empty($searchBreed) || (strcasecmp($searchBreed, $lowercasePupArray[1]) == 0));
+						$weightMatching = (empty($searchWeight) || (strcasecmp($searchWeight, $lowercasePupArray[2]) == 0));
+						$personalityMatching = (empty($searchPersonality) || (strcasecmp($searchPersonality, $lowercasePupArray[3]) == 0));
 						$favoriteToyMatching = (empty($searchFavoriteToy) || preg_match("/$searchFavoriteToy/", $lowercasePupArray[4]));
 						$specialTalentMatching = (empty($searchSpecialTalent) || preg_match("/$searchSpecialTalent/", $lowercasePupArray[5]));
 
