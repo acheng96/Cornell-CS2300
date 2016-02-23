@@ -128,6 +128,7 @@
 		<!-- Search Functionality -->
 		<?php 
 			$filteredPups = $pups;
+			$searchMatchingTitle = "";
 
 			if (isset($_POST['search-submit'])) {
 
@@ -152,13 +153,6 @@
 					$searchFavoriteToy = isset($_POST['searchFavoriteToy']) ? strtolower($_POST['searchFavoriteToy']) : false;
 					$searchSpecialTalent = isset($_POST['searchSpecialTalent']) ? strtolower($_POST['searchSpecialTalent']) : false;
 
-					echo "name: " . $searchName . "\n";
-					echo "breed: " . $searchBreed . "\n";
-					echo "weight: " . $searchWeight . "\n";
-					echo "personality: " . $searchPersonality . "\n";
-					echo "favorite toy: " . $searchFavoriteToy . "\n";
-					echo "special talent: " . $searchSpecialTalent . "\n";
-
 					// Find matching in data.txt using search terms
 					foreach ($pupsArray as $pup) {
 						$searchEntry = strtolower($pup); 
@@ -181,11 +175,7 @@
 					}
 
 					// Display no matches message if no matches found
-					if (count($filteredPups) == 0) {
-						echo "No matches found.";
-					} else {
-						echo count($filteredPups) . " matches found.";
-					}
+					$searchMatchingTitle = (count($filteredPups) == 0) ? "No matches found." : (count($filteredPups) . " matches found.");
         		}
 			}
 		?>
@@ -214,7 +204,7 @@
 
 			<div id="form-title-items">
 				<h3 id="form-title">ADD A PUP!</h3>
-				<h3 id="form-error-title"></h3>
+				<h3 id="form-subtitle"><?php echo $searchMatchingTitle; ?></h3>
 			</div>
 
 			<!-- Add Form -->
