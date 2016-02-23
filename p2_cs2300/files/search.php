@@ -125,7 +125,7 @@
 					<!-- Search and name fields -->
 					<div class="basic-profile-form">
 						<div id="search-field">
-							<img id="search-icon" src="../assets/search-icon.png">
+							<img id="search-icon" src="../assets/search-icon.png" alt="search-icon">
 							<input id="search-input-field" type="text" placeholder="SEARCH" name="searchAll"><br>
 						</div>
 						<input id="name-search-field" type="text" placeholder="NAME" name="searchName" autofocus pattern="[A-Za-z-_ ]*" title="Letters, spaces, dashes, and underscores only."><br>
@@ -134,19 +134,20 @@
 					<!-- Breed, weight, and personality select boxes-->
 					<div class="select-options">
 						<select class="search-select" name="searchBreedSelect">
-							<option 'selected' value>BREED</option>
-							<?php foreach($breedOptions as $breed) { ?>
-								<option value=<?php echo "{$breed}" ?>><?php echo $breed ?></option>
+							<option selected="selected" value>BREED</option>
+							<?php foreach($breedOptions as $breed) { 
+								$condensedBreed = str_replace(' ', '', $breed); ?>
+								<option value=<?php echo "{$condensedBreed}" ?>><?php echo $breed ?></option>
 							<?php } ?>	
 						</select>
 						<select class="search-select" name="searchWeightSelect">
-							<option 'selected' value>WEIGHT</option>
+							<option selected="selected" value>WEIGHT</option>
 							<?php foreach($weightOptions as $weight) { ?>
 								<option value=<?php echo "{$weight}" ?>><?php echo $weight ?></option>
 							<?php } ?>
 						</select>
 						<select class="search-select" name="searchPersonalitySelect">
-							<option 'selected' value>PERSONALITY</option>
+							<option selected="selected" value>PERSONALITY</option>
 							<?php foreach($personalityOptions as $key=>$value) { ?>
 								<option value=<?php echo "{$key}" ?>><?php echo $key ?></option>
 							<?php } ?>	
@@ -175,7 +176,7 @@
 
 			<!-- Puppy Catalog -->
 			<?php include("catalog.php"); ?>
-			
+
 		</div>
 
 	</body>

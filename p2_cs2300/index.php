@@ -77,6 +77,50 @@
 			}
 		?>
 
+		<!-- Puppy Sorting -->
+		<?php
+			(isset($_POST["sortSelect"])) ? $selected_sort = $_POST["sortSelect"] : $selected_sort = 0;
+
+			// Get sort function name
+		    function getSortFunction($sort) {
+		    	switch($sort) {
+		    	case 0: $function_name = ""; break;
+		    	case 1: $function_name = 'sortPupsByName'; break;
+		    	case 2: $function_name = 'sortPupsByBreed'; break;
+		    	case 3: $function_name = 'sortPupsByWeight'; break;
+		    	case 4: $function_name = 'sortPupsByPersonality'; break;
+		    	default: break;
+		    	}
+
+		    	return $function_name;
+		    }
+
+		    // Sorting Functions: Compare two pup properties relative to each other
+
+			function sortPupsByName($pup1, $pup2) {
+				return ($pup1->name == $pup2->name) ? 0 : (($pup1->name < $pup2->name) ? -1 : 1);
+			}
+
+			function sortPupsByBreed($pup1, $pup2) {
+				return ($pup1->breed == $pup2->breed) ? 0 : (($pup1->breed < $pup2->breed) ? -1 : 1);
+			}
+
+			function sortPupsByWeight($pup1, $pup2) {
+				return ($pup1->weight == $pup2->weight) ? 0 : (($pup1->weight < $pup2->weight) ? -1 : 1);
+			}
+
+			function sortPupsByPersonality($pup1, $pup2) {
+				return ($pup1->personality == $pup2->personality) ? 0 : (($pup1->personality < $pup2->personality) ? -1 : 1);
+			}
+
+			$sort_function = getSortFunction($selected_sort);
+
+			// Default sort is by date added
+			if ($sort_function != "") {
+				usort($pups, $sort_function);
+			}
+		?>
+
 		<!-- Header -->
 		<?php include("files/header.php"); ?>
 
@@ -146,7 +190,7 @@
 					<h4 class="sort-title">Sort by</h2>
 					<form class="sort-select-form" action="index.php" method="POST">
 						<select class="sort-select" name="sortSelect" onchange="this.form.submit();">
-							<option <?php if ($selected_sort== 0) echo 'selected' ; ?> value="0">DATE</option>
+							<option <?php if ($selected_sort == 0) echo 'selected' ; ?> value="0">DATE</option>
 							<option <?php if ($selected_sort == 1) echo 'selected' ; ?> value="1">NAME</option>
 							<option <?php if ($selected_sort == 2) echo 'selected' ; ?> value="2">BREED</option>
 							<option <?php if ($selected_sort == 3) echo 'selected' ; ?> value="3">WEIGHT</option>
