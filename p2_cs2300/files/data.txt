@@ -13,4 +13,3 @@ Boo\tWestie\t16\tCurious\tPop-up books\tHide and seek\thttp://cdn.hasinstinct.co
 Chubs\tChow Chow\t20\tMixed\tFireworks\tSetting things on fire\thttps://s-media-cache-ak0.pinimg.com/564x/26/31/6c/26316c2be65cedf7e57292fc417d66dc.jpg\n
 Dandy\tRottweiler\t14\tRomantic\tFlowers\tAttracting the ladies\thttps://s3-eu-west-1.amazonaws.com/bowwowtimes-new/wp-content/uploads/2015/06/Rottweiler-Puppies1-1.jpg\n
 Stubby\tDachshund\t10\tMixed\tMirror\tFashion Model\thttps://freevalscribes.files.wordpress.com/2014/03/dachshund-puppies-wallpaper-013.jpg\n
-yo\tPomeranian\t4\tRomantic\tt\tt\thttp://cdn.sheknows.com/articles/2013/04/Puppy_2.jpg

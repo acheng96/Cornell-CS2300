@@ -6,6 +6,7 @@
 		<meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<script src="jquery-1.12.0.min.js"></script>
     	<script src = "script/valid.js"></script>
 		<title>PUPPYTAG</title>
 	</head>
@@ -15,14 +16,20 @@
 		<!-- Set active form -->
 		<script>
 			// Set and display active form 
-			function show(active, inactive) {
-			  document.getElementById(active).style.display='block';
-			  document.getElementById(inactive).style.display='none';
-			  document.getElementById("add-title").className = (active == "add-form") ? "active" : "inactive"
-			  document.getElementById("search-title").className = (active == "search-form") ? "active" : "inactive"
+			function setActiveForm(active, inactive) {
+			    document.getElementById(active).style.display = 'block';
+			    document.getElementById(inactive).style.display = 'none';
+			    document.getElementById("add-title").className = (active == "add-form") ? "active" : "inactive"
+			    document.getElementById("search-title").className = (active == "search-form") ? "active" : "inactive"
 
-			  return false;
+			    return false;
 			}
+
+			// Check if add or search form is active
+			function checkIfActive(id) {
+				return (" " + element.className + " ").indexOf(" " + id + " ") > -1;
+			}
+
 		</script>
 
 		<!-- Puppy Select Category Options -->
@@ -92,8 +99,24 @@
 			}
 		?>
 
-		<!-- PHP Functions -->
+		<!-- Read puppies info from data file -->
 		<?php
+			$pups = array();
+
+			// Add pup info from data.txt to pups array
+			if (file_exists('files/data.txt')) {
+				$dataFile = fopen('files/data.txt', 'r');
+				$pupsArray = file('files/data.txt');
+
+				foreach($pupsArray as $pup) {
+					$line = str_replace('\n', '', $pup);
+					$pupArray = explode( '\t', $line);
+					$pups[] = new Pup($pupArray[0], $pupArray[1], $pupArray[2], $pupArray[3], $pupArray[4], $pupArray[5], $pupArray[6]);
+				}
+
+				fclose($dataFile);
+			}
+
 			// Get emoji image corresponding to personality and return image location
 			function getEmoji($personality) {
 				global $personalityOptions;
@@ -102,28 +125,68 @@
 			}
 		?>
 
-		<!-- Read puppies info from data file -->
-		<?php
-			$pups = array();
+		<!-- Search Functionality -->
+		<?php 
+			$filteredPups = $pups;
 
-			if (file_exists('files/data.txt')) {
-				$dataFile = fopen('files/data.txt', 'r');
+			if (isset($_POST['search-submit'])) {
+
+				// Open data.txt
+				$dataFile = fopen("files/data.txt", "r"); 
 				$pupsArray = file('files/data.txt');
+				$filteredPups = array();
 
-				foreach($pupsArray as $pup) {
-					$line = str_replace('\n', '', $pup);
-					$pupArray = explode( '\t', $line);
-					$names[] = $pupArray[0];
-					$breeds[] = $pupArray[1];
-					$weights[] = $pupArray[2];
-					$personalities[] = $pupArray[3];
-					$favoriteToys[] = $pupArray[4];
-					$specialTalents[] = $pupArray[5];
-					$imageURLs[] = $pupArray[6];
-					$pups[] = new Pup($pupArray[0], $pupArray[1], $pupArray[2], $pupArray[3], $pupArray[4], $pupArray[5], $pupArray[6]);
-				}
+				// Check if at least one of the categories are matched
+				if (empty($_POST['searchAll']) && empty($_POST['searchName']) && empty($_POST['searchBreedSelect']) && empty($_POST['searchWeightSelect']) && empty($_POST['searchPersonalitySelect']) && empty($_POST['searchFavoriteToy']) && empty($_POST["searchSpecialTalent"])) {
 
-				fclose($dataFile);
+                	// No field has been filled: show error message
+                	echo "No field has been filled.";
+
+        		} else {
+        			// Get user input if available 
+        			$searchAll = isset($_POST['searchAll']) ? strtolower($_POST['searchAll']) : false;
+					$searchName = isset($_POST['searchName']) ? strtolower($_POST['searchName']) : false;
+					$searchBreed = isset($_POST['searchBreedSelect']) ? strtolower($_POST['searchBreedSelect']) : false;
+					$searchWeight = isset($_POST['searchWeightSelect']) ? strtolower($_POST['searchWeightSelect']) : false;
+					$searchPersonality = isset($_POST['searchPersonalitySelect']) ? strtolower($_POST['searchPersonalitySelect']) : false;
+					$searchFavoriteToy = isset($_POST['searchFavoriteToy']) ? strtolower($_POST['searchFavoriteToy']) : false;
+					$searchSpecialTalent = isset($_POST['searchSpecialTalent']) ? strtolower($_POST['searchSpecialTalent']) : false;
+
+					echo "name: " . $searchName . "\n";
+					echo "breed: " . $searchBreed . "\n";
+					echo "weight: " . $searchWeight . "\n";
+					echo "personality: " . $searchPersonality . "\n";
+					echo "favorite toy: " . $searchFavoriteToy . "\n";
+					echo "special talent: " . $searchSpecialTalent . "\n";
+
+					// Find matching in data.txt using search terms
+					foreach ($pupsArray as $pup) {
+						$searchEntry = strtolower($pup); 
+						$line = str_replace('\n', '', $searchEntry);
+						$lowercasePupArray = explode('\t', $line);
+
+						$searchAllMatching = (empty($searchAll) || preg_match("/$searchAll/", $searchEntry));
+						$nameMatching = (empty($searchName) || preg_match("/$searchName/", $lowercasePupArray[0]));
+						$breedMatching = (empty($searchBreed) || preg_match("/$searchBreed/", $lowercasePupArray[1]));
+						$weightMatching = (empty($searchWeight) || preg_match("/$searchWeight/", $lowercasePupArray[2]));
+						$personalityMatching = (empty($searchPersonality) || preg_match("/$searchPersonality/", $lowercasePupArray[3]));
+						$favoriteToyMatching = (empty($searchFavoriteToy) || preg_match("/$searchFavoriteToy/", $lowercasePupArray[4]));
+						$specialTalentMatching = (empty($searchSpecialTalent) || preg_match("/$searchSpecialTalent/", $lowercasePupArray[5]));
+
+						if ($searchAllMatching && $nameMatching && $breedMatching && $weightMatching && $personalityMatching && $favoriteToyMatching && $specialTalentMatching) {
+							$originalLine = str_replace('\n', '', $pup);
+							$pupArray = explode('\t', $originalLine);
+							$filteredPups[] = new Pup($pupArray[0], $pupArray[1], $pupArray[2], $pupArray[3], $pupArray[4], $pupArray[5], $pupArray[6]);
+						}
+					}
+
+					// Display no matches message if no matches found
+					if (count($filteredPups) == 0) {
+						echo "No matches found.";
+					} else {
+						echo count($filteredPups) . " matches found.";
+					}
+        		}
 			}
 		?>
 
@@ -145,8 +208,8 @@
 		<div class="add-search-form">
 			<!-- Navigation Bar -->
 			<div id="navbar-items">
-				<h2 id="add-title" class="active"><a href="index.php" onclick="return show('add-form','search-form');"><span>ADD</span></a></h2>
-				<h2 id="search-title" class="inactive"><a href="index.php" onclick="return show('search-form','add-form');"><span>SEARCH</span></a></h2>
+				<h2 id="add-title" class="inactive navbar-item"><a href="index.php" onclick="return setActiveForm('add-form','search-form');"><span>ADD</span></a></h2>
+				<h2 id="search-title" class="active navbar-item"><a href="index.php" onclick="return setActiveForm('search-form','add-form');"><span>SEARCH</span></a></h2>
 			</div>
 
 			<div id="form-title-items">
@@ -155,7 +218,7 @@
 			</div>
 
 			<!-- Add Form -->
-			<form id="add-form" class="form active-form" name="pupForm" action="index.php" onsubmit="return validForm();" method="POST">
+			<form id="add-form" class="form inactive-form" name="pupForm" action="index.php" onsubmit="return validForm();" method="POST">
 				<div class="form-container">
 					<div id="basic-profile-form">
 						<input id="name-field" type="text" placeholder="NAME" name="inputName"  maxlength="30" required title="Letters, spaces, dashes, and underscores only."><br>
@@ -192,30 +255,30 @@
 			</form>
 
 			<!-- Search Form -->
-			<form id="search-form" class="form inactive-form" name="pupForm" action="index.php" method="POST">
+			<form id="search-form" class="form active-form" name="pupForm" action="index.php" method="POST">
 				<div class="form-container">
 					<div id="basic-profile-form">
 						<div id="search-field">
 							<img id="search-icon" src="assets/search-icon.png">
-							<input id="search-input-field" type="text" placeholder="SEARCH" name="search"><br>
+							<input id="search-input-field" type="text" placeholder="SEARCH (ALL FIELDS)" name="searchAll"><br>
 						</div>
-						<input id="name-search-field" type="text" placeholder="NAME" name="inputName"><br>
+						<input id="name-search-field" type="text" placeholder="NAME" name="searchName" autofocus pattern="[A-Za-z-_ ]*" title="Letters, spaces, dashes, and underscores only."><br>
 					</div>
 
 					<div id="select-options">
-						<select id="breed-select" class="search-select" name="breedSelect">
+						<select id="breed-select" class="search-select" name="searchBreedSelect">
 							<option 'selected' value>BREED</option>
 							<?php foreach($breedOptions as $breed) { ?>
 								<option value=<?php echo "{$breed}" ?>><?php echo $breed ?></option>
 							<?php } ?>	
 						</select>
-						<select id="weight-select" class="search-select" name="weightSelect">
+						<select id="weight-select" class="search-select" name="searchWeightSelect">
 							<option 'selected' value>WEIGHT</option>
 							<?php for ($i = 0; $i < count($weightOptions); $i++) { ?>
 								<option value=<?php echo "{$i}" ?>><?php echo $weightOptions[$i] ?></option>
 							<?php } ?>
 						</select>
-						<select id="personality-select" class="search-select" name="personalitySelect">
+						<select id="personality-select" class="search-select" name="searchPersonalitySelect">
 							<option 'selected' value>PERSONALITY</option>
 							<?php foreach($personalityOptions as $key=>$value) { ?>
 								<option value=<?php echo "{$key}" ?>><?php echo $key ?></option>
@@ -224,10 +287,10 @@
 					</div>
 
 					<div id="specific-profile-form">
-						<input id="favorite-toy-search-field" type="text" placeholder="FAVORITE TOY" name="favoriteToy"><br>
-						<input id="special-talent-search-field" type="text" placeholder="SPECIAL TALENT" name="specialTalent"><br>
-						<input id="search-submit" class="form-button" type="submit" value="Submit"> 
-						<input id="search-reset" class="form-button" type="button" value="Reset"> 
+						<input id="favorite-toy-search-field" type="text" placeholder="FAVORITE TOY" name="searchFavoriteToy"><br>
+						<input id="special-talent-search-field" type="text" placeholder="SPECIAL TALENT" name="searchSpecialTalent"><br>
+						<input id="search-submit" class="form-button" type="submit" name="search-submit" value="Submit"> 
+						<input id="search-reset" class="form-button" type="button" name="search-reset" value="Reset"> 
 					</div>
 				</div>
 			</form>
@@ -237,22 +300,23 @@
 		<div class="catalog">
 			<h3 id="catalog-title">PUPS</h3>
 			<div class="catalog-container">
-				<?php for ($i = 0; $i < count($pups); $i++) { ?>
+				<?php $displayedPups = $filteredPups; ?>
+				<?php for ($i = 0; $i < count($displayedPups); $i++) { ?>
 						<div class="catalog-item">
-							<img id="breed-image" src=<?php echo $pups[$i]->imageURL; ?> alt=<?php echo $pups[$i]->breed; ?>>
+							<img id="breed-image" src=<?php echo $displayedPups[$i]->imageURL; ?> alt=<?php echo $displayedPups[$i]->breed; ?>>
 							<div class="inner-catalog-container">
 								<div class="top-item-container">
 									<div class="item-description">
-										<h3 id="name"><?php echo $pups[$i]->name; ?></h3>
-										<h4 id="description"><?php echo $pups[$i]->breed.' • '.$pups[$i]->weight.' lbs'; ?></h4>
+										<h3 id="name"><?php echo $displayedPups[$i]->name; ?></h3>
+										<h4 id="description"><?php echo $displayedPups[$i]->breed.' • '.$displayedPups[$i]->weight.' lbs'; ?></h4>
 									</div>
-									<img id="emoji" src=<?php echo getEmoji($pups[$i]->personality); ?> alt="Emoji"> 
+									<img id="emoji" src=<?php echo getEmoji($displayedPups[$i]->personality); ?> alt="Emoji"> 
 								</div>
 								<div class="bottom-item-container">
-									<h3><b>Personality: </b><?php echo $pups[$i]->personality; ?></h3>
-									<h3><b>Favorite Toy: </b><?php echo $pups[$i]->favoriteToy; ?></h3>
-									<h3><b>Special Talent: </b><?php echo $pups[$i]->specialTalent; ?></h3>
-									<h3>Image from <a href=<?php echo $pups[$i]->imageURL; ?> target="_blank"><b>here</b></a>.</h3>
+									<h3><b>Personality: </b><?php echo $displayedPups[$i]->personality; ?></h3>
+									<h3><b>Favorite Toy: </b><?php echo $displayedPups[$i]->favoriteToy; ?></h3>
+									<h3><b>Special Talent: </b><?php echo $displayedPups[$i]->specialTalent; ?></h3>
+									<h3>Image from <a href=<?php echo $displayedPups[$i]->imageURL; ?> target="_blank"><b>here</b></a>.</h3>
 								</div>
 							</div>
 						</div>
