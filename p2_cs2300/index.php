@@ -6,6 +6,7 @@
 		<meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<script src="jquery-1.12.0.min.js"></script>
     	<script src = "script/valid.js"></script>
 		<title>PUPPYTAG</title>
 	</head>
@@ -135,8 +136,29 @@
 			</form>
 		</div>
 
-		<!-- Puppy Catalog -->
-		<?php include("files/catalog.php"); ?>
+		<!-- Puppy Catalog Section -->
+		<div class="catalog">
+
+			<!-- Puppy Sorting Area -->
+			<div class="catalog-header">
+				<h3 class="catalog-title">PUPS</h3>
+				<div class="catalog-right-side">
+					<h4 class="sort-title">Sort by</h2>
+					<form class="sort-select-form" action="index.php" method="POST">
+						<select class="sort-select" name="sortSelect" onchange="this.form.submit();">
+							<option <?php if ($selected_sort== 0) echo 'selected' ; ?> value="0">DATE</option>
+							<option <?php if ($selected_sort == 1) echo 'selected' ; ?> value="1">NAME</option>
+							<option <?php if ($selected_sort == 2) echo 'selected' ; ?> value="2">BREED</option>
+							<option <?php if ($selected_sort == 3) echo 'selected' ; ?> value="3">WEIGHT</option>
+							<option <?php if ($selected_sort == 4) echo 'selected' ; ?> value="4">PERSONALITY</option>
+						</select>
+					</form>
+				</div>
+			</div>
+
+			<!-- Puppy Catalog -->
+			<?php include("files/catalog.php"); ?>
+		</div>
 
 	</body>
 

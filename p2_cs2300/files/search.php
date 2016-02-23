@@ -165,8 +165,18 @@
 			</form>
 		</div>
 
-		<!-- Puppy Catalog -->
-		<?php include("catalog.php"); ?>
+		<!-- Puppy Catalog Section -->
+		<div class="catalog">
+
+			<!-- Puppy Catalog Title -->
+			<div class="catalog-header">
+				<h3 class="catalog-title">PUPS</h3>
+			</div>
+
+			<!-- Puppy Catalog -->
+			<?php include("catalog.php"); ?>
+			
+		</div>
 
 	</body>
 
