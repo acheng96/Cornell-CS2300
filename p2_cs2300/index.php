@@ -150,19 +150,20 @@
 					<!-- Breed, weight, and personality select boxes-->
 					<div class="select-options">
 						<select name="breedSelect" required title="Your pup needs an identity!">
-							<option 'selected' value>BREED</option>
-							<?php foreach($breedOptions as $breed) { ?>
-								<option value=<?php echo "{$breed}" ?>><?php echo $breed ?></option>
+							<option selected="selected" value>BREED</option>
+							<?php foreach($breedOptions as $breed) { 
+								$condensedBreed = str_replace(' ', '', $breed); ?>
+								<option value=<?php echo "{$condensedBreed}" ?>><?php echo $breed ?></option>
 							<?php } ?>	
 						</select>
 						<select name="weightSelect" required title="Don't tell me your pup weighs nothing!">
-							<option 'selected' value>WEIGHT</option>
+							<option selected="selected" value>WEIGHT</option>
 							<?php foreach($weightOptions as $weight) { ?>
 								<option value=<?php echo "{$weight}" ?>><?php echo $weight ?></option>
 							<?php } ?>
 						</select>
 						<select name="personalitySelect" required title="Your pup needs a personality!">
-							<option 'selected' value>PERSONALITY</option>
+							<option selected="selected" value>PERSONALITY</option>
 							<?php foreach($personalityOptions as $key=>$value) { ?>
 								<option value=<?php echo "{$key}" ?>><?php echo $key ?></option>
 							<?php } ?>	
@@ -187,7 +188,7 @@
 			<div class="catalog-header">
 				<h3 class="catalog-title">PUPS</h3>
 				<div class="catalog-right-side">
-					<h4 class="sort-title">Sort by</h2>
+					<h4 class="sort-title">Sort by</h4>
 					<form class="sort-select-form" action="index.php" method="POST">
 						<select class="sort-select" name="sortSelect" onchange="this.form.submit();">
 							<option <?php if ($selected_sort == 0) echo 'selected' ; ?> value="0">DATE</option>
