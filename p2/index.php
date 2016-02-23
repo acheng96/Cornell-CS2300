@@ -6,7 +6,6 @@
 		<meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<script src="jquery-1.12.0.min.js"></script>
     	<script src = "script/valid.js"></script>
 		<title>PUPPYTAG</title>
 	</head>
@@ -61,13 +60,13 @@
 				global $weightOptions; 
 
 				// Get pup info
-				$name = $_POST['inputName'];
-				$imageURL = $_POST['inputImageURL'];
-				$breed = $_POST['breedSelect'];
-				$weight = $weightOptions[$_POST['weightSelect']];
-				$personality = $_POST['personalitySelect'];
-				$favoriteToy = $_POST['favoriteToy'];
-				$specialTalent = $_POST['specialTalent'];
+				$name = strip_tags($_POST['inputName']);
+				$imageURL = strip_tags($_POST['inputImageURL']);
+				$breed = $breedOptions[strip_tags($_POST['breedSelect'])];
+				$weight = strip_tags($_POST['weightSelect']);
+				$personality = strip_tags($_POST['personalitySelect']);
+				$favoriteToy = strip_tags($_POST['favoriteToy']);
+				$specialTalent = strip_tags($_POST['specialTalent']);
 
 				// Write to data.txt
 				fputs($dataFile, "$name$delimiter$breed$delimiter$weight$delimiter$personality$delimiter$favoriteToy$delimiter$specialTalent$delimiter$imageURL\n");
@@ -134,7 +133,7 @@
 		<div class="add-search-form">
 			<div class="form-title-items">
 				<h3 class="form-title">ADD A PUP!</h3>
-				<h3 class="form-subtitle"></h3>
+				<h3 id="form-error-message" class="form-subtitle"></h3>
 			</div>
 
 			<!-- Add Form -->
@@ -151,9 +150,8 @@
 					<div class="select-options">
 						<select name="breedSelect" required title="Your pup needs an identity!">
 							<option selected="selected" value>BREED</option>
-							<?php foreach($breedOptions as $breed) { 
-								$condensedBreed = str_replace(' ', '', $breed); ?>
-								<option value=<?php echo "{$condensedBreed}" ?>><?php echo $breed ?></option>
+							<?php for ($i = 0; $i < count($breedOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $breedOptions[$i] ?></option>
 							<?php } ?>	
 						</select>
 						<select name="weightSelect" required title="Don't tell me your pup weighs nothing!">

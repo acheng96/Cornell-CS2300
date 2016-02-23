@@ -142,10 +142,9 @@
 					<div class="select-options">
 						<select class="search-select" name="searchBreedSelect">
 							<option selected="selected" value>BREED</option>
-							<?php foreach($breedOptions as $breed) { 
-								$condensedBreed = str_replace(' ', '', $breed); ?>
-								<option value=<?php echo "{$condensedBreed}" ?>><?php echo $breed ?></option>
-							<?php } ?>	
+							<?php for ($i = 0; $i < count($breedOptions); $i++) { ?>
+								<option value=<?php echo "{$i}" ?>><?php echo $breedOptions[$i] ?></option>
+							<?php } ?>
 						</select>
 						<select class="search-select" name="searchWeightSelect">
 							<option selected="selected" value>WEIGHT</option>
