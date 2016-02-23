@@ -54,8 +54,9 @@ function validForm() {
 	var imageURL = validImageURL(document.forms.pupForm.inputImageURL.value); 
 	var favoriteToy = validTextInput("favorite-toy-field", document.forms.pupForm.favoriteToy.value);
 	var specialTalent = validTextInput("special-talent-field", document.forms.pupForm.specialTalent.value);
+	var isValidForm = (name && imageURL && favoriteToy && specialTalent);
 
-	return (name && imageURL && favoriteToy && specialTalent);
+	return isValidForm;
 }
 
 /* ==================== *

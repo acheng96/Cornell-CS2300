@@ -28,9 +28,7 @@
 		<!-- Puppy Select Category Options -->
 		<?php 
 			$breedOptions = array('Pomeranian', 'Chow Chow', 'Poodle', 'Pomsky', 'Black Lab', 'Pug', 'Dachshund', 'Westie', 'Retriever', 'Bull Dog', 'Shiba Inu', 'Rottweiler', 'Corgi', 'Bulldog', 'Beagle');
-
 			$weightOptions = array('2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '20+');
-			
 			$personalityOptions = array(
 				'Clumsy' => 'clumsy.png', 
 				'Romantic' => 'romantic.png', 
@@ -41,6 +39,29 @@
 				'Timid' => 'timid.png', 
 				'Mixed' => 'mixed.png'
 			);
+		?>
+
+		<!-- Pup Class -->
+		<?php
+			class Pup { 
+				public $name;
+				public $breed; 
+				public $weight;
+				public $personality;
+				public $favoriteToy;
+				public $specialTalent;
+				public $imageURL;
+
+				function __construct($name = "", $breed = "", $weight = "", $personality = "", $favoriteToy = "", $specialTalent = "", $imageURL = "") { 
+					$this->name = $name;
+					$this->breed = $breed;
+					$this->weight = $weight; 
+					$this->personality = $personality;
+					$this->favoriteToy = $favoriteToy;
+					$this->specialTalent = $specialTalent;
+					$this->imageURL = $imageURL; 
+				}
+			}
 		?>
 
 		<!-- Add pup info to data.txt -->
@@ -83,13 +104,7 @@
 
 		<!-- Read puppies info from data file -->
 		<?php
-			$names = array();
-			$breeds = array();
-			$weights = array();
-			$personalities = array();
-			$favoriteToys = array();
-			$specialTalents = array();
-			$imageURLs = array();
+			$pups = array();
 
 			if (file_exists('files/data.txt')) {
 				$dataFile = fopen('files/data.txt', 'r');
@@ -105,8 +120,9 @@
 					$favoriteToys[] = $pupArray[4];
 					$specialTalents[] = $pupArray[5];
 					$imageURLs[] = $pupArray[6];
+					$pups[] = new Pup($pupArray[0], $pupArray[1], $pupArray[2], $pupArray[3], $pupArray[4], $pupArray[5], $pupArray[6]);
 				}
-				
+
 				fclose($dataFile);
 			}
 		?>
@@ -221,22 +237,22 @@
 		<div class="catalog">
 			<h3 id="catalog-title">PUPS</h3>
 			<div class="catalog-container">
-				<?php for ($i = 0; $i < count($pupsArray); $i++) { ?>
+				<?php for ($i = 0; $i < count($pups); $i++) { ?>
 						<div class="catalog-item">
-							<img id="breed-image" src=<?php echo $imageURLs[$i]; ?> alt=<?php echo $breeds[$i]; ?>>
+							<img id="breed-image" src=<?php echo $pups[$i]->imageURL; ?> alt=<?php echo $pups[$i]->breed; ?>>
 							<div class="inner-catalog-container">
 								<div class="top-item-container">
 									<div class="item-description">
-										<h3 id="name"><?php echo $names[$i]; ?></h3>
-										<h4 id="description"><?php echo $breeds[$i].' • '.$weights[$i].' lbs'; ?></h4>
+										<h3 id="name"><?php echo $pups[$i]->name; ?></h3>
+										<h4 id="description"><?php echo $pups[$i]->breed.' • '.$pups[$i]->weight.' lbs'; ?></h4>
 									</div>
-									<img id="emoji" src=<?php echo getEmoji($personalities[$i]); ?> alt="Emoji"> 
+									<img id="emoji" src=<?php echo getEmoji($pups[$i]->personality); ?> alt="Emoji"> 
 								</div>
 								<div class="bottom-item-container">
-									<h3><b>Personality: </b><?php echo $personalities[$i]; ?></h3>
-									<h3><b>Favorite Toy: </b><?php echo $favoriteToys[$i]; ?></h3>
-									<h3><b>Special Talent: </b><?php echo $specialTalents[$i]; ?></h3>
-									<h3>Image from <a href=<?php echo $imageURLs[$i]; ?> target="_blank"><b>here</b></a>.</h3>
+									<h3><b>Personality: </b><?php echo $pups[$i]->personality; ?></h3>
+									<h3><b>Favorite Toy: </b><?php echo $pups[$i]->favoriteToy; ?></h3>
+									<h3><b>Special Talent: </b><?php echo $pups[$i]->specialTalent; ?></h3>
+									<h3>Image from <a href=<?php echo $pups[$i]->imageURL; ?> target="_blank"><b>here</b></a>.</h3>
 								</div>
 							</div>
 						</div>
