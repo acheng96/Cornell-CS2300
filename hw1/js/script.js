@@ -48,8 +48,11 @@ $("#quotes").click(function() {
 * as a parameter and returns the running time
 */
 function runningTime(i){
+	var num = (i + 1).toString();
+	var runningTimeString = $(".movies:nth-child(" + num + ") li:nth-child(3)").text();
+	var runningTime = runningTimeString.replace(/\D/g,'');
 
-
+	return parseInt(runningTime);
 };
 
 // Verify that this function works. Open your browser's console and type in the following:
