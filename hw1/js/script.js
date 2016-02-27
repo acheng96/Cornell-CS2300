@@ -95,38 +95,38 @@ $("#test_rewrite").click(function() {
 // Use your helper functions to convert the running time format of all the movies from minutes to ___ hours ___minutes.
 // Hint: Be sure to check the running time format so your function 
 // responds appropriately if the time has already been converted. 
-$( "#replace-this" ).on( ""     , function() {
+$("#convert").on("click", function() {
 	// replace below code
-	if( true ) {
-
-
-
-
-
-
-
-	}
 	// OPTIONAL BONUS CHALLENGE - add an "else" statement to the 
 	// that converts from hours and mintues back to minutes
 	// Note: Maximum score on the assigmnent is 100.
-	// else { 
 
+	if (true) {
 
+	} else { 
 
-
-
-
-	//}
+	}
 });
+
+function containsString(str) {
+	return (str.indexOf("hours") >= 0)
+}
 
 // Problem 7 - Adding Class
 // So far we've learned we can bind events to classes and style them with CSS, but now let's do some logic with classes.
 // Write a function that can add a class 'old' to the movie posters of movies released before the year 2000 and bind it to
 // the addClass button.
 
-function addOldClass() {
+$("#addClass").click(function() {
+	for (i = 1; i <= $('.movies').length; i++) {
+		var dateString = $(".movies:nth-child(" + i + ") li:nth-child(2)").text(); // Get release date string
+		var year = parseInt(dateString.substr(dateString.length - 4)); // Get year as integer
 
-};
+		if (year < 2000) {
+			$(".movies:nth-child(" + i + ") img:nth-child(1)").addClass('old'); // Add class 'old'
+		}
+	}
+});
 
 // Problem 8 - Implement ReplaceAll
 // The search functionality is implemented already below for all of the movie details. 
