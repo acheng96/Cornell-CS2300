@@ -6,7 +6,7 @@
 // Problem 1 jQuery Event Listeners
 // Add one event listener that responds to a click of any of the "Free Movie Download" buttons and pops up an alert message to users. Make up your own text for the alert message! Be creative! Surprise us!
 
-$(".alert download btn").click(function() {
+$(".alert").click(function() {
 	alert("Free movie downloaded!");
 });
 
@@ -14,16 +14,16 @@ $(".alert download btn").click(function() {
 // Even though best practices suggest that you change classes  and style the classes in a separate css file rather than change CSS directly, occasionally it is necessary to edit CSS directly using JavaScript.
 // Find the "Border" button on the Control Panel on the page. Add an event handler so that when it is clicked each movie is styled to have a 3px solid yellow border.
 
-
-
-
-
+$("#border").click(function() {
+	$('.movie-poster').css('border', '3px solid yellow');
+});
 
 // Problem 3 - jQuery Toggle
 // Attach an event handler / listener to the 'Toggle' button on the control panel that changes whether the descriptive text (Title, release date, running time) are visible.
 
-
-
+$("#toggle").click(function() {
+	$(".movies li").toggle();
+});
 
 // Problem 4 - Loading new text
 // At the bottom of the page, you'll find a "Favorite Quotes" section. Your function should add quotes there.
