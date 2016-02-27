@@ -32,8 +32,10 @@ $("#toggle").click(function() {
 //You'll need to figure out how to make it random
 //Hint: look at Math.random and Math.floor
 
-
-
+$("#quotes").click(function() {
+	var num = Math.floor((Math.random() * 5)).toString();
+	$(".quotes").load("partials/quotes_partial" + num + ".html");
+});
 
 // Problem 5a - Helper Functions
 /* For this problem, you will be writing two helper functions that will help you with the next problem. 
