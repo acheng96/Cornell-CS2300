@@ -47,6 +47,7 @@ $("#quotes").click(function() {
 * Write a function that accepts the movie index (0 for episode 1, 1 for episode 2 etc)
 * as a parameter and returns the running time
 */
+
 function runningTime(i){
 	var num = (i + 1).toString();
 	var runningTimeString = $(".movies:nth-child(" + num + ") li:nth-child(3)").text();
@@ -66,8 +67,9 @@ function runningTime(i){
 //current running time with the contents of the string.
 
 function rewrite(i, string){
-
-}
+	var num = (i + 1).toString();
+	$(".movies:nth-child(" + num + ") li:nth-child(3)").text(string);
+};
 
 // Verify that this function works. Type the following into your console:
 //     replace(0,"Running Time: 400 minutes");
@@ -79,9 +81,15 @@ function rewrite(i, string){
 // If the user forgot to select a movie, give them a reminder instead of 
 // running the function
 
-
-
-
+$("#test_rewrite").click(function() {
+	if ($("#rewrite_select").val()) {
+		var selectedNum = parseInt($("#rewrite_select option:selected").val());
+		var text = $("#rewrite_text").val();
+		rewrite(selectedNum, text);
+	} else {
+		alert("Please select an option!");
+	}
+});
 
 // Problem 6 - Apply Helper Functions
 // Use your helper functions to convert the running time format of all the movies from minutes to ___ hours ___minutes.
@@ -116,12 +124,9 @@ $( "#replace-this" ).on( ""     , function() {
 // Write a function that can add a class 'old' to the movie posters of movies released before the year 2000 and bind it to
 // the addClass button.
 
+function addOldClass() {
 
-
-
-
-
-
+};
 
 // Problem 8 - Implement ReplaceAll
 // The search functionality is implemented already below for all of the movie details. 
