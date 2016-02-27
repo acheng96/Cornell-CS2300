@@ -101,16 +101,32 @@ $("#convert").on("click", function() {
 	// that converts from hours and mintues back to minutes
 	// Note: Maximum score on the assigmnent is 100.
 
-	if (true) {
+	for (i = 0; i < $('.movies').length; i++) {
+		var num = (i + 1).toString();
+		var runningTimeString = $(".movies:nth-child(" + num + ") li:nth-child(3)").text(); // Get running time string
 
-	} else { 
+		if (runningTimeString.indexOf("hours") < 0) { 
+			// Convert from minutes to ___ hours ___minutes
+			
+			var totalMinutes = runningTime(i);
+			var hours = Math.floor(totalMinutes / 60); 
+			var minutes = totalMinutes % 60;         
+			var newTimeString = "Running Time: " + hours.toString() + " hours " + minutes.toString() + " minutes";
 
+			rewrite(i, newTimeString);
+		} else { 
+			console.log("second");
+			// Convert from  ___ hours ___minutes to minutes
+			var array = runningTimeString.split(" ");
+			var hours = parseInt(array[2]);
+			var minutes = parseInt(array[4]);
+			var newTime = (hours * 60) + minutes;
+			var newTimeString = "Running Time: " + newTime.toString() + " minutes";
+
+			rewrite(i, newTimeString);
+		}
 	}
 });
-
-function containsString(str) {
-	return (str.indexOf("hours") >= 0)
-}
 
 // Problem 7 - Adding Class
 // So far we've learned we can bind events to classes and style them with CSS, but now let's do some logic with classes.
