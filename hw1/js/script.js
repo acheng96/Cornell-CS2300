@@ -115,7 +115,6 @@ $("#convert").on("click", function() {
 
 			rewrite(i, newTimeString);
 		} else { 
-			console.log("second");
 			// Convert from  ___ hours ___minutes to minutes
 			var array = runningTimeString.split(" ");
 			var hours = parseInt(array[2]);
@@ -170,21 +169,15 @@ function replaceAll(txt, replace, with_this) {
   
  // TODO: You must implement the ReplaceAll functionality. 
 $("#replace").bind('click', function(){
+	$("ul").children().each(function(){
+		var currentString = $(this).html();
+		var originalText = $("#original").val();
+		var newText = $("#newtext").val();
 
+		currentString = replaceAll(currentString, originalText, newText);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+		$(this).html(currentString);
+	});
 });
 
 // To recieve bonus points on this assignment, see the description of Problem 6
