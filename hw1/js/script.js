@@ -84,8 +84,14 @@ function rewrite(i, string) {
 $("#test_rewrite").click(function() {
 	if ($("#rewrite_select").val()) { // Movie selected
 		var selectedNum = parseInt($("#rewrite_select option:selected").val()); // Get value of selected movie
-		var text = $("#rewrite_text").val(); // Get input text in New Text box
-		rewrite(selectedNum, text);
+		var newText = $("#rewrite_text").val(); // Get input text in New Text box
+
+		// Strip HTML tags to prevent code injection
+		if ($(newText).text().length > 0) {
+			newText = $(newText).text();
+		}
+
+		rewrite(selectedNum, newText);
 	} else { // No movie selected
 		alert("Please select a movie!");
 	}
@@ -173,7 +179,11 @@ $("#replace").bind('click', function() {
 		var currentString = $(this).html(); // Get html text of li
 		var originalText = $("#original").val(); // Get input text in Original box
 		var newText = $("#newtext").val(); // Get input text in New Text box
+
 		// Strip HTML tags to prevent code injection
+		if ($(newText).text().length > 0) {
+			newText = $(newText).text();
+		}
 
 		currentString = replaceAll(currentString, originalText, newText); // Replace original text with new text
 
