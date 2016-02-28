@@ -7,7 +7,7 @@
 // Add one event listener that responds to a click of any of the "Free Movie Download" buttons and pops up an alert message to users. Make up your own text for the alert message! Be creative! Surprise us!
 
 $(".alert").click(function() {
-	alert("Free movie downloaded!");
+	alert("Free movie downloaded! May the force be with you :)");
 });
 
 // Problem 2 jQuery CSS
@@ -33,8 +33,8 @@ $("#toggle").click(function() {
 //Hint: look at Math.random and Math.floor
 
 $("#quotes").click(function() {
-	var num = Math.floor((Math.random() * 5)).toString();
-	$(".quotes").load("partials/quotes_partial" + num + ".html");
+	var num = Math.floor((Math.random() * 5)); // Get random number between 0 and 4
+	$(".quotes").load("partials/quotes_partial" + num.toString() + ".html");
 });
 
 // Problem 5a - Helper Functions
@@ -48,10 +48,10 @@ $("#quotes").click(function() {
 * as a parameter and returns the running time
 */
 
-function runningTime(i){
+function runningTime(i) {
 	var num = (i + 1).toString();
-	var runningTimeString = $(".movies:nth-child(" + num + ") li:nth-child(3)").text();
-	var runningTime = runningTimeString.replace(/\D/g,'');
+	var runningTimeString = $(".movies:nth-child(" + num + ") li:nth-child(3)").text(); 
+	var runningTime = runningTimeString.replace(/\D/g,''); // Remove non-digits
 
 	return parseInt(runningTime);
 };
@@ -66,7 +66,7 @@ function runningTime(i){
 //as parameters. It should replace the line containing the movie's 
 //current running time with the contents of the string.
 
-function rewrite(i, string){
+function rewrite(i, string) {
 	var num = (i + 1).toString();
 	$(".movies:nth-child(" + num + ") li:nth-child(3)").text(string);
 };
@@ -82,12 +82,12 @@ function rewrite(i, string){
 // running the function
 
 $("#test_rewrite").click(function() {
-	if ($("#rewrite_select").val()) {
-		var selectedNum = parseInt($("#rewrite_select option:selected").val());
-		var text = $("#rewrite_text").val();
+	if ($("#rewrite_select").val()) { // Movie selected
+		var selectedNum = parseInt($("#rewrite_select option:selected").val()); // Get value of selected movie
+		var text = $("#rewrite_text").val(); // Get input text in New Text box
 		rewrite(selectedNum, text);
-	} else {
-		alert("Please select an option!");
+	} else { // No movie selected
+		alert("Please select a movie!");
 	}
 });
 
@@ -96,7 +96,6 @@ $("#test_rewrite").click(function() {
 // Hint: Be sure to check the running time format so your function 
 // responds appropriately if the time has already been converted. 
 $("#convert").on("click", function() {
-	// replace below code
 	// OPTIONAL BONUS CHALLENGE - add an "else" statement to the 
 	// that converts from hours and mintues back to minutes
 	// Note: Maximum score on the assigmnent is 100.
@@ -106,21 +105,20 @@ $("#convert").on("click", function() {
 		var runningTimeString = $(".movies:nth-child(" + num + ") li:nth-child(3)").text(); // Get running time string
 
 		if (runningTimeString.indexOf("hours") < 0) { 
-			// Convert from minutes to ___ hours ___minutes
-			
-			var totalMinutes = runningTime(i);
-			var hours = Math.floor(totalMinutes / 60); 
-			var minutes = totalMinutes % 60;         
+			// In __ minutes format, so convert from minutes to ___ hours ___minutes
+			var totalMinutes = runningTime(i); // Get running time in minutes as integer
+			var hours = Math.floor(totalMinutes / 60); // Get hours as integer
+			var minutes = totalMinutes % 60; // Get minutes as integer        
 			var newTimeString = "Running Time: " + hours.toString() + " hours " + minutes.toString() + " minutes";
 
 			rewrite(i, newTimeString);
-		} else { 
-			// Convert from  ___ hours ___minutes to minutes
-			var array = runningTimeString.split(" ");
-			var hours = parseInt(array[2]);
-			var minutes = parseInt(array[4]);
-			var newTime = (hours * 60) + minutes;
-			var newTimeString = "Running Time: " + newTime.toString() + " minutes";
+		} else {
+			// In __ hours __ minutes format, so convert from  ___ hours ___minutes to minutes
+			var array = runningTimeString.split(" "); // Split string into array
+			var hours = parseInt(array[2]); // Get hours as integer
+			var minutes = parseInt(array[4]); // Get minutes as integer
+			var totalMinutes = (hours * 60) + minutes; // Convert to total minutes
+			var newTimeString = "Running Time: " + totalMinutes.toString() + " minutes";
 
 			rewrite(i, newTimeString);
 		}
@@ -137,8 +135,8 @@ $("#addClass").click(function() {
 		var dateString = $(".movies:nth-child(" + i + ") li:nth-child(2)").text(); // Get release date string
 		var year = parseInt(dateString.substr(dateString.length - 4)); // Get year as integer
 
-		if (year < 2000) {
-			$(".movies:nth-child(" + i + ") img:nth-child(1)").addClass('old'); // Add class 'old'
+		if (year < 2000) { // Movie released before 2000
+			$(".movies:nth-child(" + i + ")").addClass('old'); // Add class 'old'
 		}
 	}
 });
@@ -154,7 +152,9 @@ $("#search").bind('keyup', function(){
 		currentString = replaceAll(currentString, '<span class="matched">',"");
 		currentString = replaceAll(currentString, "</span>","");
 		// add in new highlights
-		currentString = replaceAll(currentString, $("#search").val(), '<span class="matched">$&</span>');
+		if ($("#search").val() != "") {
+			currentString = replaceAll(currentString, $("#search").val(), "<span class=\"matched\">$&</span>");
+		}
 		// replace the current HTML with highlighted HTML
 		$(this).html(currentString);
 	});
@@ -168,15 +168,16 @@ function replaceAll(txt, replace, with_this) {
 
   
  // TODO: You must implement the ReplaceAll functionality. 
-$("#replace").bind('click', function(){
-	$("ul").children().each(function(){
-		var currentString = $(this).html();
-		var originalText = $("#original").val();
-		var newText = $("#newtext").val();
+$("#replace").bind('click', function() {
+	$("ul").children().each(function() {
+		var currentString = $(this).html(); // Get html text of li
+		var originalText = $("#original").val(); // Get input text in Original box
+		var newText = $("#newtext").val(); // Get input text in New Text box
+		// Strip HTML tags to prevent code injection
 
-		currentString = replaceAll(currentString, originalText, newText);
+		currentString = replaceAll(currentString, originalText, newText); // Replace original text with new text
 
-		$(this).html(currentString);
+		$(this).html(currentString); // Set html text of li to be new text
 	});
 });
 
