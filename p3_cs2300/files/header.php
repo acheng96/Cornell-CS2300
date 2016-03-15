@@ -9,7 +9,7 @@
 		<div class='header-container'>
 			<ul class='header-title'>
 				<li><h1>BUCKET LIST PHOTO GALLERY</h1></li>
-				<li><h4>Image from <a href='#' target='_blank'><b>here</b></a>.</h4></li>
+				<li><h4>Image from <a class='header-image-url' href='https://s-media-cache-ak0.pinimg.com/736x/4d/07/ff/4d07ff22aba1feaeebc817d46e6b1021.jpg' target='_blank'><b>here</b></a>.</h4></li>
 			</ul>
 
 			<!-- Navigation Bar -->

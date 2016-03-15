@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="utf-8">
-    	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    	<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Search Page</title>
 	</head>
@@ -14,8 +14,8 @@
 		<!-- Header -->
 		<?php include("header.php"); ?>
 
-		<h2>SEARCH PAGE</h2>
-		<p>This page allows users to search for photos whose text fields contain the user's input.</p>
+		<h2 class="page-title">SEARCH PAGE</h2>
+		<p class="page-description">This page allows users to search for photos whose text fields contain the user's input.</p>
 	</body>
 
 </html>

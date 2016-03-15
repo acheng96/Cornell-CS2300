@@ -63,7 +63,7 @@ ul {
 	text-align: center;
 }
 
-#header-image-url {
+.header-image-url {
 	color: #B1B1B1;
 }
 
@@ -104,20 +104,36 @@ ul {
  * = Home = *
  * ======== */ 
 
- #home-description {
+#home-description {
+	margin: auto;
+	padding-top: 100px;
+	width: 60%;
+	text-align: center;
+	font-weight: normal;
+	font-size: 30px;
+}
+
+/* ======== *
+ * = Page = *
+ * ======== */ 
+
+.page-title {
+	margin: auto;
+	padding-top: 100px;
+	width: 60%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.page-description {
  	margin: auto;
- 	padding-top: 100px;
+ 	padding-top: 50px;
  	width: 60%;
  	text-align: center;
  	font-weight: normal;
  	font-size: 30px;
- }
-
-
-
-
-
-
+}
 
 
 
