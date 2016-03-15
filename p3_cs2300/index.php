@@ -10,13 +10,13 @@
 	</head>
 
 	<body>
-		
+
 		<!-- Header -->
 		<div class="header">
 			<div class='header-container'>
 				<ul class='header-title'>
 					<li><h1>WORLDWIDE WONDERS</h1></li>
-					<li><h4>Image from <a href='#' target='_blank'><b>here</b></a>.</h4></li>
+					<li><h4>Image from <a id="header-image-url" href='https://s-media-cache-ak0.pinimg.com/736x/14/be/16/14be160a0cbe7b182492cf0538f242a0.jpg' target='_blank'><b>here</b></a>.</h4></li>
 				</ul>
 
 				<!-- Navigation Bar -->
@@ -33,7 +33,6 @@
 		</div>
 
 		<div class='divider'></div>
-
 		<p id="home-description">Welcome to the Worldwide Wonders Photo Gallery! Here, you can find your next bucket list place to visit!</p>
 
 	</body>

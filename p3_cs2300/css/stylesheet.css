@@ -20,7 +20,7 @@ ul {
 }
 
 .active-page span {
-	border-bottom: solid 5px #22453D;
+	border-bottom: solid 5px #B1B1B1;
 }
 
 /* ========== *
@@ -53,14 +53,18 @@ ul {
 }
 
 .header-title h4 {
+	margin-top: -20px;
 	font-weight: normal;
 	font-size: 14px;
-	color: white;
-	margin-top: -20px;
+	color: #B1B1B1;
 }
 
 .header-title li {
 	text-align: center;
+}
+
+#header-image-url {
+	color: #B1B1B1;
 }
 
 .divider {
@@ -108,11 +112,6 @@ ul {
  	font-weight: normal;
  	font-size: 30px;
  }
-
-
-
-INSERT INTO Photos (photo_id, photo_name, photo_location, photo_caption, photo_file_path, photo_credit, album_id)
-VALUES (1, "Navagio Beach", "Ionian Islands, Greece", "", "Harry", 1)
 
 
 
