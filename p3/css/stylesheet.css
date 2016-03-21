@@ -145,7 +145,7 @@ ul {
 	margin: auto;
 }
 
-#album-name {
+.album-name {
 	margin-bottom: 0;
 	font-weight: bold;
 	font-size: 40px;
@@ -153,14 +153,14 @@ ul {
 	text-transform: uppercase;
 }
 
-#album-date-created, #album-date-modified {
+.album-date-created, .album-date-modified {
 	margin: 10px 0 0 0;
 	font-weight: normal;
 	font-size: 20px;
 	text-align: center;
 }
 
-#album-image {
+.album-image {
 	display: block;
 	margin: auto;
 	width: 500px;
@@ -176,14 +176,14 @@ ul {
 	text-align: center;
 }
 
-#image-credit {
+.image-credit {
 	margin-top: 10px;
 	font-weight: normal;
 	font-size: 14px;
 	text-align: center;
 }
 
-#image-credit b {
+.image-credit b {
 	color: black;
 }
 
@@ -208,21 +208,21 @@ ul {
 	overflow: hidden;
 }
 
-.album-image {
+.photo-image {
 	background-size: 100%;
 	width: 24.75vw;
     height: 24.75vw;
 	min-height: 350px;
 }
 
-#photo-title {
+.photo-title {
 	font-weight: bold;
 	font-size: 20px;
 	text-align: center;
 	color: black;
 }
 
-#photo-caption {
+.photo-caption {
 	margin: 0;
 	font-weight: normal;
 	font-size: 16px;
@@ -230,24 +230,75 @@ ul {
 	color: black;
 }
 
-#photo-credit {
+.photo-credit {
 	font-weight: normal;
 	font-size: 14px;
 	text-align: center;
 	color: black;
 }
 
-#photo-credit b {
+.photo-credit b {
 	color: black;
 }
 
+/* ============ *
+ * = Add Page = *
+ * ============ */ 
 
+.add-title {
+	margin: 70px 0 0 0;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
+}
 
+.add-subtitle {
+	margin: 15px auto;
+	font-weight: normal;
+	font-size: 20px;
+	text-align: center;
+}
 
+.add-form-container {
+	margin: 0 auto 50px;
+	width: 50%;
+}
 
+.add-form input {
+	outline: none;
+	min-height: 45px;
+	min-width: 100%;
+	height: 45px;
+	font-size: 22px;
+	font-weight: bold;
+}
 
+.add-form input[type=text], textarea {
+	padding-left: 10px;
+	margin: 8px auto;
+	width: 100%;
+	border-radius: 5px;
+	border: solid 2px #4A4A4A;
+	color: #4A4A4A;
+}
 
+.add-form input[type=submit] {
+	margin: 8px auto 0 auto;
+	display: block;
+	width: 200px;
+	min-width: 120px;
+	padding: 0 15px;
+	border-radius: 7px;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	background-color: #4A4A4A;
+	border-style: none;
+}
 
+#album-photo-field {
+	display: inline-flex;
+}
 
 
 

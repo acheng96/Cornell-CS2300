@@ -14,8 +14,9 @@
 		<!-- Header -->
 		<?php include("header.php"); ?>
 
+		<!-- Body -->
 		<h2 class="page-title">SEARCH PAGE</h2>
-		<p class="page-description">This page allows users to search for photos whose text fields contain the user's input.</p>
+		<p class="page-description">This page displays a search form and allows users to search for photos whose text fields contain the user's input.</p>
 	</body>
 
 </html>

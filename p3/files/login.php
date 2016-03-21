@@ -14,8 +14,9 @@
 		<!-- Header -->
 		<?php include("header.php"); ?>
 
+		<!-- Body -->
 		<h2 class="page-title">LOGIN PAGE</h2>
-		<p class="page-description">This page allows users to login to use the site as an admin.</p>
+		<p class="page-description">This page displays a login form and allows users to log in to use the site as an admin.</p>
 
 	</body>
 

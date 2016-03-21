@@ -63,11 +63,21 @@
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 			$albumsResult = $mysqli->query("SELECT * FROM Albums");
+
+			// Retrieve photos from album with album_id = 1
+			$photosResult = $mysqli->query(
+				"SELECT * FROM Photos 
+				INNER JOIN PhotoInAlbum 
+				ON Photos.photo_id = PhotoInAlbum.photo_id
+				INNER JOIN Albums
+				ON PhotoInAlbum.album_id = Albums.album_id
+				WHERE PhotoInAlbum.album_id = 1"
+			);
+
 			while ($row = $albumsResult->fetch_row()) {
 				$albums[] = new Album($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 			}
 
-			$photosResult = $mysqli->query("SELECT * FROM Photos");
 			while ($row = $photosResult->fetch_row()) {
 				$photos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 			}
@@ -96,6 +106,7 @@
 			</div>
 		</div>
 
+		<!-- Home Description -->
 		<div class='divider'></div>
 		<p id="home-description">Welcome to the Worldwide Wonders Photo Gallery! Here, you can find your next bucket list place to visit!</p>
 
@@ -104,11 +115,11 @@
 			<!-- Album -->
 			<div class="album-container">
 				<?php for ($i = 0; $i < count($albums); $i++) { ?>
-					<h2 id="album-name">ALBUM #<?php echo $albums[$i]->albumId ?>: <?php echo $albums[$i]->albumTitle ?></h2>
-					<h4 id="album-date-created">DATE CREATED: <?php echo $albums[$i]->albumDateCreated ?></h4>
-					<h4 id="album-date-modified">DATE MODIFIED: <?php echo $albums[$i]->albumDateModified ?></h4>
-					<h4 id="image-credit">Image from <a href=<?php echo "{$albums[$i]->albumPhotoCredit}" ?> target='_blank'><b>here</b></a>.</h4>
-					<img id='album-image' src=<?php echo "{$albums[$i]->albumPhotoFilePath}" ?>  alt='Album'>
+					<h2 class="album-name">ALBUM #<?php echo $albums[$i]->albumId ?>: <?php echo $albums[$i]->albumTitle ?></h2>
+					<h4 class="album-date-created">DATE CREATED: <?php echo $albums[$i]->albumDateCreated ?></h4>
+					<h4 class="album-date-modified">DATE MODIFIED: <?php echo $albums[$i]->albumDateModified ?></h4>
+					<h4 class="image-credit">Image from <a href=<?php echo "{$albums[$i]->albumPhotoCredit}" ?> target='_blank'><b>here</b></a>.</h4>
+					<img class='album-image' src=<?php echo "{$albums[$i]->albumPhotoFilePath}" ?>  alt='Album'>
 				<?php } ?>	
 			</div>
 
@@ -116,12 +127,15 @@
 			<h3 id="photos-title">PHOTOS</h3>
 			<div class="photos">
 				<div class="photos-container">
-					<?php for ($i = 0; $i < count($photos); $i++) { ?>
+					<?php for ($i = 0; $i < count($photos); $i++) { 
+						$imageName = $photos[$i]->photoName;
+						$altName = str_replace(' ', '', $imageName);
+					?>
 						<div class="photo-item">
-							<img class='album-image' src=<?php echo "{$photos[$i]->photoFilePath}" ?>  alt=<?php echo "{$photos[$i]->photoName}" ?>>
-							<p id="photo-title">#<?php echo $photos[$i]->photoId ?>: <?php echo $photos[$i]->photoName ?></p>
-							<p id="photo-caption"><?php echo $photos[$i]->photoCaption ?></p>
-							<h4 id="photo-credit">Image from <a href=<?php echo "{$photos[$i]->photoCredit}" ?> target='_blank'><b>here</b></a>.</h4>
+							<img class='photo-image' src=<?php echo "{$photos[$i]->photoFilePath}" ?>  alt=<?php echo "{$altName}" ?>>
+							<p class="photo-title">#<?php echo $photos[$i]->photoId ?>: <?php echo $photos[$i]->photoName ?></p>
+							<p class="photo-caption"><?php echo $photos[$i]->photoCaption ?></p>
+							<h4 class="photo-credit">Image from <a href=<?php echo "{$photos[$i]->photoCredit}" ?> target='_blank'><b>here</b></a>.</h4>
 						</div>
 					<?php } ?>	
 				</div>
