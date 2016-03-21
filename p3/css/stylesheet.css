@@ -113,6 +113,10 @@ ul {
 	font-size: 30px;
 }
 
+.bottom-padding {
+	height: 100px;
+}
+
 /* ======== *
  * = Page = *
  * ======== */ 
@@ -171,6 +175,7 @@ ul {
 }
 
 #photos-title {
+	margin-bottom: 10px;
 	font-weight: bold;
 	font-size: 30px;
 	text-align: center;
@@ -220,6 +225,13 @@ ul {
 	font-size: 20px;
 	text-align: center;
 	color: black;
+}
+
+#back-button {
+	font-weight: normal;
+	font-size: 20px;
+	text-align: center;
+	color: gray;
 }
 
 .photo-caption {

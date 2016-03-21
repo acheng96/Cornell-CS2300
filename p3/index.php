@@ -56,22 +56,37 @@
 		     * = Data Retrieval = *
 		     * ================== */
 
-			$albums = array();
-			$photos = array();
-
 			require_once 'files/config.php';
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
+			$album_id = 0;
+			$album_title = "";
+			$albums = array();
+			$photos = array();
+
+			// Set album_id and album_title when album clicked
+			if (isset($_GET['album_id'])) {
+				$album_id = $_GET['album_id'];
+				$album = $mysqli->query(
+					"SELECT * FROM Albums 
+					 WHERE Albums.album_id = $album_id"
+				);
+
+				$albumRow = $album->fetch_row();
+				$album_title = strtoupper($albumRow[1]);
+			}
+
+			// Retrieve albums
 			$albumsResult = $mysqli->query("SELECT * FROM Albums");
 
-			// Retrieve photos from album with album_id = 1
+			// Retrieve photos from album with selected album_id
 			$photosResult = $mysqli->query(
 				"SELECT * FROM Photos 
 				INNER JOIN PhotoInAlbum 
 				ON Photos.photo_id = PhotoInAlbum.photo_id
 				INNER JOIN Albums
 				ON PhotoInAlbum.album_id = Albums.album_id
-				WHERE PhotoInAlbum.album_id = 1"
+				WHERE PhotoInAlbum.album_id = $album_id"
 			);
 
 			while ($row = $albumsResult->fetch_row()) {
@@ -108,39 +123,47 @@
 
 		<!-- Home Description -->
 		<div class='divider'></div>
-		<p id="home-description">Welcome to the Worldwide Wonders Photo Gallery! Here, you can find your next bucket list place to visit!</p>
 
-		<div class="catalog">
+		<!-- Display albums or photos -->
+		<?php 
+			if (isset($_GET['album_id'])) {
+			    # If there is a GET argument for 'id', we have some code to handle it (display an album whose albumID matches $_GET['id']
+			    $album_id = $_GET['album_id'];
 
-			<!-- Album -->
-			<div class="album-container">
-				<?php for ($i = 0; $i < count($albums); $i++) { ?>
-					<h2 class="album-name">ALBUM #<?php echo $albums[$i]->albumId ?>: <?php echo $albums[$i]->albumTitle ?></h2>
-					<h4 class="album-date-created">DATE CREATED: <?php echo $albums[$i]->albumDateCreated ?></h4>
-					<h4 class="album-date-modified">DATE MODIFIED: <?php echo $albums[$i]->albumDateModified ?></h4>
-					<h4 class="image-credit">Image from <a href=<?php echo "{$albums[$i]->albumPhotoCredit}" ?> target='_blank'><b>here</b></a>.</h4>
-					<img class='album-image' src=<?php echo "{$albums[$i]->albumPhotoFilePath}" ?>  alt='Album'>
-				<?php } ?>	
-			</div>
+			    print "<h3 id='photos-title'>ALBUM #{$album_id}: {$album_title}</h3>
+			    <a href='index.php'><h3 id='back-button'>RETURN TO ALBUMS</h3></a>
+				<div class='photos'>
+					<div class='photos-container'>";
+						for ($i = 0; $i < count($photos); $i++) { 
+							$imageName = $photos[$i]->photoName;
+							$altName = str_replace(' ', '', $imageName);
+	
+						print "<div class='photo-item'>
+								<img class='photo-image' src='{$photos[$i]->photoFilePath}'  alt='{$altName}'>
+								<p class='photo-title'>#{$photos[$i]->photoId}: {$photos[$i]->photoName}</p>
+								<p class='photo-caption'>{$photos[$i]->photoCaption}</p>
+								<h4 class='photo-credit'>Image from <a href='{$photos[$i]->photoCredit}' target='_blank'><b>here</b></a>.</h4>
+							</div>";
+						}
+					print "</div>
+				</div>";
+			} else {
+			    # There isn't a ?id argument, so we want to display something else (if it's albums.php, we'll probably just display all our albums here)
+			    print "<p id='home-description'>Welcome to the Worldwide Wonders Photo Gallery! Here, you can find your next bucket list place to visit!</p>";
 
-			<!-- Photo Catalog -->
-			<h3 id="photos-title">PHOTOS</h3>
-			<div class="photos">
-				<div class="photos-container">
-					<?php for ($i = 0; $i < count($photos); $i++) { 
-						$imageName = $photos[$i]->photoName;
-						$altName = str_replace(' ', '', $imageName);
-					?>
-						<div class="photo-item">
-							<img class='photo-image' src=<?php echo "{$photos[$i]->photoFilePath}" ?>  alt=<?php echo "{$altName}" ?>>
-							<p class="photo-title">#<?php echo $photos[$i]->photoId ?>: <?php echo $photos[$i]->photoName ?></p>
-							<p class="photo-caption"><?php echo $photos[$i]->photoCaption ?></p>
-							<h4 class="photo-credit">Image from <a href=<?php echo "{$photos[$i]->photoCredit}" ?> target='_blank'><b>here</b></a>.</h4>
-						</div>
-					<?php } ?>	
-				</div>
-			</div>
-		</div>
+			    print "<div class='album-container'>";
+					for ($i = 0; $i < count($albums); $i++) {
+						print "<h2 class='album-name'>ALBUM #{$albums[$i]->albumId}: {$albums[$i]->albumTitle}</h2>
+						<h4 class='album-date-created'>DATE CREATED: {$albums[$i]->albumDateCreated}</h4>
+						<h4 class='album-date-modified'>DATE MODIFIED: {$albums[$i]->albumDateModified}</h4>
+						<h4 class='image-credit'>Image from <a href='{$albums[$i]->albumPhotoCredit}' target='_blank'><b>here</b></a>.</h4>
+						<a href='index.php?album_id={$albums[$i]->albumId}''><img class='album-image' src='{$albums[$i]->albumPhotoFilePath}'  alt='Album'></a>";
+					}	
+				print "</div>";
+			}
+		?>
+
+		<div class="bottom-padding"></div>
 
 	</body>
 
