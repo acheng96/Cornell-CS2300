@@ -4,26 +4,26 @@
  * ======================== */ 
 
 // Check that input field contains 1) only letters, spaces, dashes, and underscore and 2) not just all spaces
-function validTextInput(formType, name) {
-	var allLegalChars = /^[A-Za-z\s-_]+$/.test(name); // Return False if contains illegal chars
-	var notAllSpaces = /\S/.test(name); // Return False if all spaces
+function validTextInput(id, text) {
+	var allLegalChars = /^[A-Za-z\s-_]+$/.test(text); // Return False if contains illegal chars
+	var notAllSpaces = /\S/.test(text); // Return False if all spaces
 	var isValidName = allLegalChars && notAllSpaces;
 
-	updateFieldBorder("name-field", isValidName);
+	updateFieldBorder(id, isValidName);
 
 	if (!allLegalChars) {
-		updateErrorMessage("name-field", "Letters, spaces, dashes, and underscores only.");
+		updateErrorMessage(id, "Letters, spaces, dashes, and underscores only.");
 	} else if (!notAllSpaces) {
-		updateErrorMessage("name-field", "Cannot be empty or contain only spaces.");
+		updateErrorMessage(id, "Cannot be empty or contain only spaces.");
 	} else {
-		updateErrorMessage("name-field", "");
+		updateErrorMessage(id, "");
 	}
 	
 	return (isValidName);
 }
 
 // Check that input field does not only contain spaces
-function validSpacesTextInput(formType, id, text) {
+function validSpacesTextInput(id, text) {
 	var isValidTextInput = /\S/.test(text); // Return False if all spaces
 	updateFieldBorder(id, isValidTextInput);
 
@@ -35,12 +35,12 @@ function validSpacesTextInput(formType, id, text) {
 }
 
 // Check image url field for existence of displayable image or if no url is inputted
-function validImageURL(formType, id, url) {
+function validImageURL(id, url) {
     var image = new Image();
     image.src = url;
 
     var isValidImageURL = (image.height != 0) || (url.trim() == ""); // Return False if no image
-    updateFieldBorder("image-url-field", isValidImageURL);
+    updateFieldBorder(id, isValidImageURL);
 
     if (!isValidImageURL) {
    		updateErrorMessage(id, "Invalid Image URL.");
@@ -51,29 +51,21 @@ function validImageURL(formType, id, url) {
 
 // Validate all user input fields for add album form
 function validAddAlbumForm() {
-	var albumTitle = validTextInput(document.forms.addAlbumForm.albumTitle.value); 
-	var albumPhotoCreditURL = validImageURL(document.forms.addAlbumForm.albumPhotoCredit.value); 
+	var albumTitle = validTextInput("album-title-field", document.forms.addAlbumForm.albumTitle.value); 
+	var albumPhotoCreditURL = validImageURL("album-photo-credit-field", document.forms.addAlbumForm.albumPhotoCredit.value); 
 	var isValidForm = (albumTitle && albumPhotoCreditURL);
 
-	alert("validated album");
-	console.log("validated album");
-    console.log(isValidForm);
-
-	// return isValidForm;
+	return isValidForm;
 }
 
 // Validate all user input fields for add photo form
 function validAddPhotoForm() {
-	var photoName = validTextInput(document.forms.addPhotoForm.photoName.value); 
-	var photoLocation = validTextInput(document.forms.addPhotoForm.photoCaption.value); 
-	var photoCreditURL = validImageURL(document.forms.addPhotoForm.photoCredit.value); 
+	var photoName = validTextInput("photo-name-field", document.forms.addPhotoForm.photoName.value); 
+	var photoLocation = validTextInput("photo-caption-field", document.forms.addPhotoForm.photoCaption.value); 
+	var photoCreditURL = validImageURL("photo-credit-field", document.forms.addPhotoForm.photoCredit.value); 
 	var isValidForm = (photoName && photoLocation && photoCreditURL);
 
-	alert("validated photo");
-	console.log("validated photo");
-    console.log(isValidForm);
-
-	// return isValidForm;
+	return isValidForm;
 }
 
 /* ==================== *
@@ -87,8 +79,8 @@ function updateFieldBorder(id, valid) {
 
 // Show error message
 function updateErrorMessage(id, errorMessage) { 
-	var albumFields = {"album-title-field": "Album Title", "album-photo-field": "Album Photo Credit", "album-photo-credit-field": "Album Photo Credit"};
-	var photoFields = {"photo-name-field": "Photo Name", "photo-caption-field": "Photo Caption", "photo-field": "Photo", "photo-credit-field": "Photo Credit"};
+	var albumFields = {"album-title-field": "Album Title", "album-photo-credit-field": "Album Photo Credit"};
+	var photoFields = {"photo-name-field": "Photo Name", "photo-caption-field": "Photo Caption", "photo-credit-field": "Photo Credit"};
 
 	if (id in albumFields) {
 		var field = albumFields[id];

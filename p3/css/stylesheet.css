@@ -272,7 +272,7 @@ ul {
 }
 
 .add-form-container {
-	margin: 0 auto 50px;
+	margin: 50px auto 50px;
 	width: 50%;
 }
 
@@ -310,6 +310,14 @@ ul {
 
 #album-photo-field {
 	display: inline-flex;
+}
+
+#album-form-subtitle {
+	color: red;
+}
+
+#photo-form-subtitle {
+	color: red;
 }
 
 
