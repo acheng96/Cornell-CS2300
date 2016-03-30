@@ -3,14 +3,15 @@
 	//Start with ajax.js for HW3 instructions 
 	//ajax.php, goblet.js and goblet.php also have TODO tasks for you
 	//When you get to Spotify and the Goblet, look at Spotify_hints.txt and Goblet_hints.txt
+  define('SHARED_FILE_URL', 'https://info2300.coecis.cornell.edu/users/_demosp16/www/hw3/common'); 
 ?>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>INFO/CS 2300 | HW3: AJAX</title>
-	<link rel="stylesheet" type="text/css" href="css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <title>INFO/CS 2300 | HW3: AJAX</title>
+  <link rel="stylesheet" type="text/css" href="<?php echo SHARED_FILE_URL ?>/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo SHARED_FILE_URL ?>/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<?php 
