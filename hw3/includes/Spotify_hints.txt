@@ -1,0 +1,16 @@
+For the Spotify API part:
+
+What's great about AJAX is that you can also use it to make requests 
+to external servers/databases.
+In order to do so, you can use a company's API (Application Program Interface) 
+– a nice way to integrate your website with their information!
+
+APIs will contain all possible endpoints (fancy-speak for the URLs 
+your AJAX will make calls to) and they're usually pretty well 
+documented. For this task, since we're dealing with music, we'd like to use
+Spotify's API. You can check it out here:
+
+https://developer.spotify.com/web-api/endpoint-reference
+
+Fix the AJAX call so that you can insert the songs and have great music 
+while you work :D

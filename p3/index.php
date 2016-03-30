@@ -141,12 +141,17 @@
 							for ($i = 0; $i < count($photos); $i++) { 
 								$imageName = $photos[$i]->photoName;
 								$altName = str_replace(' ', '', $imageName);
+								$photo = $photos[$i]->photoCredit;
+
+								if ($photo == NULL) {
+									$photo = "#";
+								} 
 		
 							print "<div class='photo-item'>
 									<img class='photo-image' src='{$photos[$i]->photoFilePath}'  alt='{$altName}'>
 									<p class='photo-title'>#{$photos[$i]->photoId}: {$photos[$i]->photoName}</p>
 									<p class='photo-caption'>{$photos[$i]->photoCaption}</p>
-									<h4 class='photo-credit'>Image from <a href='{$photos[$i]->photoCredit}' target='_blank'><b>here</b></a>.</h4>
+									<h4 class='photo-credit'>Image from <a href='{$photo}' target='_blank'><b>here</b></a>.</h4>
 								</div>";
 							}
 						print "</div>
@@ -158,10 +163,16 @@
 
 			    print "<div class='album-container'>";
 					for ($i = 0; $i < count($albums); $i++) {
+						$albumPhoto = $albums[$i]->albumPhotoCredit;
+
+						if ($albumPhoto == NULL) {
+							$albumPhoto = "#";
+						}
+
 						print "<h2 class='album-name'>ALBUM #{$albums[$i]->albumId}: {$albums[$i]->albumTitle}</h2>
 						<h4 class='album-date-created'>DATE CREATED: {$albums[$i]->albumDateCreated}</h4>
 						<h4 class='album-date-modified'>DATE MODIFIED: {$albums[$i]->albumDateModified}</h4>
-						<h4 class='image-credit'>Image from <a href='{$albums[$i]->albumPhotoCredit}' target='_blank'><b>here</b></a>.</h4>
+						<h4 class='image-credit'>Image from <a href='{$albumPhoto}' target='_blank'><b>here</b></a>.</h4>
 						<a href='index.php?album_id={$albums[$i]->albumId}'><img class='album-image' src='{$albums[$i]->albumPhotoFilePath}'  alt='Album'></a>";
 					}	
 				print "</div>";

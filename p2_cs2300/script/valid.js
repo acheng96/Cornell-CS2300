@@ -36,7 +36,6 @@ function validTextInput(id, text) {
 
 // Check image url field for existence of displayable image
 function validImageURL(url) {
-	console.log("validate image url");
     var image = new Image();
     image.src = url;
     var isValidImageURL = (image.height != 0); // Return False if no image
