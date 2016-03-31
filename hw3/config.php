@@ -3,7 +3,6 @@
 //Here we set up MySQL connection settings
 //Fill out the required parameters with your server credentials
 
-
 //database host
 define('DB_HOST', 'localhost');
 

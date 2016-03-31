@@ -35,7 +35,7 @@ $(document).ready(function() {
 			// Remember, this is a key-value pair in the format {key1: value1, key2: value2, key3: value3}
 			var wizardInfo = {requestType: 'checkName', firstName: firstName, lastName: lastName, school: school};
 
-			// TODO: finish ajax request 
+			// TODO: finish ajax request (DONE)
 
 			requestNameCheck = $.ajax({
 				url: 'ajax/goblet.php',
@@ -84,7 +84,7 @@ $(document).ready(function() {
 		var lastName = $(".goblet-last-name").val();
 		var school = $(".goblet-school").val();
 
-		//Clear the submission form and prevent clicking "Enter" again
+		// Clear the submission form and prevent clicking "Enter" again
 		$(".goblet-first-name").val("");
 		$(".goblet-last-name").val("");
 		$(".goblet-school").val("");
@@ -107,12 +107,11 @@ $(document).ready(function() {
 		})
 
 		requestNameCheck.success(function(data) {
-			console.log(data);
 			// TODO: Finish this success function so that you change the text of the ".goblet-msg" html class. (DONE)
 
-			if (data === 'Success')
+			if (data === 'Success') // Wizard was successfully added
 				$(".goblet-msg").text("Your name has been successfully entered into the Goblet of Fire :)");
-			else
+			else // Wizard failed to be added
 				$(".goblet-msg").text("Your name failed to be entered into the Goblet of Fire :(");
 
 		})
@@ -130,8 +129,8 @@ $(document).ready(function() {
 	// school of the person chosen.
 
 	$(document).on("click", ".goblet-choose", function() {
-		// TODO	
-		$(".choice1").attr("disabled", "disabled");
+		// TODO	(DONE)
+		$(".choice1").attr("disabled", "disabled"); // Disable Choice 1 Button when drawing from Goblet of Fire
 
 		var wizardInfo = {requestType: 'chooseName', firstName: "", lastName: "", school: ""};
 
@@ -150,8 +149,8 @@ $(document).ready(function() {
 			console.log(data);
 			// TODO: Finish this success function so that you change the text of the ".goblet-msg" html class. (DONE)
 
-			$(".goblet-msg-valid").text(data);
-			$(".choice1").removeAttr("disabled");
+			$(".goblet-msg-valid").text(data); // Change Goblet Valid Message to display wizard name or error
+			$(".choice1").removeAttr("disabled"); // Enable Choice 1 Button when finished drawing from Goblet of Fire
 		})
 
 	});

@@ -24,7 +24,6 @@
 		print($mysqli->connect_error);
 		die();
 	}
-	
 
 	// TODO: create and execute a sql query to select the appropriate 
 	//       adventure record based on labelno (DONE)

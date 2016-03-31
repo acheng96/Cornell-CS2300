@@ -14,15 +14,15 @@ $(document).ready(function(){
 		// TODO: center your map on the provided coordinates and set a 
 		//       reasonable zoom level (DONE)
 		// HINT: USE https://developers.google.com/maps/documentation/javascript/
-		  zoom: 4,
-      center: myLatLng
+		  zoom: 4, // Set zoom level to 4
+      center: myLatLng // Set center to myLatLng coordinates
     });
 
     var marker = new google.maps.Marker({
 		// TODO: set a Marker on a specified map at a position. (DONE)
 		// HINT: USE https://developers.google.com/maps/documentation/javascript/
-		  position: myLatLng,
-      map: map
+		  position: myLatLng, // Set marker position to myLatLng coordinates
+      map: map // Place marker on the website map
     });
   }
 	 
@@ -34,7 +34,6 @@ $(document).ready(function(){
   $('.goblet').addClass('hidden');
   $('.button-wrapper').addClass('hidden');
 
-  
 	// TODO: Create a javascript onclick function that obtains the corresponding 
 	//       choice/button.
 	//       Then call the updateStory function on that labelno. (DONE)
@@ -42,11 +41,13 @@ $(document).ready(function(){
 	// HINT: there's this cool data-index thing we use to encapsulate
 	//       data that is not visible to the user.
 
+  // Update story when Choice 1 Button is clicked
   $(document).on("click", ".choice1", function() {
     var dataIndex = $(".choice1")[0].dataset.index;
     updateStory({labelno: parseInt(dataIndex)});
   })
 
+  // Update story when Choice 2 Button is clicked
   $(document).on("click", ".choice2", function() {
     var dataIndex = $(".choice2")[0].dataset.index;
     updateStory({labelno: parseInt(dataIndex)});
@@ -97,16 +98,16 @@ $(document).ready(function(){
   		//       The one below has been done for you. (DONE)
           // HINT: console.log(data);
 
-  		$(".story-line").text(data.storyline);
-      $(".choice1-plot").text(data.choice1plot);
-      $(".choice2-plot").text(data.choice2plot);
-      $(".choice1")[0].value = data.choice1button;
-      $(".choice2")[0].value = data.choice2button;
-      $(".choice1")[0].dataset.index = data.choice1result;
-      $(".choice2")[0].dataset.index = data.choice2result;
-      $(".location-label").text(data.locationlabel);
+  		$(".story-line").text(data.storyline); // Update storyline text
+      $(".choice1-plot").text(data.choice1plot); // Update Choice 1 Plot text
+      $(".choice2-plot").text(data.choice2plot); // Update Choice 2 Plot text
+      $(".choice1")[0].value = data.choice1button; // Update Choice 1 Button text
+      $(".choice2")[0].value = data.choice2button; // Update Choice 2 Button text
+      $(".choice1")[0].dataset.index = data.choice1result; // Update data-index attribute of Choice 1 Button
+      $(".choice2")[0].dataset.index = data.choice2result; // Update data-index attribute of Choice 2 Button
+      $(".location-label").text(data.locationlabel); // Update location name of marker on map
 
-      initMap(data.location);
+      initMap(data.location); // Update location on map
 
       // Set up the goblet for certain story elements
       if (jsondata.labelno == 6) {
@@ -144,11 +145,11 @@ $(document).ready(function(){
     var albumName = "Harry Potter and The Sorcerer's Stone Original Motion Picture Soundtrack";
 
   	$.ajax({
-      // TODO: complete ajax call
-      url: 'https://api.spotify.com/v1/search',  
+      // TODO: complete ajax call (DONE)
+      url: 'https://api.spotify.com/v1/search',  // Base search url
       data: {
-        q: 'album:' + albumName,
-        type: 'album'
+        q: 'album:' + albumName, // Search for albums with albumName in album name
+        type: 'album'            
       },
       success: function(data) {
 
@@ -158,7 +159,6 @@ $(document).ready(function(){
         var Albumid = data.albums.items[0].id;
 
         playMusic(Albumid);
-
       }
 	  
     });
@@ -167,26 +167,27 @@ $(document).ready(function(){
   function playMusic(albumID) {
     
     // TODO: populate ajax's url field with the appropriate API endpoint
-    // an endpoint is fancy-speak for a url you can send ajax requests to.
+    // an endpoint is fancy-speak for a url you can send ajax requests to. (DONE)
 	
     $.ajax({
       // TODO: complete ajax call (DONE)
-      url: 'https://api.spotify.com/v1/albums/' + albumID,  
+      url: 'https://api.spotify.com/v1/albums/' + albumID, // Url for album with albumID
       data: '',
       // TODO: if you did this correctly, the album info should be stored in data. (DONE)
       success: function(data) {
         // HINT: use console.log(data) to see the structure.
-        var tracks = data.tracks.items;
+        var tracks = data.tracks.items; // Get all tracks in album
 
         // TODO: using javascript's Math.round() and Math.random(), 
         //       get a random song from the album, assignt to rand (DONE)
-        var rand = Math.floor(Math.random() * tracks.length);
+        var rand = Math.floor(Math.random() * tracks.length); // Get random int from 0..# of tracks in album
 
         // TODO: once you have a track, get its preview_url field and 
         //       change the music player (.js-music) such it plays the new song. (DONE)
         // HINT: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video
-        var previewUrl = tracks[rand].preview_url;
+        var previewUrl = tracks[rand].preview_url; // Get preview url for random song
 
+        // Change the music player to play the new randomly selected song
         var musicPlayer = document.getElementsByClassName('js-music')[0];
         musicPlayer.src = previewUrl;
         musicPlayer.play();
