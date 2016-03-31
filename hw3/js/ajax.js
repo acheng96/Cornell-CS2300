@@ -104,6 +104,7 @@ $(document).ready(function(){
       $(".choice2")[0].value = data.choice2button;
       $(".choice1")[0].dataset.index = data.choice1result;
       $(".choice2")[0].dataset.index = data.choice2result;
+      $(".location-label").text(data.locationlabel);
 
       initMap(data.location);
 

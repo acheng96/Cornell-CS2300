@@ -78,12 +78,11 @@ $(document).ready(function() {
 	// added! Otherwise, send an error message. 
 
 	$(document).on("click", ".goblet-submit", function() {
-		// TODO: Get all of the variable needed to set up your JSON data
+		// TODO: Get all of the variable needed to set up your JSON data (DONE)
 
-		var firstName = 
-		var lastName = 
-		var school = 
-
+		var firstName = $(".goblet-first-name").val();
+		var lastName = $(".goblet-last-name").val();
+		var school = $(".goblet-school").val();
 
 		//Clear the submission form and prevent clicking "Enter" again
 		$(".goblet-first-name").val("");
@@ -96,21 +95,27 @@ $(document).ready(function() {
 		// we already know that all the fields are filled
 		var wizardInfo = {requestType: 'submitName', firstName: firstName, lastName: lastName, school: school};
 
-		// TODO: Finish the ajax call and process the results
+		// TODO: Finish the ajax call and process the results (DONE)
 		requestNameCheck = $.ajax({
-			url: '',
-			method: '',
+			url: 'ajax/goblet.php',
+			method: 'POST',
 			data: wizardInfo,
-			dataType: '',
+			dataType: 'text',
 			error: function(error) {
-				
+				console.log(error);
 			}
 		})
 
 		requestNameCheck.success(function(data) {
-			// TODO: Finish this success function so that you change the text of the ".goblet-msg" html class.
-		})
+			console.log(data);
+			// TODO: Finish this success function so that you change the text of the ".goblet-msg" html class. (DONE)
 
+			if (data === 'Success')
+				$(".goblet-msg").text("Your name has been successfully entered into the Goblet of Fire :)");
+			else
+				$(".goblet-msg").text("Your name failed to be entered into the Goblet of Fire :(");
+
+		})
 
 	});
 
