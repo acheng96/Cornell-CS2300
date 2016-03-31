@@ -37,21 +37,19 @@ $(document).ready(function(){
   
 	// TODO: Create a javascript onclick function that obtains the corresponding 
 	//       choice/button.
-	//       Then call the updateStory function on that labelno. (CHECK THIS)
+	//       Then call the updateStory function on that labelno. (DONE)
 
 	// HINT: there's this cool data-index thing we use to encapsulate
 	//       data that is not visible to the user.
 
   $(document).on("click", ".choice1", function() {
-    var choice1button = document.getElementsByClassName("choice1");
-    // choice1button.setAttribute("data-index", init.labelno);
-    updateStory(init);
+    var dataIndex = $(".choice1")[0].dataset.index;
+    updateStory({labelno: parseInt(dataIndex)});
   })
 
   $(document).on("click", ".choice2", function() {
-    var choice2button = document.getElementsByClassName("choice2");
-    // choice2button.setAttribute("data-index", init.labelno);
-    updateStory(init);
+    var dataIndex = $(".choice2")[0].dataset.index;
+    updateStory({labelno: parseInt(dataIndex)});
   })
 
   // this has been implemented for you :)
@@ -80,7 +78,7 @@ $(document).ready(function(){
     // HINT: console.log(jsondata);
 
     request = $.ajax({
-      // TODO: send the request to your server file. 
+      // TODO: send the request to your server file. (DONE)
 	  //Fill in the missing pieces of this AJAX request
       url: 'ajax/ajax.php', 
       type: 'GET', 
@@ -96,16 +94,16 @@ $(document).ready(function(){
   		data = JSON.parse(data);
 
   		// TODO: Update the HTML DOM to the text of the json you returned.
-  		//       The one below has been done for you.
+  		//       The one below has been done for you. (DONE)
           // HINT: console.log(data);
 
-      console.log(data);
   		$(".story-line").text(data.storyline);
       $(".choice1-plot").text(data.choice1plot);
       $(".choice2-plot").text(data.choice2plot);
-      // FIX: CHECK TO SEE WHY BUTTON TEXT DOESN'T SHOW
-      $(".choice1").value = data.choice1button;
-      $(".choice2").value = data.choice2button;
+      $(".choice1")[0].value = data.choice1button;
+      $(".choice2")[0].value = data.choice2button;
+      $(".choice1")[0].dataset.index = data.choice1result;
+      $(".choice2")[0].dataset.index = data.choice2result;
 
       initMap(data.location);
 
@@ -137,7 +135,7 @@ $(document).ready(function(){
   //       you will be using AJAX to send a request to.
 
 	
-  // TODO: Find spotify's unique albumId for this album and return the Spotify preview track JSON URL 
+  // TODO: Find spotify's unique albumId for this album and return the Spotify preview track JSON URL (DONE)
   function findAlbum() {
   	// var albumName = "Harry+Potter+and+The+Sorcerer%27s+Stone+Original+Motion+Picture+Soundtrack%22%3B";
 
