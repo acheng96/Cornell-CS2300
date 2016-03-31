@@ -54,11 +54,36 @@
 		case "submitName":
 			//TODO: Should attempt to add a new wizard to the database corresponding
 			//to what the user entered in the index.php form. Return a success if it works.
+
+			//Get the POST data - safely
+			$firstName = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_STRING);
+			$lastName = filter_input(INPUT_POST, "lastName", FILTER_SANITIZE_STRING);
+			$school = filter_input(INPUT_POST, "school", FILTER_SANITIZE_STRING);
+
+			// Build and execute the query
+			$query = "INSERT INTO wizards (firstName, lastName, school) VALUES ('$firstName', '$lastName', '$school')";
+			$result = $mysqli->query($query);
+
+			//Make sure the query worked
+			if(!$result) {
+				echo 'Query error: name failed to submit';
+				die();
+			} else {
+				echo 'Name submitted successfully';
+			}
+
+			die();
 			break;
 			
 		case "chooseName":
 		//TODO: Should return a wizard from the wizards table if one exists,
 		//otherwise, print out an error message.
+
+
+
+
+
+
 			break;
 	}
 

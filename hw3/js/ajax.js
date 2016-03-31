@@ -12,17 +12,17 @@ $(document).ready(function(){
 
     var map = new google.maps.Map(document.getElementById('googleMap'), {
 		// TODO: center your map on the provided coordinates and set a 
-		//       reasonable zoom level
+		//       reasonable zoom level (DONE)
 		// HINT: USE https://developers.google.com/maps/documentation/javascript/
-		
-		
+		  zoom: 4,
+      center: myLatLng
     });
 
     var marker = new google.maps.Marker({
-		// TODO: set a Marker on a specified map at a position.
+		// TODO: set a Marker on a specified map at a position. (DONE)
 		// HINT: USE https://developers.google.com/maps/documentation/javascript/
-		
-		
+		  position: myLatLng,
+      map: map
     });
   }
 	 
@@ -37,11 +37,22 @@ $(document).ready(function(){
   
 	// TODO: Create a javascript onclick function that obtains the corresponding 
 	//       choice/button.
-	//       Then call the updateStory function on that labelno.
+	//       Then call the updateStory function on that labelno. (CHECK THIS)
 
 	// HINT: there's this cool data-index thing we use to encapsulate
 	//       data that is not visible to the user.
 
+  $(document).on("click", ".choice1", function() {
+    var choice1button = document.getElementsByClassName("choice1");
+    // choice1button.setAttribute("data-index", init.labelno);
+    updateStory(init);
+  })
+
+  $(document).on("click", ".choice2", function() {
+    var choice2button = document.getElementsByClassName("choice2");
+    // choice2button.setAttribute("data-index", init.labelno);
+    updateStory(init);
+  })
 
   // this has been implemented for you :)
   $('.js-music').on("ended", function() {
@@ -71,6 +82,8 @@ $(document).ready(function(){
     request = $.ajax({
       // TODO: send the request to your server file. 
 	  //Fill in the missing pieces of this AJAX request
+      url: 'ajax/ajax.php', 
+      type: 'GET', 
       data: jsondata,
       dataType: 'text',
       error: function(error) {
@@ -80,17 +93,19 @@ $(document).ready(function(){
 
     request.success(function(data) {
 
-		data = JSON.parse(data);
+  		data = JSON.parse(data);
 
-		// TODO: Update the HTML DOM to the text of the json you returned.
-		//       The one below has been done for you.
-        // HINT: console.log(data);
-		$(".story-line").text(data.storyline);
-	  
-	  
-	  
-	  
-	  
+  		// TODO: Update the HTML DOM to the text of the json you returned.
+  		//       The one below has been done for you.
+          // HINT: console.log(data);
+
+      console.log(data);
+  		$(".story-line").text(data.storyline);
+      $(".choice1-plot").text(data.choice1plot);
+      $(".choice2-plot").text(data.choice2plot);
+      // FIX: CHECK TO SEE WHY BUTTON TEXT DOESN'T SHOW
+      $(".choice1").value = data.choice1button;
+      $(".choice2").value = data.choice2button;
 
       initMap(data.location);
 
@@ -122,18 +137,26 @@ $(document).ready(function(){
   //       you will be using AJAX to send a request to.
 
 	
-  // TODO: Find spotify's unique albumId for this album and return the Spotify preview track JSON URL
+  // TODO: Find spotify's unique albumId for this album and return the Spotify preview track JSON URL 
   function findAlbum() {
-  	var albumName = "Harry+Potter+and+The+Sorcerer%27s+Stone+Original+Motion+Picture+Soundtrack%22%3B";
+  	// var albumName = "Harry+Potter+and+The+Sorcerer%27s+Stone+Original+Motion+Picture+Soundtrack%22%3B";
+
+    // Note: I changed albumName because the '+' converted to its ascii equivalent in the given albumName
+    var albumName = "Harry Potter and The Sorcerer's Stone Original Motion Picture Soundtrack";
 
   	$.ajax({
       // TODO: complete ajax call
+      url: 'https://api.spotify.com/v1/search',  
+      data: {
+        q: 'album:' + albumName,
+        type: 'album'
+      },
       success: function(data) {
 
         // HINT: console.log(data);
         // TODO: Using the Spotify api, return the AlbumId that corresponds 
-        //       with the provided albumName.
-        var Albumid = "";
+        //       with the provided albumName. (DONE)
+        var Albumid = data.albums.items[0].id;
 
         playMusic(Albumid);
 
@@ -142,26 +165,32 @@ $(document).ready(function(){
     });
   }
   
-  
   function playMusic(albumID) {
     
     // TODO: populate ajax's url field with the appropriate API endpoint
     // an endpoint is fancy-speak for a url you can send ajax requests to.
 	
     $.ajax({
-      // TODO: complete ajax call
-
-      // TODO: if you did this correctly, the album info should be stored in data.
+      // TODO: complete ajax call (DONE)
+      url: 'https://api.spotify.com/v1/albums/' + albumID,  
+      data: '',
+      // TODO: if you did this correctly, the album info should be stored in data. (DONE)
       success: function(data) {
         // HINT: use console.log(data) to see the structure.
+        var tracks = data.tracks.items;
 
         // TODO: using javascript's Math.round() and Math.random(), 
-        //       get a random song from the album, assignt to rand
-        var rand = 0;
+        //       get a random song from the album, assignt to rand (DONE)
+        var rand = Math.floor(Math.random() * tracks.length);
 
         // TODO: once you have a track, get its preview_url field and 
-        //       change the music player (.js-music) such it plays the new song.
+        //       change the music player (.js-music) such it plays the new song. (DONE)
         // HINT: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video
+        var previewUrl = tracks[rand].preview_url;
+
+        var musicPlayer = document.getElementsByClassName('js-music')[0];
+        musicPlayer.src = previewUrl;
+        musicPlayer.play();
       }
 
     });
