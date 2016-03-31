@@ -131,6 +131,28 @@ $(document).ready(function() {
 
 	$(document).on("click", ".goblet-choose", function() {
 		// TODO	
+		$(".choice1").attr("disabled", "disabled");
+
+		var wizardInfo = {requestType: 'chooseName', firstName: "", lastName: "", school: ""};
+
+		// TODO: Finish the ajax call and process the results (DONE)
+		requestNameCheck = $.ajax({
+			url: 'ajax/goblet.php',
+			method: 'POST',
+			data: wizardInfo,
+			dataType: 'text',
+			error: function(error) {
+				console.log(error);
+			}
+		})
+
+		requestNameCheck.success(function(data) {
+			console.log(data);
+			// TODO: Finish this success function so that you change the text of the ".goblet-msg" html class. (DONE)
+
+			$(".goblet-msg-valid").text(data);
+			$(".choice1").removeAttr("disabled");
+		})
 
 	});
 

@@ -76,13 +76,37 @@
 			
 		case "chooseName":
 			//TODO: Should return a wizard from the wizards table if one exists,
-			//otherwise, print out an error message.
+			//otherwise, print out an error message. (DONE)
 
+			// Build and execute the query
+			$query = "SELECT * FROM wizards ORDER BY RAND() LIMIT 1";
+			$result = $mysqli->query($query);
 
+			//Make sure the query worked
+			if( !$result ) {
+				echo 'Query error';
+				die();
+			}
 
+			//Return a message indicating whether there exists a wizard
+			if ($result->num_rows != 0) {
+				while ($row = $result->fetch_row()) {
+					echo ($row[1] . " " . $row[2] . " has been chosen.");
 
+					$deleteQuery = "DELETE FROM wizards WHERE wID=$row[0]";
+					$deleteResult = $mysqli->query($deleteQuery);
 
+					//Make sure the query worked
+					if( !$deleteResult ) {
+						echo 'Query error: failed to remove wizard from Goblet of Fire';
+						die();
+					} 
+				}
+			} else {
+				echo 'There are no more wizards in the Goblet of Fire.';
+			}
 
+			die();
 			break;
 	}
 
