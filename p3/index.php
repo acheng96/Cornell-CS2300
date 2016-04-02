@@ -11,51 +11,13 @@
 
 	<body>
 
+		<!-- Album & Photo Class -->
+		<?php include("files/albumPhotoClass.php"); ?>
+
+		<!-- Retrieve data from database -->
 		<?php
-			/* =========== *
-		     * = Classes = *
-		     * =========== */
 
-			class Album { 
-				public $albumId;
-				public $albumTitle; 
-				public $albumPhotoFilePath;
-				public $albumPhotoCredit;
-				public $albumDateCreated;
-				public $albumDateModified;
-
-				function __construct($albumId = 0, $albumTitle = "", $albumPhotoFilePath = "", $albumPhotoCredit = "", $albumDateCreated = "", $albumDateModified = "") { 
-					$this->albumId = $albumId;
-					$this->albumTitle = $albumTitle;
-					$this->albumPhotoFilePath = $albumPhotoFilePath; 
-					$this->albumPhotoCredit = $albumPhotoCredit;
-					$this->albumDateCreated = $albumDateCreated;
-					$this->albumDateModified = $albumDateModified;
-				}
-			}
-
-			class Photo { 
-				public $photoId;
-				public $photoName; 
-				public $photoCaption;
-				public $photoFilePath;
-				public $photoCredit;
-				public $albumId;
-
-				function __construct($photoId = 0, $photoName = "", $photoCaption = "", $photoFilePath = "", $photoCredit = "", $albumId = 0) { 
-					$this->photoId = $photoId;
-					$this->photoName = $photoName;
-					$this->photoCaption = $photoCaption; 
-					$this->photoFilePath = $photoFilePath;
-					$this->photoCredit = $photoCredit;
-					$this->albumId = $albumId;
-				}
-			}
-
-			/* ================== *
-		     * = Data Retrieval = *
-		     * ================== */
-
+			// Initialize database connection
 			require_once 'files/config.php';
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
@@ -100,6 +62,48 @@
 			$mysqli -> close();
 		?>
 
+		<!-- Functions for popup image -->
+		<script>
+
+			// Show image popup
+			function showPopup(photoId, photoName, altName, photoCaption, photoCredit, photoFilePath) {
+				document.getElementById('modal-popup').style.display = "block";
+				document.getElementById('photo-title').innerHTML = '#' + photoId + ': ' + photoName;
+				document.getElementById('photo-image').src = photoFilePath;
+				document.getElementById('photo-image').alt = altName;
+				document.getElementById('photo-caption').innerHTML = photoCaption;
+				document.getElementById('photo-credit').href = photoCredit;
+			}
+
+			// Hide image popup
+			function closePopup() {
+				document.getElementById('modal-popup').style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				var modal = document.getElementById('modal-popup');
+
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+						
+		</script>
+
+	    <!-- Pop up image box -->
+		<div id="modal-popup" class="modal">
+		  <div class="modal-content">
+		    <div class="modal-header">
+		        <button class="close" onclick='closePopup()'>×</button>
+		        <p id='photo-title' class='photo-title'></p>
+		        <img id='photo-image' src='' alt=''>
+				<p id='photo-caption' class='photo-caption'></p>
+				<h4 class='photo-credit'>Image from <a id='photo-credit' href='' target='_blank'><b>here</b></a>.</h4>
+		    </div>
+		  </div>
+		</div>
+
 		<!-- Header -->
 		<div class="header">
 			<div class='header-container'>
@@ -139,19 +143,22 @@
 					<div class='photos'>
 						<div class='photos-container'>";
 							for ($i = 0; $i < count($photos); $i++) { 
-								$imageName = $photos[$i]->photoName;
-								$altName = str_replace(' ', '', $imageName);
-								$photo = $photos[$i]->photoCredit;
+								$photoId = $photos[$i]->photoId;
+								$photoName = $photos[$i]->photoName;
+								$altName = str_replace(' ', '', $photoName);
+								$photoCaption = $photos[$i]->photoCaption;
+								$photoCredit = $photos[$i]->photoCredit;
+								$photoFilePath = $photos[$i]->photoFilePath;
 
-								if ($photo == NULL) {
-									$photo = "#";
+								if ($photoCredit == NULL) {
+									$photoCredit = "#";
 								} 
-		
+
 							print "<div class='photo-item'>
-									<img class='photo-image' src='{$photos[$i]->photoFilePath}'  alt='{$altName}'>
-									<p class='photo-title'>#{$photos[$i]->photoId}: {$photos[$i]->photoName}</p>
-									<p class='photo-caption'>{$photos[$i]->photoCaption}</p>
-									<h4 class='photo-credit'>Image from <a href='{$photo}' target='_blank'><b>here</b></a>.</h4>
+									<button class='image-button' onclick='showPopup('$photoId', '$photoName', '$altName', '$photoCaption', '$photoCredit', '$photoFilePath');'><img class='photo-image' src='{$photoFilePath}' alt='{$altName}'></button>
+									<p class='photo-title'>#{$photoId}: {$photoName}</p>
+									<p class='photo-caption'>{$photoCaption}</p>
+									<h4 class='photo-credit'>Image from <a href='{$photoCredit}' target='_blank'><b>here</b></a>.</h4>
 								</div>";
 							}
 						print "</div>
