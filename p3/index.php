@@ -102,6 +102,7 @@
 		        <img id='photo-image' src='' alt=''>
 				<p id='photo-caption' class='photo-caption'></p>
 				<h4 class='photo-credit'>Image from <a id='photo-credit' href='' target='_blank'><b>here</b></a>.</h4>
+				<p id='photo-albums' class='photo-albums'>From Albums: </p>
 		    </div>
 		  </div>
 		</div>

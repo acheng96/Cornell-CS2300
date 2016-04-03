@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 
 <html>
@@ -17,42 +18,68 @@
 
 		<!-- Body -->
 		<?php 
-			// Initialize database connection
-			require_once 'config.php';
-			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-			// Sanitize input
-			$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING); 
-			$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-			$valid_password = password_verify($password, password_hash('password', PASSWORD_DEFAULT));
-
-			// Get user from database
-			$query = "SELECT * FROM users WHERE username = '$username';";
-			$result = $mysqli->query($query);
-
-			if ($result && $result->num_rows == 1) { // User found
-				$row= $result->fetch_assoc();
-				$db_hash_password = $row['hashpassword'];
-			}
-
-			if (!isset($_POST['username']) && !isset($_POST['password'])) {
-				print "<!-- Login Form Container -->
-				<h2 id='login-description'>LOG IN AS AN ADMIN</h2>
-				<h3 id='login-form-subtitle' class='general-subtitle'></h3>
-				<div class='login-form-container'>
-					<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>
-					    <input id='username-field' type='text' placeholder='USERNAME' name='username' maxlength='50' required title='Letters, spaces, dashes, and underscores only.''><br>
-					    <input id='password-credit-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, spaces, dashes, and underscores only.'><br>
-					    <input type='submit' name='login' value='login'>
-					</form>
-				</div>";
-			} elseif ($_POST['username'] == "acheng" && password_verify($password, $db_hash_password)) {
-				print "<p>You have accessed the secret content of this page.</p>";
-				$_SESSION['logged_user'] = $_POST['username'];
+			if (isset($_POST['logout']) && isset($_SESSION['logged_user'])) {
+				$olduser = $_SESSION['logged_user'];
+				unset($_SESSION['logged_user']);
+				print("<p class='page-description'>You are logged out, $olduser!</p>");
+				print("<p class='page-description'>Return to the <a href='login.php'>login form.</a></p>");
 			} else {
-				print "<p class='page-description'>You did not login successfully.</p>
-				<p class='page-description'>Please <a href='login.php'>try again</a>.</p>";
+				// Sanitize input
+				$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING); 
+				$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+				if (!isset($_SESSION['logged_user']) && (empty($username) || empty($password))) { // No user logged in, so display login form
+					print "<h2 class='general-description'>LOG IN AS AN ADMIN</h2>
+					<h3 id='login-form-subtitle' class='general-subtitle'></h3>
+					<div class='login-form-container'>
+						<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>
+						    <input id='username-field' type='text' placeholder='USERNAME' name='username' maxlength='50' required title='Letters, spaces, dashes, and underscores only.'><br>
+						    <input id='password-credit-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, spaces, dashes, and underscores only.'><br>
+						    <input type='submit' name='login' value='login'>
+						</form>
+					</div>";
+				} else { // Check for logged in user
+					// Initialize database connection
+					require_once 'config.php';
+					$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+					// Check database connection
+					if($mysqli->connect_errno) {
+						die( "Couldn't connect to database");
+					}
+
+					// Get user from database
+					$query = "SELECT * FROM Users WHERE Users.username LIKE '$username'";
+					$result = $mysqli->query($query);
+
+					// Check for exactly one user with username = $username
+					if ($result && $result->num_rows == 1) {
+						$row= $result->fetch_assoc();
+						$db_hash_password = $row['hashpassword'];
+
+						// Verify inputted password matches with database password
+						if (password_verify($password, $db_hash_password)) {
+							$_SESSION['logged_user'] = $row['username'];
+						}
+					}
+
+					$mysqli->close();
+
+					if (isset($_SESSION['logged_user'])) { // If a user is logged in
+						$logged_user = $_SESSION['logged_user']; 
+						print "<p class='page-description'>You are logged in as $logged_user!</p>";
+						print "<p class='page-description'>You may now edit your photos and albums.</p>";
+						print 
+						"<form class='logout-form' name='logoutForm' action='login.php' method='POST'>
+						    <input type='submit' name='logout' value='logout'>
+						</form>";
+					} else { // If no user is logged in
+						print "<p class='page-description'>You failed to log in successfully.</p>";
+						print "<p class='page-description'>Please <a href='login.php'>try again</a>.</p>";
+					} 
+				} 
 			}
+
 		?>
 
 	</body>
