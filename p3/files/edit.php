@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -15,8 +17,15 @@
 		<?php include("header.php"); ?>
 
 		<!-- Body -->
-		<h2 class="page-title">EDIT PAGE</h2>
-		<p class="page-description">This page displays an edit form and allows users to edit and delete the albums and images.</p>
+
+		<?php
+			if (isset($_SESSION['logged_user'])) { // If a user is logged in
+				$logged_user = $_SESSION['logged_user']; 
+				print "<p class='page-description'>Welcome, $logged_user !</p>";
+			} else { // If no user is logged in
+				print "<p class='page-description'>Please <a href='login.php'>login</a> to edit images.</p>";
+			} 
+		?>
 
 	</body>
 

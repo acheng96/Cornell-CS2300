@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -111,7 +113,7 @@
 
 		<!-- Body -->
 		<h2 class="add-title">ADD AN ALBUM</h2>
-		<h3 id="album-form-subtitle" class="add-subtitle"></h3>
+		<h3 id="album-form-subtitle" class="general-subtitle"></h3>
 
 		<!-- Add Album Form Container -->
 		<div class="add-form-container">

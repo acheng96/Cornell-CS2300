@@ -66,13 +66,15 @@
 		<script>
 
 			// Show image popup
-			function showPopup(photoId, photoName, altName, photoCaption, photoCredit, photoFilePath) {
+			function showPopup(photoId) {
 				document.getElementById('modal-popup').style.display = "block";
-				document.getElementById('photo-title').innerHTML = '#' + photoId + ': ' + photoName;
-				document.getElementById('photo-image').src = photoFilePath;
-				document.getElementById('photo-image').alt = altName;
-				document.getElementById('photo-caption').innerHTML = photoCaption;
-				document.getElementById('photo-credit').href = photoCredit;
+
+				var photo = document.getElementById(photoId);
+				document.getElementById('photo-title').innerHTML = '#' + photo.dataset.photoId + ': ' + photo.dataset.photoName;
+				document.getElementById('photo-image').src = photo.dataset.photoFilePath;
+				document.getElementById('photo-image').alt = photo.dataset.altName;
+				document.getElementById('photo-caption').innerHTML = photo.dataset.photoCaption;
+				document.getElementById('photo-credit').href = photo.dataset.photoCredit;
 			}
 
 			// Hide image popup
@@ -155,7 +157,7 @@
 								} 
 
 							print "<div class='photo-item'>
-									<button class='image-button' onclick='showPopup('$photoId', '$photoName', '$altName', '$photoCaption', '$photoCredit', '$photoFilePath');'><img class='photo-image' src='{$photoFilePath}' alt='{$altName}'></button>
+									<button class='image-button' onclick='showPopup({$photoId})'><img id='$photoId' class='photo-image' src='{$photoFilePath}' data-photo-id='$photoId' data-photo-name='$photoName' data-alt-name='$altName' data-photo-caption='$photoCaption' data-photo-credit='$photoCredit' data-photo-file-path='$photoFilePath' alt='{$altName}'></button>
 									<p class='photo-title'>#{$photoId}: {$photoName}</p>
 									<p class='photo-caption'>{$photoCaption}</p>
 									<h4 class='photo-credit'>Image from <a href='{$photoCredit}' target='_blank'><b>here</b></a>.</h4>

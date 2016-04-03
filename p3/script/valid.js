@@ -68,6 +68,24 @@ function validAddPhotoForm() {
 	return isValidForm;
 }
 
+// Validate all user input fields for login form
+function validLoginForm() {
+	var username = validTextInput("username-field", document.forms.loginForm.username.value); 
+	var password = validTextInput("password-field", document.forms.loginForm.password.value); 
+	var isValidForm = (username && password);
+
+	return isValidForm;
+}
+
+// Validate all user input fields for search form
+function validSearchForm() {
+	var username = validTextInput("username-field", document.forms.loginForm.username.value); 
+	var password = validTextInput("password-field", document.forms.loginForm.password.value); 
+	var isValidForm = (username && password);
+
+	return isValidForm;
+}
+
 /* ==================== *
  * = Helper Functions = *
  * ==================== */ 
