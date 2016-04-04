@@ -214,10 +214,12 @@ ul {
 }
 
 .photo-image {
+	margin: auto;
 	background-size: 100%;
 	width: 24.75vw;
     height: 24.75vw;
 	min-height: 350px;
+	border: solid 1px black;
 }
 
 .photo-title {
@@ -237,14 +239,22 @@ ul {
 .photo-caption {
 	margin: 0;
 	font-weight: normal;
-	font-size: 16px;
+	font-size: 20px;
 	text-align: center;
 	color: black;
 }
 
 .photo-credit {
 	font-weight: normal;
-	font-size: 14px;
+	font-size: 16px;
+	text-align: center;
+	color: black;
+}
+
+.photo-albums {
+	margin-bottom: 50px;
+	font-weight: normal;
+	font-size: 20px;
 	text-align: center;
 	color: black;
 }
@@ -276,8 +286,9 @@ ul {
     background-color: white;
     margin: auto;
     padding: 0;
-    border: 1px solid gray;
     width: 80%;
+    height: 80%;
+    overflow: auto;
     box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
     border-radius: 8px;
     -webkit-animation-name: animatetop;
@@ -297,12 +308,14 @@ ul {
 }
 
 .close {
-    color: gray;
+	margin: 10px 15px 0 0;
     float: right;
     font-size: 30px;
     font-weight: bold;
     border: none;
-    margin-left: 5px;
+    border-radius: 8px;
+    color: gray;
+    background-color: white;
 }
 
 .close:hover, .close:focus {
@@ -316,14 +329,19 @@ ul {
 }
 
 #photo-title {
+	padding-top: 20px;
 	font-size: 30px;
+	margin-left: 15px;
 }
 
 #photo-image {
+	margin: auto;
 	display: block;
-	max-width: 80%;
 	width: auto;
     height: auto;
+    max-width: 80%;
+	max-height: 80%;
+    border: solid 1px black;
 }
 
 #photo-caption {
@@ -404,6 +422,7 @@ input[type=submit] {
 	font-weight: normal;
 	font-size: 20px;
 	text-align: center;
+	color: red;
 }
 
 #album-photo-field {

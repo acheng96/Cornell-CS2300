@@ -40,7 +40,6 @@
 					$album_title = htmlentities($_POST['albumTitle']);
 					$album_photo_file_path = "assets/$fileName";
 					$album_photo_credit = htmlentities($_POST['albumPhotoCredit']);
-					
 					$addAlbumQuery = "";
 
 					// Insert the new album into Albums
@@ -106,8 +105,6 @@
 			        header('Location: add.php');
 		    	}
 			}
-
-			$mysqli -> close();
 		?>
 
 		<?php if (isset($_SESSION['logged_user'])) { // If a user is logged in ?> 
@@ -119,14 +116,14 @@
 				<div class="add-form-container">
 					<form class="add-form" name="addAlbumForm" action="add.php" enctype="multipart/form-data" onsubmit="return validAddAlbumForm();" method="POST">
 						<input id="upload-album-photo-button" class="upload-button" type="file" name="newAlbumPhoto"><br>
-					    <input id="album-title-field" type="text" placeholder="ALBUM TITLE" name="albumTitle" maxlength="50" required title="Letters, spaces, dashes, and underscores only."><br>
+					    <input id="album-title-field" type="text" placeholder="ALBUM TITLE" name="albumTitle" maxlength="50" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
 					    <input id="album-photo-credit-field" type="text" placeholder="ALBUM PHOTO IMAGE ADDRESS/URL (Leave blank if own photo)" name="albumPhotoCredit"><br>
 					    <input type="submit" name="add" value="Add Album">
 					</form>
 				</div>
 
 				<h2 class="add-title">ADD A PHOTO</h2>
-				<h3 id="photo-form-subtitle" class="add-subtitle"></h3>
+				<h3 id="photo-form-subtitle" class="general-subtitle"></h3>
 
 				<!-- Add Photo Form Container -->
 				<div class="add-form-container">
@@ -144,8 +141,8 @@
 						        echo "<input type='checkbox' name='albums[]' value='$albumId'> $albumTitle";
 						    }
 						?>
-					    <input id="photo-name-field" type="text" placeholder="PHOTO NAME" name="photoName" maxlength="20" required title="Letters, spaces, dashes, and underscores only."><br>
-					    <input id="photo-caption-field" type="text" placeholder="PHOTO LOCATION" name="photoCaption" maxlength="50" required title="Letters, spaces, dashes, and underscores only."><br>
+					    <input id="photo-name-field" type="text" placeholder="PHOTO NAME" name="photoName" maxlength="20" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
+					    <input id="photo-caption-field" type="text" placeholder="PHOTO LOCATION" name="photoCaption" maxlength="50" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
 					    <input id="photo-credit-field" type="text" placeholder="PHOTO IMAGE ADDRESS/URL (Leave blank if own photo)" name="photoCredit"><br>
 					    <input type="submit" name="upload" value="Add Photo">
 					</form>

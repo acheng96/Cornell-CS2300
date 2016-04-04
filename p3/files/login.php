@@ -33,8 +33,8 @@
 					<h3 id='login-form-subtitle' class='general-subtitle'></h3>
 					<div class='login-form-container'>
 						<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>
-						    <input id='username-field' type='text' placeholder='USERNAME' name='username' maxlength='50' required title='Letters, spaces, dashes, and underscores only.'><br>
-						    <input id='password-credit-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, spaces, dashes, and underscores only.'><br>
+						    <input id='username-field' type='text' placeholder='USERNAME' name='username' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
+						    <input id='password-credit-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
 						    <input type='submit' name='login' value='login'>
 						</form>
 					</div>";
@@ -57,7 +57,7 @@
 						$row= $result->fetch_assoc();
 						$db_hash_password = $row['hashpassword'];
 
-						// Verify inputted password matches with database password
+						// Verify inputted password matches with database hashed password
 						if (password_verify($password, $db_hash_password)) {
 							$_SESSION['logged_user'] = $row['username'];
 						}
@@ -74,9 +74,9 @@
 						    <input type='submit' name='logout' value='logout'>
 						</form>";
 					} else { // If no user is logged in
-						print "<p class='page-description'>You failed to log in successfully.</p>";
+						print "<p class='page-description'>Incorrect username or password.</p>";
 						print "<p class='page-description'>Please <a href='login.php'>try again</a>.</p>";
-					} 
+					}
 				} 
 			}
 

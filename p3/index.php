@@ -6,6 +6,7 @@
 		<meta charset="utf-8">
     	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<script type="text/javascript" src="script/modalPopup.js"></script>
 		<title>Worldwide Wonders</title>
 	</head>
 
@@ -62,50 +63,8 @@
 			$mysqli -> close();
 		?>
 
-		<!-- Functions for popup image -->
-		<script>
-
-			// Show image popup
-			function showPopup(photoId) {
-				document.getElementById('modal-popup').style.display = "block";
-
-				var photo = document.getElementById(photoId);
-				document.getElementById('photo-title').innerHTML = '#' + photo.dataset.photoId + ': ' + photo.dataset.photoName;
-				document.getElementById('photo-image').src = photo.dataset.photoFilePath;
-				document.getElementById('photo-image').alt = photo.dataset.altName;
-				document.getElementById('photo-caption').innerHTML = photo.dataset.photoCaption;
-				document.getElementById('photo-credit').href = photo.dataset.photoCredit;
-			}
-
-			// Hide image popup
-			function closePopup() {
-				document.getElementById('modal-popup').style.display = "none";
-			}
-
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-				var modal = document.getElementById('modal-popup');
-
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			    }
-			}
-						
-		</script>
-
-	    <!-- Pop up image box -->
-		<div id="modal-popup" class="modal">
-		  <div class="modal-content">
-		    <div class="modal-header">
-		        <button class="close" onclick='closePopup()'>×</button>
-		        <p id='photo-title' class='photo-title'></p>
-		        <img id='photo-image' src='' alt=''>
-				<p id='photo-caption' class='photo-caption'></p>
-				<h4 class='photo-credit'>Image from <a id='photo-credit' href='' target='_blank'><b>here</b></a>.</h4>
-				<p id='photo-albums' class='photo-albums'>From Albums: </p>
-		    </div>
-		  </div>
-		</div>
+		<!-- Modal Popup -->
+		<?php include("files/modalPopup.php"); ?>
 
 		<!-- Header -->
 		<div class="header">

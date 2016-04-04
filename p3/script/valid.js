@@ -3,16 +3,16 @@
  * = Validation Functions = *
  * ======================== */ 
 
-// Check that input field contains 1) only letters, spaces, dashes, and underscore and 2) not just all spaces
+// Check that input field contains 1) only letters, numbers, spaces, dashes, and underscores and 2) not just all spaces
 function validTextInput(id, text) {
-	var allLegalChars = /^[A-Za-z\s-_]+$/.test(text); // Return False if contains illegal chars
+	var allLegalChars = /^[A-Za-z0-9\s-_]+$/.test(text); // Return False if contains illegal chars
 	var notAllSpaces = /\S/.test(text); // Return False if all spaces
 	var isValidName = allLegalChars && notAllSpaces;
 
 	updateFieldBorder(id, isValidName);
 
 	if (!allLegalChars) {
-		updateErrorMessage(id, "Letters, spaces, dashes, and underscores only.");
+		updateErrorMessage(id, "Letters, numbers, spaces, dashes, and underscores only.");
 	} else if (!notAllSpaces) {
 		updateErrorMessage(id, "Cannot be empty or contain only spaces.");
 	} else {
@@ -77,15 +77,6 @@ function validLoginForm() {
 	return isValidForm;
 }
 
-// Validate all user input fields for search form
-function validSearchForm() {
-	var username = validTextInput("username-field", document.forms.loginForm.username.value); 
-	var password = validTextInput("password-field", document.forms.loginForm.password.value); 
-	var isValidForm = (username && password);
-
-	return isValidForm;
-}
-
 /* ==================== *
  * = Helper Functions = *
  * ==================== */ 
@@ -95,17 +86,22 @@ function updateFieldBorder(id, valid) {
 	document.getElementById(id).style.border = valid ? "solid 2px #4A4A4A" : "solid 3px red";
 }
 
-// Show error message
+// Show error message for input forms
 function updateErrorMessage(id, errorMessage) { 
 	var albumFields = {"album-title-field": "Album Title", "album-photo-credit-field": "Album Photo Credit"};
-	var photoFields = {"photo-name-field": "Photo Name", "photo-caption-field": "Photo Caption", "photo-credit-field": "Photo Credit"};
+	var photoFields = {"photo-name-field": "Photo Name", "photo-caption-field": "Photo Location", "photo-credit-field": "Photo Credit"};
+	var loginFields = {"username-field": "Username", "password-field": "Password"};
 
 	if (id in albumFields) {
 		var field = albumFields[id];
 		document.getElementById("album-form-subtitle").innerHTML = (errorMessage == "") ? "" : (field + ": " + errorMessage);
-	} else {
+	} else if (id in photoFields) {
 		var field = photoFields[id];
 		document.getElementById("photo-form-subtitle").innerHTML = (errorMessage == "") ? "" : (field + ": " + errorMessage);
+	} else if (id in loginFields) {
+		var field = loginFields[id];
+		document.getElementById("login-form-subtitle").innerHTML = (errorMessage == "") ? "" : (field + ": " + errorMessage);
 	}
 }
+
 
