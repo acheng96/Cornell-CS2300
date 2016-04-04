@@ -88,6 +88,22 @@ function closeDeletePhotoPopup() {
 	document.getElementById('delete-photo-popup').style.display = "none";
 }
 
+/* ============================== *
+ * = Edit Album Popup Functions = *
+ * ============================== */ 
+
+// Show delete photo form popup 
+function showEditAlbumPopup(albumId) {
+	document.getElementById('edit-album-popup').style.display = "block";
+	var album = document.getElementById('##' + albumId);
+	document.getElementById('editAlbumIdField').value = albumId;
+}
+
+// Hide delete photo form popup
+function closeEditAlbumPopup() {
+	document.getElementById('edit-album-popup').style.display = "none";
+}
+
 /* ==================== *
  * = Helper Functions = *
  * ==================== */ 
@@ -98,6 +114,7 @@ window.onclick = function(event) {
 	var deleteAlbumPopup = document.getElementById('delete-album-popup');
 	var deletePhotoInAlbumPopup = document.getElementById('delete-photo-in-album-popup');
 	var deletePhotoPopup = document.getElementById('delete-photo-popup');
+	var editAlbumPopup = document.getElementById('edit-album-popup');
 
     if (event.target == imagePopup) {
         imagePopup.style.display = "none";
@@ -107,6 +124,8 @@ window.onclick = function(event) {
     	deletePhotoInAlbumPopup.style.display = "none";
     } else if (event.target == deletePhotoPopup) {
     	deletePhotoPopup.style.display = "none";
+    } else if (event.target == editAlbumPopup) {
+    	editAlbumPopup.style.display = "none";
     }
 }
 

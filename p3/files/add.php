@@ -38,7 +38,7 @@
 
 					// Get the new album information
 					$album_title = htmlentities($_POST['albumTitle']);
-					$album_photo_file_path = "assets/$fileName";
+					$album_photo_file_path = "../assets/$fileName";
 					$album_photo_credit = htmlentities($_POST['albumPhotoCredit']);
 					$addAlbumQuery = "";
 
@@ -77,7 +77,7 @@
 					// Get the new photo information
 					$photo_name = htmlentities($_POST['photoName']);
 					$photo_caption = htmlentities($_POST['photoCaption']);
-					$photo_file_path = "assets/$fileName";
+					$photo_file_path = "../assets/$fileName";
 					$photo_credit = htmlentities($_POST['photoCredit']);
 
 					$addPhotoQuery = "";
@@ -107,40 +107,62 @@
 			}
 		?>
 
+		<script type="text/javascript">
+
+			// Change file name to selected file input for Add Album Form
+			function changeFilename() {
+                var fileInput = document.getElementById('upload-album-photo-button');
+                document.getElementById('chosen-album-cover-photo').innerHTML = "File Chosen: ".bold() + fileInput.value;
+            }
+
+            // Change file name to selected file input for Add Photo Form
+			function changePhotoFilename() {
+                var fileInput = document.getElementById('upload-photo-button');
+                document.getElementById('chosen-photo').innerHTML = "File Chosen: ".bold() + fileInput.value;
+            }
+
+	    </script>
+
 		<?php if (isset($_SESSION['logged_user'])) { // If a user is logged in ?> 
 				<!-- Body -->
-				<h2 class="add-title">ADD AN ALBUM</h2>
+				<h2 class="add-title page-description">ADD AN ALBUM</h2>
 				<h3 id="album-form-subtitle" class="general-subtitle"></h3>
 
 				<!-- Add Album Form Container -->
 				<div class="add-form-container">
 					<form class="add-form" name="addAlbumForm" action="add.php" enctype="multipart/form-data" onsubmit="return validAddAlbumForm();" method="POST">
-						<input id="upload-album-photo-button" class="upload-button" type="file" name="newAlbumPhoto"><br>
+						<label class="custom-file-upload">
+							<span id='chosen-album-cover-photo'>Choose an album cover photo<span>
+							<input id="upload-album-photo-button" class="upload-button" type="file" name="newAlbumPhoto" onchange="changeFilename()" required><br>
+						</label>
 					    <input id="album-title-field" type="text" placeholder="ALBUM TITLE" name="albumTitle" maxlength="50" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
 					    <input id="album-photo-credit-field" type="text" placeholder="ALBUM PHOTO IMAGE ADDRESS/URL (Leave blank if own photo)" name="albumPhotoCredit"><br>
 					    <input type="submit" name="add" value="Add Album">
 					</form>
 				</div>
 
-				<h2 class="add-title">ADD A PHOTO</h2>
+				<h2 class="add-title page-description">ADD A PHOTO</h2>
 				<h3 id="photo-form-subtitle" class="general-subtitle"></h3>
 
 				<!-- Add Photo Form Container -->
 				<div class="add-form-container">
 					<!-- Add Album Form -->
 					<form class="add-form" name="addPhotoForm" action="add.php" enctype="multipart/form-data" onsubmit="return validAddPhotoForm();" method="POST">
-						<input id="upload-photo-button" class="upload-button" type="file" name="newPhoto"><br>
 						<?php 
 							$albumQuery = "SELECT * FROM Albums";
 							$albumResults = $mysqli -> query($albumQuery);	
 
-						    echo "<label><b>Select a photo album:</b> </label>";
+						    echo "<label id='select-albums-title'><b>Select the album(s) you want to add the photo to:</b> </label><br>";
 						    while ($row = $albumResults -> fetch_assoc()) {
 						      $albumId = $row['album_id'];
 						      $albumTitle = $row['album_title'];
 						        echo "<input type='checkbox' name='albums[]' value='$albumId'> $albumTitle";
 						    }
 						?>
+						<label class="custom-file-upload">
+							<span id='chosen-photo'>Choose a photo to add<span>
+							<input id="upload-photo-button" class="upload-button" type="file" name="newPhoto" onchange="changePhotoFilename()" required><br>
+						</label>
 					    <input id="photo-name-field" type="text" placeholder="PHOTO NAME" name="photoName" maxlength="20" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
 					    <input id="photo-caption-field" type="text" placeholder="PHOTO LOCATION" name="photoCaption" maxlength="50" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
 					    <input id="photo-credit-field" type="text" placeholder="PHOTO IMAGE ADDRESS/URL (Leave blank if own photo)" name="photoCredit"><br>
@@ -150,6 +172,8 @@
 			<?php } else { // If no user is logged in
 				print "<p class='page-description'>Please <a href='login.php'>login</a> to add images and albums.</p>";
 			} ?>
+
+			<div class="bottom-padding"></div>
 
 	</body>
 

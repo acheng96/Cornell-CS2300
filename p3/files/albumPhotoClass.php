@@ -28,15 +28,13 @@
 		public $photoCaption;
 		public $photoFilePath;
 		public $photoCredit;
-		public $albumId;
 
-		function __construct($photoId = 0, $photoName = "", $photoCaption = "", $photoFilePath = "", $photoCredit = "", $albumId = 0) { 
+		function __construct($photoId = 0, $photoName = "", $photoCaption = "", $photoFilePath = "", $photoCredit = "") { 
 			$this->photoId = $photoId;
 			$this->photoName = $photoName;
 			$this->photoCaption = $photoCaption; 
 			$this->photoFilePath = $photoFilePath;
 			$this->photoCredit = $photoCredit;
-			$this->albumId = $albumId;
 		}
 	}
 

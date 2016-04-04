@@ -29,7 +29,7 @@
 				$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
 				if (!isset($_SESSION['logged_user']) && (empty($username) || empty($password))) { // No user logged in, so display login form
-					print "<h2 class='general-description'>LOG IN AS AN ADMIN</h2>
+					print "<h2 class='page-description'>LOG IN AS AN ADMIN</h2>
 					<h3 id='login-form-subtitle' class='general-subtitle'></h3>
 					<div class='login-form-container'>
 						<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>
