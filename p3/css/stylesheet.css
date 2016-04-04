@@ -450,7 +450,7 @@ ul {
 }
 
 .page-description a {
-	color: blue;
+	color: white;
 	text-decoration: underline;
 }
 
@@ -569,7 +569,7 @@ input[type="checkbox"] {
  * = Login Page = *
  * ============== */ 
 
-.login-form-container, .add-form-container {
+.login-form-container, .add-form-container, .search-form-container {
 	margin: auto;
 	width: 60%;
 	padding: 10px;
@@ -577,7 +577,7 @@ input[type="checkbox"] {
 	border-radius: 15px;
 }
 
-.login-form, .add-form {
+.login-form, .add-form, .search-form {
 	margin: 20px auto;
 	width: 80%;
 }
@@ -588,6 +588,10 @@ input[type="checkbox"] {
 
 .search-form-container {
 	margin-top: 20px;
+}
+
+.padding {
+	height: 50px;
 }
 
 /* ============== *

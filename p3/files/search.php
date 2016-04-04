@@ -74,7 +74,7 @@
 		<?php include("header.php"); ?>
 
 		<!-- Body -->
-		<h2 class='general-description'>SEARCH PHOTOS AND ALBUMS</h2>
+		<h2 class='page-description'>SEARCH PHOTOS AND ALBUMS</h2>
 		<h3 id='search-form-subtitle' class='general-subtitle'><?php echo $searchMatchingTitle ?></h3>
 		<div class='search-form-container'>
 			<form class='search-form' name='searchForm' action='search.php' method='POST'>
@@ -84,6 +84,8 @@
 			    <input type='submit' name='search' value='search'>
 			</form>
 		</div>
+
+		<div class='padding'></div>
 
 		<!-- Photo Catalog -->
 		<div class='photos'>
