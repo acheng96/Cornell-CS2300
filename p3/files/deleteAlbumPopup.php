@@ -1,5 +1,5 @@
 <?php
-	// Modal popup box
+	// Delete album popup box
 	print "<div id='delete-album-popup' class='modal'>
 		<div id='delete-album-content' class='modal-content'>
 		    <button class='close' onclick='closeDeleteAlbumPopup()'>×</button>

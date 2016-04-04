@@ -52,6 +52,24 @@ function closeDeleteAlbumPopup() {
 	document.getElementById('delete-album-popup').style.display = "none";
 }
 
+/* ================================ *
+ * = Delete Photo Popup Functions = *
+ * ================================ */ 
+
+// Show delete photo form popup 
+function showDeletePhotoPopup(photoId) {
+	document.getElementById('delete-photo-in-album-popup').style.display = "block";
+	var photo = document.getElementById('#' + photoId);
+	document.getElementById('delete-photo-in-album-confirmation').innerHTML = "Are you sure you want to delete the photo " + photo.dataset.photoName + " from this album?";
+	document.getElementById('deletePhotoIdField').value = photoId;
+	document.getElementById('deletePhotoAlbumIdField').value = photo.dataset.photoAlbumTitle;
+}
+
+// Hide delete photo form popup
+function closeDeletePhotoPopup() {
+	document.getElementById('delete-photo-in-album-popup').style.display = "none";
+}
+
 /* ==================== *
  * = Helper Functions = *
  * ==================== */ 
@@ -59,12 +77,15 @@ function closeDeleteAlbumPopup() {
 // When the user clicks anywhere outside of a modal popup, close it
 window.onclick = function(event) {
 	var imagePopup = document.getElementById('image-popup');
-	var deleteAlbumPopup = document.getElementById('image-popup');
+	var deleteAlbumPopup = document.getElementById('delete-album-popup');
+	var deletePhotoPopup = document.getElementById('delete-photo-in-album-popup');
 
     if (event.target == imagePopup) {
         imagePopup.style.display = "none";
     } else if (event.target == deleteAlbumPopup) {
     	deleteAlbumPopup.style.display = "none";
+    } else if (event.target == deletePhotoPopup) {
+    	deletePhotoPopup.style.display = "none";
     }
 }
 

@@ -1,5 +1,5 @@
 <?php
-	// Modal popup box
+	// Image Popup Box
 	print "<div id='image-popup' class='modal'>
 		<div class='modal-content'>
 		    <button class='close' onclick='closeImagePopup()'>×</button>

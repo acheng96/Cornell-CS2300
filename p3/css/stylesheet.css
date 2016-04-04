@@ -483,18 +483,32 @@ input[type=submit], .delete-button {
 	display: inline-flex;
 }
 
+.edit-photo-button {
+	display: block;
+}
+
 .edit-button {
 	border: none;
 	width: 145px;
-	background-color: white;
+	background-color: transparent;
 }
 
-.edit-button h3 {
+.edit-photo-button {
+	border: none;
+	background-color: transparent;
+}
+
+.edit-button h3, .edit-photo-button h3 {
 	margin: 0;
 	font-weight: normal;
 	font-size: 20px;
 	text-decoration: underline;
 	color: blue;
+}
+
+.edit-photo-button h3 {
+	padding: 5px 0;
+	text-align: center;
 }
 
 .options-divider {
@@ -506,7 +520,7 @@ input[type=submit], .delete-button {
 	margin: auto;
 }
 
-#delete-album-content {
+#delete-album-content, #delete-photo-content {
 	height: 300px;
 }
 
