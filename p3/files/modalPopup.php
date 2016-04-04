@@ -1,8 +1,8 @@
 <?php
 	// Modal popup box
-	print "<div id='modal-popup' class='modal'>
+	print "<div id='image-popup' class='modal'>
 		<div class='modal-content'>
-		    <button class='close' onclick='closePopup()'>×</button>
+		    <button class='close' onclick='closeImagePopup()'>×</button>
 	        <p id='photo-title' class='photo-title'></p>
 	        <img id='photo-image' src='' alt=''>
 			<p id='photo-caption' class='photo-caption'></p>

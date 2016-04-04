@@ -60,11 +60,24 @@
 				}
 			}
 
+			$deleted_album_title = "";
+
+			// Delete album with id when Delete Album Form submitted
+			if (isset($_POST['deleteAlbum'])) {
+				$deleted_album_id = $_POST['deleteAlbumIdField'];
+				$deleted_album_title = $mysqli->query("SELECT Albums.album_title FROM Albums WHERE Albums.album_id = $deleted_album_id");
+				$deleted_album = $mysqli->query("DELETE FROM Albums WHERE Albums.album_id = $deleted_album_id");
+				$deleted_photo_in_album = $mysqli->query("DELETE FROM PhotoInAlbum WHERE PhotoInAlbum.album_id = $deleted_album_id");
+			}
+
 			$mysqli -> close();
 		?>
 
-		<!-- Modal Popup -->
+		<!-- Modal Image Popup -->
 		<?php include("files/modalPopup.php"); ?>
+
+		<!-- Delete Album Popup -->
+		<?php include("files/deleteAlbumPopup.php"); ?>
 
 		<!-- Header -->
 		<div class="header">
@@ -98,10 +111,17 @@
 
 			    if (!ctype_digit($album_id) || $album_title == "") { // Display error message if album id is not a valid id
 				    print "<h3 id='album-id-error'>OH NO! THIS ALBUM DOESN'T EXIST!</h3>
-				    <a href='index.php'><h3 id='back-button'>RETURN TO ALBUMS</h3></a>";
+				    <a href='index.php'><h3 class='back-button'>RETURN TO ALBUMS</h3></a>";
 				} else {
 					print "<h3 id='photos-title'>ALBUM #{$album_id}: {$album_title}</h3>
-				    <a href='index.php'><h3 id='back-button'>RETURN TO ALBUMS</h3></a>
+					<div class='edit-options-container'>
+						<div class='edit-options'>
+							<button class='edit-button' onclick=''><h3>Edit Album</h3></button>
+							<h3 class='options-divider'>|</h3>
+							<button class='edit-button' onclick='showDeleteAlbumPopup({$album_id})'><h3 id='#$album_id' data-album-title='$album_title'>Delete Album</h3></button>
+						</div>
+					</div>
+				    <a href='index.php'><h3 class='back-button'>RETURN TO ALBUMS</h3></a>
 					<div class='photos'>
 						<div class='photos-container'>";
 							for ($i = 0; $i < count($photos); $i++) { 
@@ -117,7 +137,7 @@
 								} 
 
 							print "<div class='photo-item'>
-									<button class='image-button' onclick='showPopup({$photoId})'><img id='$photoId' class='photo-image' src='{$photoFilePath}' data-photo-id='$photoId' data-photo-name='$photoName' data-alt-name='$altName' data-photo-caption='$photoCaption' data-photo-credit='$photoCredit' data-photo-file-path='$photoFilePath' alt='{$altName}'></button>
+									<button class='image-button' onclick='showImagePopup({$photoId})'><img id='$photoId' class='photo-image' src='{$photoFilePath}' data-photo-id='$photoId' data-photo-name='$photoName' data-alt-name='$altName' data-photo-caption='$photoCaption' data-photo-credit='$photoCredit' data-photo-file-path='$photoFilePath' alt='{$altName}'></button>
 									<p class='photo-title'>#{$photoId}: {$photoName}</p>
 									<p class='photo-caption'>{$photoCaption}</p>
 									<h4 class='photo-credit'>Image from <a href='{$photoCredit}' target='_blank'><b>here</b></a>.</h4>
@@ -126,6 +146,9 @@
 						print "</div>
 					</div>";
 				}
+			} elseif (isset($_POST['deleteAlbum'])) {
+				print "<p class='general-description'>The album was successfully deleted!</p>
+				<a href='index.php'><h3 class='back-button'>RETURN TO ALBUMS</h3></a>";
 			} else {
 				# Display all albums
 			    print "<p id='home-description'>Welcome to the Worldwide Wonders Photo Gallery! Here, you can find your next bucket list place to visit!</p>";

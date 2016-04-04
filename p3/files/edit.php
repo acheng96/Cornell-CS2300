@@ -26,7 +26,7 @@
 			} 
 		?>
 
-		<h2 class='general-description'>LOG IN AS AN ADMIN</h2>
+		<h2 class='general-description'>EDIT ALBUM</h2>
 		<h3 id='login-form-subtitle' class='general-subtitle'></h3>
 		<div class='login-form-container'>
 			<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>

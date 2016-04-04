@@ -229,7 +229,9 @@ ul {
 	color: black;
 }
 
-#back-button {
+.back-button {
+	margin: 10px auto 20px auto;
+	width: 200px;
 	font-weight: normal;
 	font-size: 20px;
 	text-align: center;
@@ -328,6 +330,10 @@ ul {
 	border: none;
 }
 
+.image-button:hover, .image-button:focus {
+	cursor: pointer;
+}
+
 #photo-title {
 	padding-top: 20px;
 	font-size: 30px;
@@ -364,6 +370,13 @@ ul {
 	text-align: center;
 }
 
+.form-description {
+	margin: 10px 0;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
+}
+
 .page-description a {
 	color: blue;
 	text-decoration: underline;
@@ -392,7 +405,7 @@ input[type=text], input[type=password], textarea {
 	color: #4A4A4A;
 }
 
-input[type=submit] {
+input[type=submit], .delete-button {
 	margin: 8px auto 0 auto;
 	display: block;
 	width: 200px;
@@ -446,6 +459,56 @@ input[type=submit] {
  * = Login Page = *
  * ============== */ 
 
+
+/* =============== *
+ * = Search Page = *
+ * =============== */
+
+.search-form-container {
+	margin-top: 20px;
+}
+
+/* ============== *
+ * = Edit Forms = *
+ * ============== */
+
+.edit-options-container {
+	display: block;
+	margin: auto;
+	width: 300px;
+	height: 40px;
+}
+
+.edit-options {
+	display: inline-flex;
+}
+
+.edit-button {
+	border: none;
+	width: 145px;
+	background-color: white;
+}
+
+.edit-button h3 {
+	margin: 0;
+	font-weight: normal;
+	font-size: 20px;
+	text-decoration: underline;
+	color: blue;
+}
+
+.options-divider {
+	margin: auto;
+	width: 10px;
+}
+
+.popup-message-container {
+	margin: auto;
+}
+
+#delete-album-content {
+	height: 300px;
+}
 
 
 
