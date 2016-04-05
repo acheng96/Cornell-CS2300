@@ -112,27 +112,28 @@
 			// Change file name to selected file input for Add Album Form
 			function changeFilename() {
                 var fileInput = document.getElementById('upload-album-photo-button');
-                document.getElementById('chosen-album-cover-photo').innerHTML = "File Chosen: ".bold() + fileInput.value;
+                console.log(fileInput.value);
+                document.getElementById('chosen-album-cover-photo').innerHTML = (fileInput.value == "") ? "CHOOSE AN ALBUM COVER PHOTO" : "File Chosen: " + fileInput.value;
             }
 
             // Change file name to selected file input for Add Photo Form
 			function changePhotoFilename() {
                 var fileInput = document.getElementById('upload-photo-button');
-                document.getElementById('chosen-photo').innerHTML = "File Chosen: ".bold() + fileInput.value;
+                document.getElementById('chosen-photo').innerHTML = (fileInput.value == "") ? "CHOOSE A PHOTO TO ADD" : "File Chosen: " + fileInput.value;
             }
 
 	    </script>
 
 		<?php if (isset($_SESSION['logged_user'])) { // If a user is logged in ?> 
 				<!-- Body -->
-				<h2 class="add-title page-description">ADD AN ALBUM</h2>
+				<h2 class="form-title page-description">ADD AN ALBUM</h2>
 				<h3 id="album-form-subtitle" class="general-subtitle"></h3>
 
 				<!-- Add Album Form Container -->
 				<div class="add-form-container">
 					<form class="add-form" name="addAlbumForm" action="add.php" enctype="multipart/form-data" onsubmit="return validAddAlbumForm();" method="POST">
 						<label class="custom-file-upload">
-							<span id='chosen-album-cover-photo'>Choose an album cover photo<span>
+							<span id='chosen-album-cover-photo'>CHOOSE AN ALBUM COVER PHOTO</span>
 							<input id="upload-album-photo-button" class="upload-button" type="file" name="newAlbumPhoto" onchange="changeFilename()" required><br>
 						</label>
 					    <input id="album-title-field" type="text" placeholder="ALBUM TITLE" name="albumTitle" maxlength="50" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
@@ -141,7 +142,7 @@
 					</form>
 				</div>
 
-				<h2 class="add-title page-description">ADD A PHOTO</h2>
+				<h2 class="form-title page-description">ADD A PHOTO</h2>
 				<h3 id="photo-form-subtitle" class="general-subtitle"></h3>
 
 				<!-- Add Photo Form Container -->
@@ -160,7 +161,7 @@
 						    }
 						?>
 						<label class="custom-file-upload">
-							<span id='chosen-photo'>Choose a photo to add<span>
+							<span id='chosen-photo'>CHOOSE A PHOTO TO ADD</span>
 							<input id="upload-photo-button" class="upload-button" type="file" name="newPhoto" onchange="changePhotoFilename()" required><br>
 						</label>
 					    <input id="photo-name-field" type="text" placeholder="PHOTO NAME" name="photoName" maxlength="20" required title="Letters, numbers, spaces, dashes, and underscores only."><br>

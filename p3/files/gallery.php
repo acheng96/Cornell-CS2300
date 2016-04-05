@@ -62,6 +62,7 @@
 
 			$displayedPhoto = new Photo();
 			$displayedPhotoName = "";
+			$displayedPhotoAlbums = array();
 
 			// Set photo_id and photo_name when photo clicked; check if album id is a valid number
 			if (isset($_GET['photo_id']) && ctype_digit($_GET['photo_id'])) {
@@ -74,6 +75,19 @@
 				while ($row = $photo->fetch_row()) {
 					$displayedPhotoName = strtoupper($row[1]);
 					$displayedPhoto = new Photo($row[0], $row[1], $row[2], $row[3], $row[4]);
+				}
+
+				$photoAlbums = $mysqli->query(
+					"SELECT * FROM Albums 
+					INNER JOIN PhotoInAlbum 
+					ON Albums.album_id = PhotoInAlbum.album_id
+					INNER JOIN Photos
+					ON PhotoInAlbum.photo_id = Photos.photo_id
+					WHERE PhotoInAlbum.photo_id = $photo_id"
+				);
+
+				while ($row = $photoAlbums->fetch_row()) {
+					$displayedPhotoAlbums[] = new Album($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 			}
 
@@ -144,8 +158,8 @@
 			    $album_id = $_GET['album_id'];
 
 			    if (!ctype_digit($album_id) || $album_title == "") { // Display error message if album id is not a valid id
-				    print "<h3 class='id-error'>OH NO! THIS ALBUM DOESN'T EXIST!</h3>
-				    <a href='gallery.php'><h3 class='back-button'>RETURN TO ALBUMS</h3></a>";
+				    print "<h3 class='page-description'>OH NO! THIS ALBUM DOESN'T EXIST!</h3>
+				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>";
 				} else {
 					print "<h3 class='photos-title'>ALBUM #{$album_id}: {$album_title}</h3>
 					<div class='edit-options-container'>
@@ -157,7 +171,7 @@
 							<button class='edit-button' onclick='showDeleteAlbumPopup({$album_id})'><h3 id='#$album_id' data-album-title='$album_title'>Delete Album</h3></button>
 						</div>
 					</div>
-				    <a href='gallery.php'><h3 class='back-button'>RETURN TO ALBUMS</h3></a>
+				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>
 					<div class='photos'>
 						<div class='photos-container'>";
 							for ($i = 0; $i < count($photos); $i++) { 
@@ -196,7 +210,7 @@
 				} 
 
 			    if (!ctype_digit($photoId) || $displayedPhotoName == "") { // Display error message if album id is not a valid id
-				    print "<h3 class='id-error'>OH NO! THIS PHOTO DOESN'T EXIST!</h3>
+				    print "<h3 class='page-description'>OH NO! THIS PHOTO DOESN'T EXIST!</h3>
 				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>";
 				} else {
 					print "<h3 class='photos-title'>PHOTO #{$photoId}: {$photoName}</h3>
@@ -210,32 +224,38 @@
 				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>
 					<div class='photos'>
 						<div class='displayed-photo-container'>
-							<img class='displayed-photo-image' src='{$photoFilePath}' alt='{$altName}'>
+							<div class='displayed-photo-container'><img class='displayed-photo-image' src='{$photoFilePath}' alt='{$altName}'></div>
 							<p class='photo-caption'>$photoCaption</p>
 							<h4 class='photo-credit'>Image from <a href='$photoCredit' target='_blank'><b>here</b></a>.</h4>
-							<p class='photo-albums'>From Albums: </p>
+							<p class='photo-albums'>IN ALBUMS:";
+								for ($i = 0; $i < count($displayedPhotoAlbums); $i++) { 
+									$albumId = $displayedPhotoAlbums[$i]->albumId;
+									$albumTitle = $displayedPhotoAlbums[$i]->albumTitle;
+									print "<a href='gallery.php?album_id=$albumId'><h2 class='displayed-album-title'>#$albumId: $albumTitle</h2></a><br>";
+								}
+							print "</p>
+							<div class='photo-bottom-padding'></div>
 						</div>
 					</div>";
 				}
 			} elseif (isset($_POST['deleteAlbum'])) {
-				print "<p class='general-description'>The album was successfully deleted!</p>
+				print "<p class='page-description'>The album was successfully deleted!</p>
 				<a href='gallery.php'><h3 class='back-button'>RETURN TO ALBUMS</h3></a>";
 			} elseif (isset($_POST['deletePhotoInAlbum']) && isset($_POST['deletePhotoAlbumIdField'])) {
 				$delete_photo_album_id = $_POST['deletePhotoAlbumIdField'];
-				print "<p class='general-description'>The photo was successfully deleted from the album!</p>
+				print "<p class='page-description'>The photo was successfully deleted from the album!</p>
 				<a href='gallery.php?album_id={$delete_photo_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} elseif (isset($_POST['deletePhoto']) && isset($_POST['deleteAllPhotoAlbumIdField'])) {
 				$delete_photo_album_id = $_POST['deleteAllPhotoAlbumIdField'];
-				print "<p class='general-description'>The photo was successfully deleted from all albums!</p>
+				print "<p class='page-description'>The photo was successfully deleted from all albums!</p>
 				<a href='gallery.php?album_id={$delete_photo_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} elseif (isset($_POST['editAlbum']) && isset($_POST['editAlbumIdField'])) {
 				$edited_album_id = $_POST['editAlbumIdField'];
-				print "<p class='general-description'>The album was successfully edited!</p>
+				print "<p class='page-description'>The album was successfully edited!</p>
 				<a href='gallery.php?album_id={$edited_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} else {
 				# Display all albums
 			    print "<h1 class='page-title'>PHOTO GALLERY</h1>";
-			    print "<h1 class='page-description'>VIEW PHOTOS AND ALBUMS HERE</h1>";
 
 			    print "<div class='albums'>";
 					for ($i = 0; $i < count($albums); $i++) {

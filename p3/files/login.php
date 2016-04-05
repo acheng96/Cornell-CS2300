@@ -21,7 +21,7 @@
 			if (isset($_POST['logout']) && isset($_SESSION['logged_user'])) {
 				$olduser = $_SESSION['logged_user'];
 				unset($_SESSION['logged_user']);
-				print("<p class='page-description'>You are logged out, $olduser!</p>");
+				print("<p class='page-title'>You are logged out, $olduser!</p>");
 				print("<p class='page-description'>Return to the <a href='login.php'>login form.</a></p>");
 			} else {
 				// Sanitize input
@@ -29,7 +29,7 @@
 				$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
 				if (!isset($_SESSION['logged_user']) && (empty($username) || empty($password))) { // No user logged in, so display login form
-					print "<h2 class='page-description'>LOG IN AS AN ADMIN</h2>
+					print "<h2 class='form-title page-description'>LOG IN AS AN ADMIN</h2>
 					<h3 id='login-form-subtitle' class='general-subtitle'></h3>
 					<div class='login-form-container'>
 						<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>
@@ -67,10 +67,9 @@
 
 					if (isset($_SESSION['logged_user'])) { // If a user is logged in
 						$logged_user = $_SESSION['logged_user']; 
-						print "<p class='page-description'>You are logged in as $logged_user!</p>";
-						print "<p class='page-description'>You may now edit your photos and albums.</p>";
-						print 
-						"<form class='logout-form' name='logoutForm' action='login.php' method='POST'>
+						print "<p class='page-title'>Welcome, $logged_user!</p>";
+						print "<p id='login-description' class='page-description'>You may now edit your photos and albums.</p>";
+						print "<form class='logout-form' name='logoutForm' action='login.php' method='POST'>
 						    <input type='submit' name='logout' value='logout'>
 						</form>";
 					} else { // If no user is logged in

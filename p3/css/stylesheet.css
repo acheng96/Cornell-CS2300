@@ -144,7 +144,7 @@ ul {
 	font-weight: bold;
 }
 
-.album-bottom-padding {
+.album-bottom-padding, .photo-bottom-padding {
 	height: 30px;
 }
 
@@ -220,6 +220,7 @@ ul {
 	object-fit: cover;
 	border-radius: 8px;
 	border: solid white 3px;
+	background-color: white;
 }
 
 .photos-title {
@@ -276,6 +277,7 @@ ul {
 	width: 22w;
     height: 22vw;
 	min-height: 22vw;
+	background-color: white;
 }
 
 .photo-title {
@@ -310,19 +312,44 @@ ul {
 }
 
 .photo-albums {
-	margin-bottom: 50px;
-	font-weight: normal;
-	font-size: 20px;
+	font-weight: bold;
+	font-size: 30px;
 	text-align: center;
-	color: black;
+	color: white;
 }
 
 .photo-credit b {
-	color: black;
+	color: white;
 }
 
 .displayed-photo-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	border: solid 3px white;
+	border-radius: 8px;
+}
+
+.displayed-photo-container {
 	margin: auto;
+	max-width: 80%;
+	padding-top: 20px;
+}
+
+.search-photo-name {
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+}
+
+.displayed-album-title {
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 20px;
+	text-decoration: underline;
+	text-align: center;
+	color: white;
 }
 
 /* =============== *
@@ -410,14 +437,14 @@ ul {
     border: solid 1px black;
 }
 
-#photo-caption {
+.photo-caption {
 	margin-top: 20px;
 	font-weight: normal;
 	font-size: 30px;
 	color: white;
 }
 
-#photo-credit {
+.photo-credit {
 	font-weight: normal;
 	font-size: 14px;
 	color: white;
@@ -425,10 +452,6 @@ ul {
 
 .photo-credit a {
 	color: white;
-}
-
-.photo-albums {
-
 }
 
 /* =============== *
@@ -457,6 +480,11 @@ ul {
 .add-form-container, .search-form-container {
 	margin: 50px auto 50px;
 	width: 50%;
+}
+
+.form-title {
+	padding-top: 100px;
+	font-weight: bold;
 }
 
 input {
@@ -510,6 +538,7 @@ input[type="checkbox"] {
     margin-bottom: 8px;
     padding: 11px 10px;
     width: 98.75%;
+    font-weight: bold;
     font-size: 22px;
     border: solid 2px #4A4A4A;
     border-radius: 5px;
@@ -522,22 +551,13 @@ input[type="checkbox"] {
     background: #8A8A8A;
 }
 
-.custom-file-upload:invalid + span {
-	color: red;
-}
-
-.custom-file-upload:valid + span {
-	color: green;
-}
-
-
 /* ============ *
  * = Add Page = *
  * ============ */ 
 
 .general-subtitle {
 	margin: 15px auto;
-	font-weight: normal;
+	font-weight: bold;
 	font-size: 20px;
 	text-align: center;
 	color: red;
@@ -548,10 +568,12 @@ input[type="checkbox"] {
 }
 
 #album-form-subtitle {
+	font-weight: bold;
 	color: red;
 }
 
 #photo-form-subtitle {
+	font-weight: bold;
 	color: red;
 }
 
@@ -562,7 +584,7 @@ input[type="checkbox"] {
 
 #select-albums-title {
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 25px;
 }
 
 /* ============== *
@@ -580,6 +602,10 @@ input[type="checkbox"] {
 .login-form, .add-form, .search-form {
 	margin: 20px auto;
 	width: 80%;
+}
+
+#login-description {
+	padding: 50px 0;
 }
 
 /* =============== *
@@ -661,10 +687,27 @@ input[type="checkbox"] {
 }
 
 .popup-message-container {
+	margin: 60px auto;
+}
+
+.edit-album-form {
+	width: 60%;
 	margin: auto;
 }
 
-#delete-album-content, #delete-photo-content {
+#edit-album-title-field {
+	margin: 0 auto;
+}
+
+.edit-album-form input[type=submit] {
+	margin-top: 30px;
+}
+
+.delete-photo-in-album-form input[type=submit] {
+	margin-top: 0;
+}
+
+#delete-album-content, #delete-photo-content, #edit-album-content, #delete-photo-in-album-content {
 	height: 300px;
 }
 

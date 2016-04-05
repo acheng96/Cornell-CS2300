@@ -74,7 +74,7 @@
 		<?php include("header.php"); ?>
 
 		<!-- Body -->
-		<h2 class='page-description'>SEARCH PHOTOS AND ALBUMS</h2>
+		<h2 class='form-title page-description'>SEARCH PHOTOS AND ALBUMS</h2>
 		<h3 id='search-form-subtitle' class='general-subtitle'><?php echo $searchMatchingTitle ?></h3>
 		<div class='search-form-container'>
 			<form class='search-form' name='searchForm' action='search.php' method='POST'>
@@ -90,8 +90,7 @@
 		<!-- Photo Catalog -->
 		<div class='photos'>
 			<div class='photos-container'>
-				<?php
-				for ($i = 0; $i < count($filteredPhotos); $i++) { 
+				<?php for ($i = 0; $i < count($filteredPhotos); $i++) { 
 					$photoId = $filteredPhotos[$i]->photoId;
 					$photoName = $filteredPhotos[$i]->photoName;
 					$altName = str_replace(' ', '', $photoName);
@@ -104,14 +103,15 @@
 					} 
 
 				print "<div class='photo-item'>
-						<button class='image-button' onclick='showPopupFromSearch({$photoId})'><img id='$photoId' class='photo-image' src='../{$photoFilePath}' data-photo-id='$photoId' data-photo-name='$photoName' data-alt-name='$altName' data-photo-caption='$photoCaption' data-photo-credit='$photoCredit' data-photo-file-path='$photoFilePath' alt='{$altName}'></button>
-						<p class='photo-title'>#{$photoId}: {$photoName}</p>
-						<p class='photo-caption'>{$photoCaption}</p>
-						<h4 class='photo-credit'>Image from <a href='{$photoCredit}' target='_blank'><b>here</b></a>.</h4>
+						<a href='gallery.php?photo_id={$photoId}'><img id='$photoId' class='photo-image' src='{$photoFilePath}' alt='{$altName}'></a>
+						<h2 class='search-photo-name'>#{$photoId}: {$photoName}</h2>
 					</div>";
-				} ?>
-			</div>
-		</div>;
+				}
+			print "</div>
+		</div>"; ?>
+
+		<div class="bottom-padding"></div>
+
 	</body>
 
 </html>
