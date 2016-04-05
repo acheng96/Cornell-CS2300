@@ -114,6 +114,14 @@
 				$deleted_connections = $mysqli->query("DELETE FROM PhotoInAlbum WHERE PhotoInAlbum.photo_id = $deleted_photo_id");
 			}
 
+			// Add photo(s) to specific album when Add Photo Form submitted
+			if (isset($_POST['addPhoto'])) {
+				$deleted_photo_id = $_POST['deleteAllPhotoIdField'];
+				$deleted_photo_album_id = $_POST['deleteAllPhotoAlbumIdField'];
+				$deleted_photos = $mysqli->query("DELETE FROM Photos WHERE Photos.photo_id = $deleted_photo_id");
+				$deleted_connections = $mysqli->query("DELETE FROM PhotoInAlbum WHERE PhotoInAlbum.photo_id = $deleted_photo_id");
+			}
+
 			// Edit album when Edit Album Form submitted
 			if (isset($_POST['editAlbum'])) {
 				$edited_album_id = $_POST['editAlbumIdField'];
@@ -127,7 +135,7 @@
 				$edited_photo_name = $_POST['editPhotoNameField'];
 				$edited_photo_caption = $_POST['editPhotoCaption'];
 				$edited_photo = $mysqli->query("UPDATE Photos SET Photos.photo_name = $edited_photo_name, Photos.photo_caption = edited_photo_caption WHERE Photos.photo_id = $edited_photo_id");
-				// FIX: Update albums when photo in album changed
+				// FIX: Update album date modified when photo in album changed
 			}
 
 			$mysqli -> close();
@@ -144,6 +152,9 @@
 
 		<!-- Delete Photo Popup -->
 		<?php include("deletePhotoPopup.php"); ?>
+
+		<!-- Add Photo Popup -->
+		<?php include("addPhotoPopup.php"); ?>
 
 		<!-- Edit Album Popup -->
 		<?php include("editAlbumPopup.php"); ?>
@@ -164,7 +175,7 @@
 					print "<h3 class='photos-title'>ALBUM #{$album_id}: {$album_title}</h3>
 					<div class='edit-options-container'>
 						<div class='edit-options'>
-							<button class='edit-button' onclick=''><h3>Add Image</h3></button>
+							<button class='edit-button' onclick='showAddPhotoPopup({$album_id})'><h3 id='add-photo-$album_id' data-album-title='$album_title'>Add Image</h3></button>
 							<h3 class='options-divider'>|</h3>
 							<button class='edit-button' onclick='showEditAlbumPopup({$album_id})'><h3>Edit Album</h3></button>
 							<h3 class='options-divider'>|</h3>
@@ -249,6 +260,10 @@
 				$delete_photo_album_id = $_POST['deleteAllPhotoAlbumIdField'];
 				print "<p class='page-description'>The photo was successfully deleted from all albums!</p>
 				<a href='gallery.php?album_id={$delete_photo_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
+			} elseif (isset($_POST['addPhoto']) && isset($_POST['addPhotoAlbumIdField'])) {
+				$add_photo_album_id = $_POST['addPhotoAlbumIdField'];
+				print "<p class='page-description'>The photo(s) were successfully added to this album!</p>
+				<a href='gallery.php?album_id={$add_photo_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} elseif (isset($_POST['editAlbum']) && isset($_POST['editAlbumIdField'])) {
 				$edited_album_id = $_POST['editAlbumIdField'];
 				print "<p class='page-description'>The album was successfully edited!</p>

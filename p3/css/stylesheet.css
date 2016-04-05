@@ -487,6 +487,10 @@ ul {
 	font-weight: bold;
 }
 
+.error-message {
+	color: red;
+}
+
 input {
 	outline: none;
 	min-height: 45px;

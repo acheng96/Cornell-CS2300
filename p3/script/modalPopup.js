@@ -104,6 +104,22 @@ function closeEditAlbumPopup() {
 	document.getElementById('edit-album-popup').style.display = "none";
 }
 
+/* ============================== *
+ * = Add Photo Popup Functions = *
+ * ============================== */ 
+
+// Show add photo form popup 
+function showAddPhotoPopup(albumId) {
+	document.getElementById('add-photo-popup').style.display = "block";
+	var album = document.getElementById('add-photo-' + albumId);
+	document.getElementById('addPhotoAlbumIdField').value = albumId;
+}
+
+// Hide add photo form popup
+function closeAddPhotoPopup() {
+	document.getElementById('add-photo-popup').style.display = "none";
+}
+
 /* ==================== *
  * = Helper Functions = *
  * ==================== */ 
@@ -115,6 +131,7 @@ window.onclick = function(event) {
 	var deletePhotoInAlbumPopup = document.getElementById('delete-photo-in-album-popup');
 	var deletePhotoPopup = document.getElementById('delete-photo-popup');
 	var editAlbumPopup = document.getElementById('edit-album-popup');
+	var addPhotoPopup = document.getElementById('add-photo-popup');
 
     if (event.target == imagePopup) {
         imagePopup.style.display = "none";
@@ -126,6 +143,8 @@ window.onclick = function(event) {
     	deletePhotoPopup.style.display = "none";
     } else if (event.target == editAlbumPopup) {
     	editAlbumPopup.style.display = "none";
+    } else if (event.target == addPhotoPopup) {
+    	addPhotoPopup.style.display = "none";
     }
 }
 
