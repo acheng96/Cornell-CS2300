@@ -309,6 +309,7 @@ ul {
 	height: auto;
 	border: solid 3px white;
 	border-radius: 8px;
+	background-color: white;
 }
 
 .displayed-photo-container {
@@ -684,13 +685,17 @@ input[type="checkbox"] {
 	margin: 60px auto;
 }
 
-.edit-album-form {
+.edit-album-form, .edit-photo-form {
 	width: 60%;
 	margin: auto;
 }
 
 #edit-album-title-field {
 	margin: 0 auto;
+}
+
+#edit-photo-name-field, #edit-photo-caption-field {
+	margin: 8px auto;
 }
 
 .edit-album-form input[type=submit] {
@@ -703,6 +708,10 @@ input[type="checkbox"] {
 
 #delete-album-content, #delete-photo-content, #edit-album-content, #delete-photo-in-album-content {
 	height: 300px;
+}
+
+#edit-photo-content {
+	height: 350px;
 }
 
 

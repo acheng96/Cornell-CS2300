@@ -125,16 +125,16 @@
 			// Edit album when Edit Album Form submitted
 			if (isset($_POST['editAlbum'])) {
 				$edited_album_id = $_POST['editAlbumIdField'];
-				$edited_album_title = $_POST['editAlbumTitle'];
-				$edited_album = $mysqli->query("UPDATE Albums SET Albums.album_title = $edited_album_title, Albums.album_date_modified = now() WHERE Albums.album_id = $edited_album_id");
+				$edited_album_title = strip_tags($_POST['editAlbumTitle']);
+				$edited_album = $mysqli->query("UPDATE Albums SET Albums.album_title = '$edited_album_title', Albums.album_date_modified = now() WHERE Albums.album_id = $edited_album_id");
 			}
 
 			// Edit photo when Edit Photo Form submitted
 			if (isset($_POST['editPhoto'])) {
 				$edited_photo_id = $_POST['editPhotoIdField'];
-				$edited_photo_name = $_POST['editPhotoNameField'];
-				$edited_photo_caption = $_POST['editPhotoCaption'];
-				$edited_photo = $mysqli->query("UPDATE Photos SET Photos.photo_name = $edited_photo_name, Photos.photo_caption = edited_photo_caption WHERE Photos.photo_id = $edited_photo_id");
+				$edited_photo_name = strip_tags($_POST['editPhotoName']);
+				$edited_photo_caption = strip_tags($_POST['editPhotoCaption']);
+				$edited_photo = $mysqli->query("UPDATE Photos SET Photos.photo_name = '$edited_photo_name', Photos.photo_caption = '$edited_photo_caption' WHERE Photos.photo_id = $edited_photo_id");
 				// FIX: Update album date modified when photo in album changed
 			}
 
@@ -159,6 +159,9 @@
 		<!-- Edit Album Popup -->
 		<?php include("editAlbumPopup.php"); ?>
 
+		<!-- Edit Photo Popup -->
+		<?php include("editPhotoPopup.php"); ?>
+
 		<!-- Header -->
 		<?php include("header.php"); ?>
 
@@ -177,7 +180,7 @@
 						<div class='edit-options'>
 							<button class='edit-button' onclick='showAddPhotoPopup({$album_id})'><h3 id='add-photo-$album_id' data-album-title='$album_title'>Add Image</h3></button>
 							<h3 class='options-divider'>|</h3>
-							<button class='edit-button' onclick='showEditAlbumPopup({$album_id})'><h3>Edit Album</h3></button>
+							<button class='edit-button' onclick='showEditAlbumPopup({$album_id})'><h3 id='edit-album-$album_id' data-album-title='$album_title'>Edit Album</h3></button>
 							<h3 class='options-divider'>|</h3>
 							<button class='edit-button' onclick='showDeleteAlbumPopup({$album_id})'><h3 id='#$album_id' data-album-title='$album_title'>Delete Album</h3></button>
 						</div>
@@ -228,7 +231,7 @@
 					print "<h3 class='photos-title'>PHOTO #{$photoId}: {$photoName}</h3>
 					<div class='edit-photo-options-container'>
 						<div class='edit-options'>
-							<button class='edit-photo-button' onclick=''><h3>Edit Photo</h3></button>
+							<button class='edit-photo-button' onclick='showEditPhotoPopup({$photoId})'><h3 id='edit-photo-$photoId' data-photo-name='$photoName'>Edit Photo</h3></button>
 							<h3 class='options-divider'>|</h3>
 							<button class='edit-photo-button' onclick='showDeletePhotoPopup({$photoId})'><h3 id='##$photoId' data-all-photo-name='$photoName' data-all-photo-album-title='$album_id'>Delete Photo</h3></button>
 						</div>
@@ -270,6 +273,10 @@
 				$edited_album_id = $_POST['editAlbumIdField'];
 				print "<p class='page-description'>The album was successfully edited!</p>
 				<a href='gallery.php?album_id={$edited_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
+			} elseif (isset($_POST['editPhoto']) && isset($_POST['editPhotoIdField'])) {
+				$edited_photo_id = $_POST['editPhotoIdField'];
+				print "<p class='page-description'>The photo was successfully edited!</p>
+				<a href='gallery.php?photo_id={$edited_photo_id}'><h3 class='back-button'>RETURN TO PHOTO</h3></a>";
 			} else {
 				# Display all albums
 			    print "<h1 class='page-title'>PHOTO GALLERY</h1>";

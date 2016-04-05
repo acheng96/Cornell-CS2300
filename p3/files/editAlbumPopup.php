@@ -4,7 +4,7 @@
 		<div id='edit-album-content' class='modal-content'>
 		    <button class='close' onclick='closeEditAlbumPopup()'>×</button>
 		    <div class='popup-message-container'>
-			    <p class='form-description'><b>Edit Album</p>
+			    <p id='edit-album-title' class='form-description'>EDIT ALBUM</p>
 		        <form class='edit-album-form' name='editAlbumForm' action='gallery.php' method='POST'>
 		        	<input type='hidden' id='editAlbumIdField' name='editAlbumIdField' value='0'><br>
 		        	<input id='edit-album-title-field' type='text' placeholder='ALBUM TITLE' name='editAlbumTitle' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
