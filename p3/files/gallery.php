@@ -56,7 +56,7 @@
 				);
 
 				while ($row = $photosResult->fetch_row()) {
-					$photos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4]);
+					$photos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 			}
 
@@ -74,7 +74,7 @@
 
 				while ($row = $photo->fetch_row()) {
 					$displayedPhotoName = strtoupper($row[1]);
-					$displayedPhoto = new Photo($row[0], $row[1], $row[2], $row[3], $row[4]);
+					$displayedPhoto = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 
 				$photoAlbums = $mysqli->query(
@@ -215,6 +215,7 @@
 				$photoCaption = $displayedPhoto->photoCaption;
 				$photoCredit = $displayedPhoto->photoCredit;
 				$photoFilePath = $displayedPhoto->photoFilePath;
+				$photoDateCreated = $displayedPhoto->photoDateCreated;
 
 				if ($photoCredit == NULL) {
 					$photoCredit = "#";
@@ -237,6 +238,7 @@
 						<div class='displayed-photo-container'>
 							<div class='displayed-photo-container'><img class='displayed-photo-image' src='{$photoFilePath}' alt='{$altName}'></div>
 							<p class='photo-caption'>$photoCaption</p>
+							<p class='photo-date-created'>DATE CREATED: $photoDateCreated</p>
 							<h4 class='photo-credit'>Image from <a href='$photoCredit' target='_blank'><b>here</b></a>.</h4>
 							<p class='photo-albums'>IN ALBUMS:";
 								for ($i = 0; $i < count($displayedPhotoAlbums); $i++) { 

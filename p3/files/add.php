@@ -81,9 +81,9 @@
 
 						// Insert the new photo into Photos
 						if (trim($photo_credit) == "") {
-							$addPhotoQuery = "INSERT INTO Photos (photo_id, photo_name, photo_caption, photo_file_path, photo_credit) VALUES (NULL, '$photo_name', '$photo_caption', '$photo_file_path', NULL)";
+							$addPhotoQuery = "INSERT INTO Photos (photo_id, photo_name, photo_caption, photo_file_path, photo_credit, photo_date_created) VALUES (NULL, '$photo_name', '$photo_caption', '$photo_file_path', NULL, now())";
 						} else {
-							$addPhotoQuery = "INSERT INTO Photos (photo_id, photo_name, photo_caption, photo_file_path, photo_credit) VALUES (NULL, '$photo_name', '$photo_caption', '$photo_file_path', '$photo_credit')";
+							$addPhotoQuery = "INSERT INTO Photos (photo_id, photo_name, photo_caption, photo_file_path, photo_credit, photo_date_created) VALUES (NULL, '$photo_name', '$photo_caption', '$photo_file_path', '$photo_credit', now())";
 						}
 						
 				        $addPhotoResult = $mysqli -> query($addPhotoQuery);

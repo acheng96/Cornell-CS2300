@@ -296,29 +296,10 @@ ul {
 	color: #d3d3d3;
 }
 
-.photo-caption {
-	margin: 0;
-	font-weight: normal;
-	font-size: 20px;
-	text-align: center;
-	color: black;
-}
-
-.photo-credit {
-	font-weight: normal;
-	font-size: 16px;
-	text-align: center;
-	color: black;
-}
-
 .photo-albums {
 	font-weight: bold;
 	font-size: 30px;
 	text-align: center;
-	color: white;
-}
-
-.photo-credit b {
 	color: white;
 }
 
@@ -441,16 +422,25 @@ ul {
 	margin-top: 20px;
 	font-weight: normal;
 	font-size: 30px;
+	text-align: center;
+	color: white;
+}
+
+.photo-date-created {
+	font-weight: normal;
+	font-size: 20px;
+	text-align: center;
 	color: white;
 }
 
 .photo-credit {
 	font-weight: normal;
 	font-size: 14px;
+	text-align: center;
 	color: white;
 }
 
-.photo-credit a {
+.photo-credit a, .photo-credit b {
 	color: white;
 }
 
