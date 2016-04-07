@@ -180,7 +180,7 @@
 				</div>
 			<?php } ?> 
 		<?php } else { // If no user is logged in
-			print "<p class='page-description'>Please <a href='login.php'>login</a> to add images and albums.</p>";
+			print "<p class='page-description'>Please <a href='login.php'>log in</a> to add images and albums.</p>";
 		} ?>
 
 		<div class="bottom-padding"></div>

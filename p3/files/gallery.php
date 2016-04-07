@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 
 <html>
@@ -26,6 +27,7 @@
 			$album_title = "";
 			$albums = array();
 			$photos = array();
+			$allPhotos = array();
 
 			// Retrieve albums
 			$albumsResult = $mysqli->query("SELECT * FROM Albums");
@@ -58,13 +60,20 @@
 				while ($row = $photosResult->fetch_row()) {
 					$photos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
+
+				// Retrieve all photos
+				$existingPhotosResult = $mysqli->query("SELECT * FROM Photos");
+
+				while ($row = $existingPhotosResult->fetch_row()) {
+					$allPhotos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
+				}
 			}
 
 			$displayedPhoto = new Photo();
 			$displayedPhotoName = "";
 			$displayedPhotoAlbums = array();
 
-			// Set photo_id and photo_name when photo clicked; check if album id is a valid number
+			// Set photo_id and photo_name when photo clicked; check if photo id is a valid number
 			if (isset($_GET['photo_id']) && ctype_digit($_GET['photo_id'])) {
 				$photo_id = $_GET['photo_id'];
 				$photo = $mysqli->query(
@@ -116,10 +125,9 @@
 
 			// Add photo(s) to specific album when Add Photo Form submitted
 			if (isset($_POST['addPhoto'])) {
-				$deleted_photo_id = $_POST['deleteAllPhotoIdField'];
-				$deleted_photo_album_id = $_POST['deleteAllPhotoAlbumIdField'];
-				$deleted_photos = $mysqli->query("DELETE FROM Photos WHERE Photos.photo_id = $deleted_photo_id");
-				$deleted_connections = $mysqli->query("DELETE FROM PhotoInAlbum WHERE PhotoInAlbum.photo_id = $deleted_photo_id");
+				$added_photo_id = $_POST['photoSelect'];
+				$added_album_id = $_POST['addPhotoAlbumIdField'];
+				$added_connection = $mysqli->query("INSERT INTO PhotoInAlbum (album_id, photo_id) VALUES ($added_album_id, $added_photo_id)");
 			}
 
 			// Edit album when Edit Album Form submitted
@@ -175,17 +183,21 @@
 				    print "<h3 class='page-description'>OH NO! THIS ALBUM DOESN'T EXIST!</h3>
 				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>";
 				} else {
-					print "<h3 class='photos-title'>ALBUM #{$album_id}: {$album_title}</h3>
-					<div class='edit-options-container'>
-						<div class='edit-options'>
-							<button class='edit-button' onclick='showAddPhotoPopup({$album_id})'><h3 id='add-photo-$album_id' data-album-title='$album_title'>Add Image</h3></button>
-							<h3 class='options-divider'>|</h3>
-							<button class='edit-button' onclick='showEditAlbumPopup({$album_id})'><h3 id='edit-album-$album_id' data-album-title='$album_title'>Edit Album</h3></button>
-							<h3 class='options-divider'>|</h3>
-							<button class='edit-button' onclick='showDeleteAlbumPopup({$album_id})'><h3 id='#$album_id' data-album-title='$album_title'>Delete Album</h3></button>
-						</div>
-					</div>
-				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>
+					print "<h3 class='photos-title'>ALBUM #{$album_id}: {$album_title}</h3>";
+					if (isset($_SESSION['logged_user'])) { // If a user is logged in
+						print "<div class='edit-options-container'>
+							<div class='edit-options'>
+								<button class='edit-button' onclick='showAddPhotoPopup({$album_id})'><h3 id='add-photo-$album_id' data-album-title='$album_title'>Add Image</h3></button>
+								<h3 class='options-divider'>|</h3>
+								<button class='edit-button' onclick='showEditAlbumPopup({$album_id})'><h3 id='edit-album-$album_id' data-album-title='$album_title'>Edit Album</h3></button>
+								<h3 class='options-divider'>|</h3>
+								<button class='edit-button' onclick='showDeleteAlbumPopup({$album_id})'><h3 id='#$album_id' data-album-title='$album_title'>Delete Album</h3></button>
+							</div>
+						</div>";
+					} else { // If no user is logged in
+						print "<p class='edit-description'><a href='login.php'>Log in </a>to edit this album.</p>";
+					}
+				    print "<a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>
 					<div class='photos'>
 						<div class='photos-container'>";
 							for ($i = 0; $i < count($photos); $i++) { 
@@ -200,12 +212,14 @@
 									$photoCredit = "#";
 								} 
 
-							print "<div class='photo-item'>
-									<a href='gallery.php?photo_id={$photoId}'><img id='$photoId' class='photo-image' src='{$photoFilePath}' alt='{$altName}'></a>
-									<div class='blocked-edit-options'>
-										<button class='delete-photo-button' onclick='showDeletePhotoInAlbumPopup({$photoId})'><h3 id='#$photoId' data-photo-name='$photoName' data-photo-album-title='$album_id'>Delete Photo from THIS Album</h3></button>
-									</div>
-								</div>";
+								print "<div class='photo-item'>
+									<a href='gallery.php?photo_id={$photoId}'><img id='$photoId' class='photo-image' src='{$photoFilePath}' alt='{$altName}'></a>";
+							if (isset($_SESSION['logged_user'])) { 
+								print "<div class='blocked-edit-options'>
+											<button class='delete-photo-button' onclick='showDeletePhotoInAlbumPopup({$photoId})'><h3 id='#$photoId' data-photo-name='$photoName' data-photo-album-title='$album_id'>Delete Photo from THIS Album</h3></button>
+										</div>";
+							}
+								print "</div>";
 							}
 						print "</div>
 					</div>";
@@ -228,15 +242,19 @@
 				    print "<h3 class='page-description'>OH NO! THIS PHOTO DOESN'T EXIST!</h3>
 				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>";
 				} else {
-					print "<h3 class='photos-title'>PHOTO #{$photoId}: {$photoName}</h3>
-					<div class='edit-photo-options-container'>
-						<div class='edit-options'>
-							<button class='edit-photo-button' onclick='showEditPhotoPopup({$photoId})'><h3 id='edit-photo-$photoId' data-photo-name='$photoName'>Edit Photo</h3></button>
-							<h3 class='options-divider'>|</h3>
-							<button class='edit-photo-button' onclick='showDeletePhotoPopup({$photoId})'><h3 id='##$photoId' data-all-photo-name='$photoName' data-all-photo-album-title='$album_id'>Delete Photo</h3></button>
-						</div>
-					</div>
-				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>
+					print "<h3 class='photos-title'>PHOTO #{$photoId}: {$photoName}</h3>";
+					if (isset($_SESSION['logged_user'])) { // If a user is logged in
+						print "<div class='edit-photo-options-container'>
+							<div class='edit-options'>
+								<button class='edit-photo-button' onclick='showEditPhotoPopup({$photoId})'><h3 id='edit-photo-$photoId' data-photo-name='$photoName'>Edit Photo</h3></button>
+								<h3 class='options-divider'>|</h3>
+								<button class='edit-photo-button' onclick='showDeletePhotoPopup({$photoId})'><h3 id='##$photoId' data-all-photo-name='$photoName' data-all-photo-album-title='$album_id'>Delete Photo</h3></button>
+							</div>
+						</div>";
+					} else { // If no user is logged in
+						print "<p class='edit-description'><a href='login.php'>Log in </a>to edit this photo.</p>";
+					}
+					print "<a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>
 					<div class='photos'>
 						<div class='displayed-photo-container'>
 							<div class='displayed-photo-container'><img class='displayed-photo-image' src='{$photoFilePath}' alt='{$altName}'></div>
