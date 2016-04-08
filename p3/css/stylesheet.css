@@ -41,6 +41,39 @@ Put this somewhere
 	height: 100px;
 }
 
+/* =========== *
+ * = General = *
+ * =========== */ 
+
+.page-title {
+	margin: auto;
+	padding-top: 100px;
+	width: 80%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 60px;
+	color: white;
+}
+
+.page-description {
+ 	margin: auto;
+ 	padding-top: 50px;
+ 	width: 60%;
+ 	text-align: center;
+ 	font-weight: normal;
+ 	font-size: 30px;
+ 	color: white;
+}
+
+.edit-description {
+	margin: auto;
+ 	width: 60%;
+ 	text-align: center;
+ 	font-weight: normal;
+ 	font-size: 20px;
+ 	color: white;
+}
+
 /* ========== *
  * = Header = *
  * ========== */ 
@@ -50,16 +83,16 @@ Put this somewhere
 }
 
 .navbar-container {
-	float: right;
 	margin-left: auto;
+	float: right;
 }
 
 .header-title {
-	float: left;
-	font-weight: bold;
-	text-decoration: none;
-	font-size: 30px;
 	margin: 10px 20px;
+	float: left;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 30px;
 	color: white;
 }
 
@@ -67,10 +100,9 @@ Put this somewhere
  * = Navigation Bar = *
  * ================== */ 
 
-
 .navbar-items {
-	padding: 0;
 	margin: 15px auto;
+	padding: 0;
 	text-align: center;
 }
 
@@ -79,10 +111,10 @@ Put this somewhere
 }
 
 .navbar-items a {
-	font-weight: bold;
-	text-decoration: none;
-	font-size: 20px;
 	margin: 5px 20px;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 20px;
 	color: white;
 }
 
@@ -154,39 +186,6 @@ Put this somewhere
 
 #bg-image-credit a {
 	font-weight: normal;
-}
-
-/* ======== *
- * = Page = *
- * ======== */ 
-
-.page-title {
-	margin: auto;
-	padding-top: 100px;
-	width: 80%;
-	text-align: center;
-	font-weight: bold;
-	font-size: 60px;
-	color: white;
-}
-
-.page-description {
- 	margin: auto;
- 	padding-top: 50px;
- 	width: 60%;
- 	text-align: center;
- 	font-weight: normal;
- 	font-size: 30px;
- 	color: white;
-}
-
-.edit-description {
-	margin: auto;
- 	width: 60%;
- 	text-align: center;
- 	font-weight: normal;
- 	font-size: 20px;
- 	color: white;
 }
 
 

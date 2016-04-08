@@ -88,13 +88,15 @@
 						
 				        $addPhotoResult = $mysqli -> query($addPhotoQuery);
 
-				        // Insert album_id and photo_id into PhotoInAlbum
-				        $photoNames = $_POST['albums'];
+				        if (isset($_POST['albums'])) {
+				        	// Insert album_id and photo_id into PhotoInAlbum
+					        $photoNames = $_POST['albums'];
 
-				        foreach ($photoNames as $p) {
-				        	$p1 = (int)$p;
-					        $addIdQuery = "INSERT INTO PhotoInAlbum (album_id, photo_id) VALUES ($p1, LAST_INSERT_ID())";
-					        $addIdResult = $mysqli -> query($addIdQuery);
+					        foreach ($photoNames as $p) {
+					        	$p1 = (int)$p;
+						        $addIdQuery = "INSERT INTO PhotoInAlbum (album_id, photo_id) VALUES ($p1, LAST_INSERT_ID())";
+						        $addIdResult = $mysqli -> query($addIdQuery);
+					        }
 				        }
 
 				        $addPhotoSucceeded = true;

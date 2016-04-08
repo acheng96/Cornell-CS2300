@@ -121,6 +121,7 @@
 				$deleted_photo_album_id = $_POST['deleteAllPhotoAlbumIdField'];
 				$deleted_photos = $mysqli->query("DELETE FROM Photos WHERE Photos.photo_id = $deleted_photo_id");
 				$deleted_connections = $mysqli->query("DELETE FROM PhotoInAlbum WHERE PhotoInAlbum.photo_id = $deleted_photo_id");
+				$edited_album = $mysqli->query("UPDATE Albums SET Albums.album_date_modified = now() WHERE Albums.album_id = $deleted_photo_album_id");
 			}
 
 			// Add photo(s) to specific album when Add Photo Form submitted
@@ -128,6 +129,7 @@
 				$added_photo_id = $_POST['photoSelect'];
 				$added_album_id = $_POST['addPhotoAlbumIdField'];
 				$added_connection = $mysqli->query("INSERT INTO PhotoInAlbum (album_id, photo_id) VALUES ($added_album_id, $added_photo_id)");
+				$edited_album = $mysqli->query("UPDATE Albums SET Albums.album_date_modified = now() WHERE Albums.album_id = $added_album_id");
 			}
 
 			// Edit album when Edit Album Form submitted

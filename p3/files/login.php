@@ -18,9 +18,10 @@
 
 		<!-- Body -->
 		<?php 
-			if (isset($_POST['logout']) && isset($_SESSION['logged_user'])) {
+			if (isset($_POST['logout']) && isset($_SESSION['logged_user'])) { // If log out button pressed
 				$olduser = $_SESSION['logged_user'];
-				unset($_SESSION['logged_user']);
+				unset($_SESSION['logged_user']); // Log out user
+
 				print("<p class='page-title'>You are logged out, $olduser!</p>");
 				print("<p class='page-description'>Return to the <a href='login.php'>login form.</a></p>");
 			} else {

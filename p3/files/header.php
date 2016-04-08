@@ -1,4 +1,5 @@
 <?php 
+
 	// PHP Function to set active page
 	function getClass($page) {
 		return (basename($_SERVER['PHP_SELF']) == $page) ? 'active-page' : 'inactive-page';
@@ -20,7 +21,5 @@
 				</ul>
 			</div>
 		</div>
-	</div>
-
-	<div class='divider'></div>";
+	</div>";
 ?>
