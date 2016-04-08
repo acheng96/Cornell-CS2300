@@ -15,8 +15,22 @@ function validTextInput(id, text) {
 		updateErrorMessage(id, "Letters, numbers, spaces, dashes, and underscores only.");
 	} else if (!notAllSpaces) {
 		updateErrorMessage(id, "Cannot be empty or contain only spaces.");
-	} else {
-		updateErrorMessage(id, "");
+	}
+	
+	return (isValidName);
+}
+
+// Check that input field contains only letters, numbers, spaces, dashes, and underscores 
+function validSearchInput(id, text) {
+	var allLegalChars = /^[A-Za-z0-9\s-_]+$/.test(text); // Return False if contains illegal chars
+	var empty = text.trim() == ""; // Return False if all spaces
+	var isValidName = allLegalChars || empty;
+
+	updateFieldBorder(id, isValidName);
+
+	if (!isValidName) {
+		console.log("illegal: " + id + "; text: " + text);
+		updateErrorMessage(id, "Letters, numbers, spaces, dashes, and underscores only.");
 	}
 	
 	return (isValidName);
@@ -55,6 +69,10 @@ function validAddAlbumForm() {
 	var albumPhotoCreditURL = validImageURL("album-photo-credit-field", document.forms.addAlbumForm.albumPhotoCredit.value); 
 	var isValidForm = (albumTitle && albumPhotoCreditURL);
 
+	if (isValidForm) {
+		updateErrorMessage("album-title-field", "");
+	}
+
 	return isValidForm;
 }
 
@@ -65,6 +83,24 @@ function validAddPhotoForm() {
 	var photoCreditURL = validImageURL("photo-credit-field", document.forms.addPhotoForm.photoCredit.value); 
 	var isValidForm = (photoName && photoLocation && photoCreditURL);
 
+	if (isValidForm) {
+		updateErrorMessage("photo-name-field", "");
+	}
+
+	return isValidForm;
+}
+
+// Validate all user input fields for search form
+function validSearchForm() {
+	var albumName = validSearchInput("search-album-name-field", document.forms.searchForm.searchAlbumName.value); 
+	var photoName = validSearchInput("search-photo-name-field", document.forms.searchForm.searchPhotoName.value); 
+	var photoCaption = validSearchInput("search-photo-caption-field", document.forms.searchForm.searchPhotoCaption.value); 
+	var isValidForm = (albumName && photoName && photoCaption);
+
+	if (isValidForm) {
+		updateErrorMessage("search-album-name-field", "");
+	}
+
 	return isValidForm;
 }
 
@@ -73,6 +109,10 @@ function validLoginForm() {
 	var username = validTextInput("username-field", document.forms.loginForm.username.value); 
 	var password = validTextInput("password-field", document.forms.loginForm.password.value); 
 	var isValidForm = (username && password);
+
+	if (isValidForm) {
+		updateErrorMessage("username-field", "");
+	}
 
 	return isValidForm;
 }
@@ -88,19 +128,20 @@ function updateFieldBorder(id, valid) {
 
 // Show error message for input forms
 function updateErrorMessage(id, errorMessage) { 
+	console.log(id);
 	var albumFields = {"album-title-field": "Album Title", "album-photo-credit-field": "Album Photo Credit"};
 	var photoFields = {"photo-name-field": "Photo Name", "photo-caption-field": "Photo Location", "photo-credit-field": "Photo Credit"};
+	var searchFields = {"search-album-name-field": "Album Name", "search-photo-name-field": "Photo Name", "search-photo-caption-field": "Photo Caption"};
 	var loginFields = {"username-field": "Username", "password-field": "Password"};
 
 	if (id in albumFields) {
-		var field = albumFields[id];
-		document.getElementById("album-form-subtitle").innerHTML = (errorMessage == "") ? "" : (field + ": " + errorMessage);
+		document.getElementById("album-form-subtitle").innerHTML = (errorMessage == "") ? "" : (albumFields[id] + ": " + errorMessage);
 	} else if (id in photoFields) {
-		var field = photoFields[id];
-		document.getElementById("photo-form-subtitle").innerHTML = (errorMessage == "") ? "" : (field + ": " + errorMessage);
+		document.getElementById("photo-form-subtitle").innerHTML = (errorMessage == "") ? "" : (photoFields[id] + ": " + errorMessage);
+	} else if (id in searchFields) {
+		document.getElementById("search-form-subtitle").innerHTML = (errorMessage == "") ? "" : (searchFields[id] + ": " + errorMessage);
 	} else if (id in loginFields) {
-		var field = loginFields[id];
-		document.getElementById("login-form-subtitle").innerHTML = (errorMessage == "") ? "" : (field + ": " + errorMessage);
+		document.getElementById("login-form-subtitle").innerHTML = (errorMessage == "") ? "" : (loginFields[id] + ": " + errorMessage);
 	}
 }
 

@@ -18,6 +18,7 @@
 
 		<!-- Body -->
 		<?php 
+
 			if (isset($_POST['logout']) && isset($_SESSION['logged_user'])) { // If log out button pressed
 				$olduser = $_SESSION['logged_user'];
 				unset($_SESSION['logged_user']); // Log out user
@@ -35,7 +36,7 @@
 					<div class='login-form-container'>
 						<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>
 						    <input id='username-field' type='text' placeholder='USERNAME' name='username' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
-						    <input id='password-credit-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
+						    <input id='password-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
 						    <input type='submit' name='login' value='login'>
 						</form>
 					</div>";
@@ -49,13 +50,13 @@
 						die( "Couldn't connect to database");
 					}
 
-					// Get user from database
+					// Get user with username = $username from database
 					$query = "SELECT * FROM Users WHERE Users.username LIKE '$username'";
 					$result = $mysqli->query($query);
 
 					// Check for exactly one user with username = $username
 					if ($result && $result->num_rows == 1) {
-						$row= $result->fetch_assoc();
+						$row = $result->fetch_assoc();
 						$db_hash_password = $row['hashpassword'];
 
 						// Verify inputted password matches with database hashed password
@@ -64,7 +65,7 @@
 						}
 					}
 
-					$mysqli->close();
+					$mysqli->close(); // Close database connection
 
 					if (isset($_SESSION['logged_user'])) { // If a user is logged in
 						$logged_user = $_SESSION['logged_user']; 

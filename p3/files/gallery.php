@@ -61,8 +61,10 @@
 					$photos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 
-				// Retrieve all photos
-				$existingPhotosResult = $mysqli->query("SELECT * FROM Photos");
+				// Retrieve all photos not in album with selected album_id
+				$existingPhotosResult = $mysqli->query(
+					"SELECT * FROM Photos"
+				);
 
 				while ($row = $existingPhotosResult->fetch_row()) {
 					$allPhotos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
@@ -150,9 +152,6 @@
 
 			$mysqli -> close();
 		?>
-
-		<!-- Modal Image Popup -->
-		<?php include("modalPopup.php"); ?>
 
 		<!-- Delete Album Popup -->
 		<?php include("deleteAlbumPopup.php"); ?>

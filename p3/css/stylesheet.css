@@ -37,6 +37,10 @@ Put this somewhere
 	height: 30px;
 }
 
+.padding {
+	height: 50px;
+}
+
 .bottom-padding {
 	height: 100px;
 }
@@ -157,6 +161,7 @@ Put this somewhere
 }
 
 #home-description a {
+	border-bottom: ;
 	text-decoration: underline;
 }
 
@@ -278,8 +283,8 @@ Put this somewhere
 	margin: 1.05vw;
 	width: 22vw;
 	border-radius: 8px;
-	border: solid black 1px;
-	background-color: black;
+	border: solid #323132 1px;
+	background-color: #323132;
 	overflow: hidden;
 }
 
@@ -328,13 +333,6 @@ Put this somewhere
 	margin: auto;
 	max-width: 80%;
 	padding-top: 20px;
-}
-
-.search-photo-name {
-	font-weight: bold;
-	font-size: 20px;
-	text-align: center;
-	color: white;
 }
 
 .displayed-album-title {
@@ -494,6 +492,19 @@ Put this somewhere
 	color: red;
 }
 
+.login-form-container, .add-form-container, .search-form-container {
+	margin: auto;
+	width: 60%;
+	padding: 10px;
+	background-color: rgba(211, 211, 211, 0.5);
+	border-radius: 15px;
+}
+
+.login-form, .add-form, .search-form {
+	margin: 20px auto;
+	width: 80%;
+}
+
 input {
 	outline: none;
 	min-height: 45px;
@@ -614,19 +625,6 @@ input[type="checkbox"] {
  * = Login Page = *
  * ============== */ 
 
-.login-form-container, .add-form-container, .search-form-container {
-	margin: auto;
-	width: 60%;
-	padding: 10px;
-	background-color: rgba(211, 211, 211, 0.5);
-	border-radius: 15px;
-}
-
-.login-form, .add-form, .search-form {
-	margin: 20px auto;
-	width: 80%;
-}
-
 #login-description {
 	padding: 50px 0;
 }
@@ -639,8 +637,12 @@ input[type="checkbox"] {
 	margin-top: 20px;
 }
 
-.padding {
-	height: 50px;
+.search-photo-name {
+	margin: 10px 0;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	color: white;
 }
 
 /* ============== *
