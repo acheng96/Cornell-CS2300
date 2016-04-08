@@ -36,18 +36,6 @@ function validSearchInput(id, text) {
 	return (isValidName);
 }
 
-// Check that input field does not only contain spaces
-function validSpacesTextInput(id, text) {
-	var isValidTextInput = /\S/.test(text); // Return False if all spaces
-	updateFieldBorder(id, isValidTextInput);
-
-	if (!isValidTextInput) {
-		updateErrorMessage(id, "Cannot be empty or contain only spaces.");
-	}
-
-	return isValidTextInput;
-}
-
 // Check image url field for existence of displayable image or if no url is inputted
 function validImageURL(id, url) {
     var image = new Image();
@@ -62,6 +50,10 @@ function validImageURL(id, url) {
 
     return isValidImageURL;
 }
+
+/* ======================== *
+ * = Valid Form Functions = *
+ * ======================== */ 
 
 // Validate all user input fields for add album form
 function validAddAlbumForm() {
@@ -144,5 +136,3 @@ function updateErrorMessage(id, errorMessage) {
 		document.getElementById("login-form-subtitle").innerHTML = (errorMessage == "") ? "" : (loginFields[id] + ": " + errorMessage);
 	}
 }
-
-

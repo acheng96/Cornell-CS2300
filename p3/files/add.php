@@ -13,24 +13,43 @@
 
 	<body>
 
+		<script type="text/javascript">
+
+			// Change filename to selected file input for Add Album Form
+			function changeFilename() {
+                var fileInput = document.getElementById('upload-album-photo-button');
+                document.getElementById('chosen-album-cover-photo').innerHTML = (fileInput.value == "") ? "CHOOSE AN ALBUM COVER PHOTO" : "File Chosen: " + fileInput.value;
+            }
+
+            // Change filename to selected file input for Add Photo Form
+			function changePhotoFilename() {
+                var fileInput = document.getElementById('upload-photo-button');
+                document.getElementById('chosen-photo').innerHTML = (fileInput.value == "") ? "CHOOSE A PHOTO TO ADD" : "File Chosen: " + fileInput.value;
+            }
+
+	    </script>
+
 		<!-- Header -->
 		<?php include("header.php"); ?>
 
 		<!-- Upload the photos and albums -->
 		<?php
+			// Initialize database connection
 			require_once 'config.php';
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 			$addPhotoSucceeded = false;
 			$addAlbumSucceeded = false;
 
-			if (isset($_POST['add'])) {
-				if (!empty($_FILES['newAlbumPhoto'])) {
+			// Add an album
+			if (isset($_POST['add'])) { // If add album form is submitted
+				if (!empty($_FILES['newAlbumPhoto'])) { // If a photo was chosen
 					$newPhoto = $_FILES['newAlbumPhoto'];
 					$fileName = $newPhoto['name'];
 
 					// Upload new photo
-					if ($newPhoto['error'] == 0) {
+					if ($newPhoto['error'] == 0) { // If no photo error
+						// Move uploaded photo into specified location
 						$tempName = $newPhoto['tmp_name'];
 						move_uploaded_file($tempName, "../assets/$fileName");
 						$_SESSION['photos'][] = $fileName;
@@ -42,32 +61,32 @@
 						$addAlbumQuery = "";
 
 						// Insert the new album into Albums
-						if (trim($album_photo_credit) == "") {
+						if (trim($album_photo_credit) == "") { // Album photo credit is not provided
 							$addAlbumQuery = "INSERT INTO Albums (album_id, album_title, album_photo_file_path, album_photo_credit, album_date_created, album_date_modified) VALUES (NULL, '$album_title', '$album_photo_file_path', NULL, now(), now())";
-						} else {
+						} else { // Album photo credit is provided
 							$addAlbumQuery = "INSERT INTO Albums (album_id, album_title, album_photo_file_path, album_photo_credit, album_date_created, album_date_modified) VALUES (NULL, '$album_title', '$album_photo_file_path', '$album_photo_credit', now(), now())";
 						}
 						
 				        $addAlbumResult = $mysqli -> query($addAlbumQuery);
 				        $addAlbumSucceeded = true;
-					} else {
-						print("<p class='page-description error-message'>Error: No photo was uploaded.</p>");
+					} else { // If photo upload error
+						print("<p class='page-description error-message'>Add Album Form: No cover photo was uploaded.</p>");
 					}
-
-				} else {
-					print("<p class='page-description error-message'>Error: No photo was chosen.</p>");
+				} else { // If no photo was chosen
+					print("<p class='page-description error-message'>Add Album Form: No cover photo was uploaded.</p>");
 					print("<p class='page-description'>Return to <a href='add.php'>Add Form</a>.</p>");
 				}
 			}
 
 			// Add photo to an album
-			if (isset($_POST['upload'])) {
-				if (!empty($_FILES['newPhoto'])) {
+			if (isset($_POST['upload'])) { // If add photo form is submitted
+				if (!empty($_FILES['newPhoto'])) { // If a photo was chosen
 					$newPhoto = $_FILES['newPhoto'];
 					$fileName = $newPhoto['name'];
 
 					// Upload new photo
-					if ($newPhoto['error'] == 0) {
+					if ($newPhoto['error'] == 0) { // If no photo error
+						// Move uploaded photo into specified location
 						$tempName = $newPhoto['tmp_name'];
 						move_uploaded_file($tempName, "../assets/$fileName");
 						$_SESSION['photos'][] = $fileName;
@@ -80,14 +99,15 @@
 						$addPhotoQuery = "";
 
 						// Insert the new photo into Photos
-						if (trim($photo_credit) == "") {
+						if (trim($photo_credit) == "") { // Photo credit is not provided
 							$addPhotoQuery = "INSERT INTO Photos (photo_id, photo_name, photo_caption, photo_file_path, photo_credit, photo_date_created) VALUES (NULL, '$photo_name', '$photo_caption', '$photo_file_path', NULL, now())";
-						} else {
+						} else { // Photo credit is provided
 							$addPhotoQuery = "INSERT INTO Photos (photo_id, photo_name, photo_caption, photo_file_path, photo_credit, photo_date_created) VALUES (NULL, '$photo_name', '$photo_caption', '$photo_file_path', '$photo_credit', now())";
 						}
 						
 				        $addPhotoResult = $mysqli -> query($addPhotoQuery);
 
+				        // If no albums selected, just add the photo 
 				        if (isset($_POST['albums'])) {
 				        	// Insert album_id and photo_id into PhotoInAlbum
 					        $photoNames = $_POST['albums'];
@@ -100,32 +120,15 @@
 				        }
 
 				        $addPhotoSucceeded = true;
-					} else {
-						print("<p class='page-description error-message'>Error: No photo was uploaded.</p>");
+					} else { // If photo upload error
+						print("<p class='page-description error-message'>Add Photo Form: No photo was uploaded.</p>");
 					}
-		    	} else {
-		    		print("<p class='page-description error-message'>Error: No photo was chosen.</p>");
+		    	} else { // If no photo was chosen
+		    		print("<p class='page-description error-message'>Add Photo Form: No photo was chosen.</p>");
 		    		print("<p class='page-description'>Return to <a href='add.php'>Add Form</a>.</p>");
 		    	}
 			}
 		?>
-
-		<script type="text/javascript">
-
-			// Change file name to selected file input for Add Album Form
-			function changeFilename() {
-                var fileInput = document.getElementById('upload-album-photo-button');
-                console.log(fileInput.value);
-                document.getElementById('chosen-album-cover-photo').innerHTML = (fileInput.value == "") ? "CHOOSE AN ALBUM COVER PHOTO" : "File Chosen: " + fileInput.value;
-            }
-
-            // Change file name to selected file input for Add Photo Form
-			function changePhotoFilename() {
-                var fileInput = document.getElementById('upload-photo-button');
-                document.getElementById('chosen-photo').innerHTML = (fileInput.value == "") ? "CHOOSE A PHOTO TO ADD" : "File Chosen: " + fileInput.value;
-            }
-
-	    </script>
 
 		<?php if (isset($_SESSION['logged_user'])) { // If a user is logged in ?> 
 			<?php if (isset($_POST['add']) && $addAlbumSucceeded) { // An album was added successfully ?> 
@@ -134,7 +137,7 @@
 			<?php } elseif (isset($_POST['upload']) && $addPhotoSucceeded) { // A photo was added successfully ?> 
 				<p class='page-description'>The photo was successfully added!</p>
 				<p class='page-description'>Return to <a href='add.php'>Add Form</a>.</p>
-			<?php } else {  ?> 
+			<?php } else { // No form submitted, so show add forms ?> 
 				<!-- Body -->
 				<h2 class="form-title page-description">ADD AN ALBUM</h2>
 				<h3 id="album-form-subtitle" class="general-subtitle"></h3>
