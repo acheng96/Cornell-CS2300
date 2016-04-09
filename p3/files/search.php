@@ -48,7 +48,8 @@
 						ON FilteredPhotos.photo_id = PhotoInAlbum.photo_id
 						INNER JOIN Albums
 						ON PhotoInAlbum.album_id = Albums.album_id
-						WHERE Albums.album_title LIKE '%$searchAlbumName%'"
+						WHERE Albums.album_title LIKE '%$searchAlbumName%'
+						GROUP BY FilteredPhotos.photo_id"
 					);
 
 					// Populate filteredPhotos array with photo results from database

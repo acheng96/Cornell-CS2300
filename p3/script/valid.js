@@ -144,7 +144,6 @@ function updateFieldBorder(id, valid) {
 
 // Show error message for input forms
 function updateErrorMessage(id, errorMessage) { 
-	console.log(id);
 	var albumFields = {"album-title-field": "Album Title", "album-photo-credit-field": "Album Photo Credit"};
 	var photoFields = {"photo-name-field": "Photo Name", "photo-caption-field": "Photo Location", "photo-credit-field": "Photo Credit"};
 	var editAlbumFields = {"edit-album-title-field": "Album Title"}

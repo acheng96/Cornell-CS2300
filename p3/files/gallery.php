@@ -67,7 +67,13 @@
 
 				// Retrieve all photos not in the album with selected album_id
 				$existingPhotosResult = $mysqli->query(
-					"SELECT * FROM Photos"
+					"SELECT * FROM Photos 
+					INNER JOIN PhotoInAlbum 
+					ON Photos.photo_id = PhotoInAlbum.photo_id
+					INNER JOIN Albums
+					ON PhotoInAlbum.album_id = Albums.album_id
+					WHERE PhotoInAlbum.album_id <> $album_id
+					GROUP BY Photos.photo_id"
 				);
 
 				// Populate photos array with retrieved photo results
@@ -188,7 +194,7 @@
 
 		<!-- Display albums or photos -->
 		<?php 
-			if (isset($_GET['album_id'])) {
+			if (isset($_GET['album_id'])) { // Show album with specific album id
 			    # Display photos in album with album_id = $album_id
 			    $album_id = $_GET['album_id'];
 
@@ -237,7 +243,7 @@
 						print "</div>
 					</div>";
 				}
-			} elseif (isset($_GET['photo_id'])) {
+			} elseif (isset($_GET['photo_id'])) { // Show photo with specific photo id
 				# Display photo with photo_id = $photo_id
 			    $photoId = $_GET['photo_id'];
 			    $photoName = $displayedPhoto->photoName;
@@ -285,31 +291,37 @@
 						</div>
 					</div>";
 				}
-			} elseif (isset($_POST['deleteAlbum'])) {
+			} elseif (isset($_POST['deleteAlbum'])) { 
+			    // Album was successfully deleted
 				print "<p class='page-description'>The album was successfully deleted!</p>
 				<a href='gallery.php'><h3 class='back-button'>RETURN TO ALBUMS</h3></a>";
 			} elseif (isset($_POST['deletePhotoInAlbum']) && isset($_POST['deletePhotoAlbumIdField'])) {
+				// Photo was successfully deleted from a specific album
 				$delete_photo_album_id = $_POST['deletePhotoAlbumIdField'];
 				print "<p class='page-description'>The photo was successfully deleted from the album!</p>
 				<a href='gallery.php?album_id={$delete_photo_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} elseif (isset($_POST['deletePhoto']) && isset($_POST['deleteAllPhotoAlbumIdField'])) {
+				// Photo was successfully deleted from all albums
 				$delete_photo_album_id = $_POST['deleteAllPhotoAlbumIdField'];
 				print "<p class='page-description'>The photo was successfully deleted from all albums!</p>
 				<a href='gallery.php?album_id={$delete_photo_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} elseif (isset($_POST['addPhoto']) && isset($_POST['addPhotoAlbumIdField'])) {
+				// Photo(s) were successfully added to a specific album
 				$add_photo_album_id = $_POST['addPhotoAlbumIdField'];
 				print "<p class='page-description'>The photo(s) were successfully added to this album!</p>
 				<a href='gallery.php?album_id={$add_photo_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} elseif (isset($_POST['editAlbum']) && isset($_POST['editAlbumIdField'])) {
+				// Album was successfully edited
 				$edited_album_id = $_POST['editAlbumIdField'];
 				print "<p class='page-description'>The album was successfully edited!</p>
 				<a href='gallery.php?album_id={$edited_album_id}'><h3 class='back-button'>RETURN TO ALBUM</h3></a>";
 			} elseif (isset($_POST['editPhoto']) && isset($_POST['editPhotoIdField'])) {
 				$edited_photo_id = $_POST['editPhotoIdField'];
+				// Photo was successfully edited
 				print "<p class='page-description'>The photo was successfully edited!</p>
 				<a href='gallery.php?photo_id={$edited_photo_id}'><h3 class='back-button'>RETURN TO PHOTO</h3></a>";
 			} else {
-				# Display all albums
+				// Display all albums
 			    print "<h1 class='page-title'>PHOTO GALLERY</h1>";
 
 			    print "<div class='albums'>";
