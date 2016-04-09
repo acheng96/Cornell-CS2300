@@ -29,22 +29,6 @@ ul {
 	border-bottom: solid 5px #d3d3d3;
 }
 
-/* 
-Put this somewhere
-*/
-
-.album-bottom-padding, .photo-bottom-padding {
-	height: 30px;
-}
-
-.padding {
-	height: 50px;
-}
-
-.bottom-padding {
-	height: 100px;
-}
-
 /* =========== *
  * = General = *
  * =========== */ 
@@ -76,6 +60,18 @@ Put this somewhere
  	font-weight: normal;
  	font-size: 20px;
  	color: white;
+}
+
+.album-bottom-padding, .photo-bottom-padding {
+	height: 30px;
+}
+
+.padding {
+	height: 50px;
+}
+
+.bottom-padding {
+	height: 100px;
 }
 
 /* ========== *
@@ -193,7 +189,6 @@ Put this somewhere
 	font-weight: normal;
 }
 
-
 /* ========= *
  * = Album = *
  * ========= */
@@ -214,18 +209,18 @@ Put this somewhere
 .album-name {
 	margin-bottom: 0;
 	padding-top: 30px;
-	font-weight: bold;
-	font-size: 40px;
 	text-align: center;
 	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 40px;
 	color: white;
 }
 
 .album-date-created, .album-date-modified {
 	margin: 10px 0 0 0;
+	text-align: center;
 	font-weight: normal;
 	font-size: 20px;
-	text-align: center;
 	color: white;
 }
 
@@ -240,7 +235,7 @@ Put this somewhere
 	background-color: white;
 }
 
-.photos-title {
+.albums-title, .photos-title {
 	margin-bottom: 10px;
 	text-align: center;
 	font-weight: bold;
@@ -261,21 +256,21 @@ Put this somewhere
 	color: white;
 }
 
- /* ================= *
-  * = Photo Catalog = *
-  * ================= */
+/* ================= *
+ * = Photo Catalog = *
+ * ================= */
 
 .photos {
 	margin: auto;
+	width: 75%;
 	background-color: rgba(211, 211, 211, 0.5);
 	border-radius: 20px;
-	width: 75%;
 }
 
 .photos-container {
-	flex-wrap: wrap;
 	display: flex;
 	padding: 1.05vw;
+	flex-wrap: wrap;
 }
 
 .photo-item {
@@ -290,35 +285,39 @@ Put this somewhere
 
 .photo-image {
 	margin: auto;
-	background-size: 100%;
 	width: 22w;
     height: 22vw;
 	min-height: 22vw;
+	background-size: 100%;
 	background-color: white;
 }
 
 .photo-title {
+	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
-	text-align: center;
 	color: black;
 }
 
 .back-button {
 	margin: 10px auto 20px auto;
 	width: 200px;
+	text-align: center;
 	font-weight: normal;
 	font-size: 20px;
-	text-align: center;
 	color: #d3d3d3;
 }
 
 .photo-albums {
+	text-align: center;
 	font-weight: bold;
 	font-size: 30px;
-	text-align: center;
 	color: white;
 }
+
+/* =================== *
+ * = Displayed Photo = *
+ * =================== */
 
 .displayed-photo-image {
 	display: block;
@@ -337,10 +336,36 @@ Put this somewhere
 
 .displayed-album-title {
 	margin: 0 auto;
-	font-weight: bold;
-	font-size: 20px;
 	text-decoration: underline;
 	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	color: white;
+}
+
+.photo-caption {
+	text-align: center;
+	margin-top: 20px;
+	font-weight: normal;
+	font-size: 30px;
+	color: white;
+}
+
+.photo-date-created {
+	text-align: center;
+	font-weight: normal;
+	font-size: 20px;
+	color: white;
+}
+
+.photo-credit {
+	text-align: center;
+	font-weight: normal;
+	font-size: 14px;
+	color: white;
+}
+
+.photo-credit a, .photo-credit b {
 	color: white;
 }
 
@@ -350,32 +375,32 @@ Put this somewhere
 
 .modal {
     display: none; 
-    position: fixed;
     z-index: 1;
     padding-top: 5%;
-    left: 0;
+    position: fixed;
     top: 0;
+    left: 0;
     width: 100%; 
     height: 100%; 
-    overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.5);
+    overflow: auto;
 }
 
 .modal-content {
-    position: relative;
-    background-color: white;
-    margin: auto;
+	margin: auto;
     padding: 0;
+    position: relative;
     width: 80%;
     height: 80%;
-    overflow: auto;
     box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
     border-radius: 8px;
+    background-color: white;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
+    overflow: auto;
 }
 
 @-webkit-keyframes animatetop {
@@ -400,9 +425,9 @@ Put this somewhere
 }
 
 .close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
+	text-decoration: none;
     cursor: pointer;
+    color: black;
 }
 
 .image-button {
@@ -413,74 +438,23 @@ Put this somewhere
 	cursor: pointer;
 }
 
-#photo-title {
-	padding-top: 20px;
-	font-size: 30px;
-	margin-left: 15px;
-}
-
-#photo-image {
-	margin: auto;
-	display: block;
-	width: auto;
-    height: auto;
-    max-width: 80%;
-	max-height: 80%;
-    border: solid 1px black;
-}
-
-.photo-caption {
-	margin-top: 20px;
-	font-weight: normal;
-	font-size: 30px;
-	text-align: center;
-	color: white;
-}
-
-.photo-date-created {
-	font-weight: normal;
-	font-size: 20px;
-	text-align: center;
-	color: white;
-}
-
-.photo-credit {
-	font-weight: normal;
-	font-size: 14px;
-	text-align: center;
-	color: white;
-}
-
-.photo-credit a, .photo-credit b {
-	color: white;
-}
-
 /* =============== *
  * = Input Forms = *
  * =============== */ 
 
 .general-description {
 	margin: 70px 0 0 0;
+	text-align: center;
 	font-weight: bold;
 	font-size: 30px;
-	text-align: center;
 }
 
-.form-description {
-	margin: 10px 0;
+.general-subtitle {
+	margin: 15px auto;
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 20px;
 	text-align: center;
-}
-
-.page-description a, .edit-description a {
-	color: white;
-	text-decoration: underline;
-}
-
-.add-form-container, .search-form-container {
-	margin: 50px auto 50px;
-	width: 50%;
+	color: red;
 }
 
 .form-title {
@@ -488,8 +462,25 @@ Put this somewhere
 	font-weight: bold;
 }
 
+.form-description {
+	margin: 10px 0;
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+}
+
 .error-message {
 	color: red;
+}
+
+.page-description a, .edit-description a {
+	text-decoration: underline;
+	color: white;
+}
+
+.add-form-container, .search-form-container {
+	margin: 50px auto;
+	width: 50%;
 }
 
 .login-form-container, .add-form-container, .search-form-container {
@@ -510,13 +501,13 @@ input {
 	min-height: 45px;
 	min-width: 100%;
 	height: 45px;
-	font-size: 22px;
 	font-weight: bold;
+	font-size: 22px;
 }
 
 input[type=text], input[type=password], textarea {
-	padding-left: 10px;
 	margin: 8px auto;
+	padding-left: 10px;
 	width: 100%;
 	border-radius: 5px;
 	border: solid 2px #4A4A4A;
@@ -524,8 +515,8 @@ input[type=text], input[type=password], textarea {
 }
 
 .photo-select {
-	margin: auto;
 	display: block;
+	margin: auto auto 30px auto;
 	padding: 0 25px 0 10px;
 	width: 50%;
 	height: 45px;
@@ -540,8 +531,8 @@ input[type=text], input[type=password], textarea {
 }
 
 input[type=submit], .delete-button {
-	margin: 8px auto 0 auto;
 	display: block;
+	margin: 8px auto 0 auto;
 	width: 200px;
 	min-width: 120px;
 	padding: 0 15px;
@@ -589,14 +580,6 @@ input[type="checkbox"] {
  * = Add Page = *
  * ============ */ 
 
-.general-subtitle {
-	margin: 15px auto;
-	font-weight: bold;
-	font-size: 20px;
-	text-align: center;
-	color: red;
-}
-
 #album-photo-field {
 	display: inline-flex;
 }
@@ -621,14 +604,6 @@ input[type="checkbox"] {
 	font-size: 25px;
 }
 
-/* ============== *
- * = Login Page = *
- * ============== */ 
-
-#login-description {
-	padding: 50px 0;
-}
-
 /* =============== *
  * = Search Page = *
  * =============== */
@@ -643,6 +618,14 @@ input[type="checkbox"] {
 	font-weight: bold;
 	font-size: 20px;
 	color: white;
+}
+
+/* ============== *
+ * = Login Page = *
+ * ============== */ 
+
+#login-description {
+	padding: 50px 0;
 }
 
 /* ============== *
@@ -694,9 +677,9 @@ input[type="checkbox"] {
 
 .edit-button h3, .edit-photo-button h3, .delete-photo-button h3 {
 	margin: 0;
+	text-decoration: underline;
 	font-weight: normal;
 	font-size: 20px;
-	text-decoration: underline;
 	color: white;
 }
 
@@ -736,12 +719,16 @@ input[type="checkbox"] {
 	margin-top: 0;
 }
 
-#delete-album-content, #delete-photo-content, #edit-album-content, #delete-photo-in-album-content {
+#delete-album-content, #delete-photo-content, #delete-photo-in-album-content {
 	height: 300px;
 }
 
-#edit-photo-content {
+#edit-photo-content, #add-photo-content, #edit-album-content {
 	height: 350px;
+}
+
+#edit-photo-content {
+	height: 400px;
 }
 
 

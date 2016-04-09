@@ -8,6 +8,7 @@
     	<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
     	<script type="text/javascript" src="../script/modalPopup.js"></script>
+    	<script type="text/javascript" src="../script/valid.js"></script>
 		<title>Gallery Page</title>
 	</head>
 
@@ -16,34 +17,36 @@
 		<!-- Album & Photo Class -->
 		<?php include("albumPhotoClass.php"); ?>
 
-		<!-- Retrieve data from database -->
-		<?php
-
-			// Initialize database connection
+		<!-- Initialize database connection -->
+		<?php 
 			require_once 'config.php';
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		?>
 
+		<!-- Retrieve album info -->
+		<?php
 			$album_id = 0;
 			$album_title = "";
 			$albums = array();
 			$photos = array();
-			$allPhotos = array();
+			$existingPhotos = array();
 
-			// Retrieve albums
+			// Retrieve all albums
 			$albumsResult = $mysqli->query("SELECT * FROM Albums");
 
+			// Populate albums array with album results from the database
 			while ($row = $albumsResult->fetch_row()) {
 				$albums[] = new Album($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 			}
 
-			// Set album_id and album_title when album clicked; check if album id is a valid number
+			// Set album_id and album_title when album is clicked; check if album id is a valid number
 			if (isset($_GET['album_id']) && ctype_digit($_GET['album_id'])) {
 				$album_id = $_GET['album_id'];
-				$album = $mysqli->query(
-					"SELECT * FROM Albums 
-					 WHERE Albums.album_id = $album_id"
-				);
 
+				// Get album with album_id = $album_id
+				$album = $mysqli->query("SELECT * FROM Albums WHERE Albums.album_id = $album_id");
+
+				// Set album title for current album
 				$albumRow = $album->fetch_row();
 				$album_title = strtoupper($albumRow[1]);
 
@@ -57,20 +60,25 @@
 					WHERE PhotoInAlbum.album_id = $album_id"
 				);
 
+				// Populate photos array with retrieved photo results
 				while ($row = $photosResult->fetch_row()) {
 					$photos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 
-				// Retrieve all photos not in album with selected album_id
+				// Retrieve all photos not in the album with selected album_id
 				$existingPhotosResult = $mysqli->query(
 					"SELECT * FROM Photos"
 				);
 
+				// Populate photos array with retrieved photo results
 				while ($row = $existingPhotosResult->fetch_row()) {
-					$allPhotos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
+					$existingPhotos[] = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 			}
+		?>
 
+		<!-- Retrieve photo info -->
+		<?php
 			$displayedPhoto = new Photo();
 			$displayedPhotoName = "";
 			$displayedPhotoAlbums = array();
@@ -78,16 +86,17 @@
 			// Set photo_id and photo_name when photo clicked; check if photo id is a valid number
 			if (isset($_GET['photo_id']) && ctype_digit($_GET['photo_id'])) {
 				$photo_id = $_GET['photo_id'];
-				$photo = $mysqli->query(
-					"SELECT * FROM Photos 
-					 WHERE Photos.photo_id = $photo_id"
-				);
 
+				// Get photo with photo_id = $photo_id
+				$photo = $mysqli->query("SELECT * FROM Photos WHERE Photos.photo_id = $photo_id");
+
+				// Set displayed photo to photo result from the database
 				while ($row = $photo->fetch_row()) {
 					$displayedPhotoName = strtoupper($row[1]);
 					$displayedPhoto = new Photo($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 
+				// Retrieve albums that contain photo with photo_id = $photo_id
 				$photoAlbums = $mysqli->query(
 					"SELECT * FROM Albums 
 					INNER JOIN PhotoInAlbum 
@@ -97,11 +106,15 @@
 					WHERE PhotoInAlbum.photo_id = $photo_id"
 				);
 
+				// Populate displayedPhotoAlbums array with retrieved album results
 				while ($row = $photoAlbums->fetch_row()) {
 					$displayedPhotoAlbums[] = new Album($row[0], $row[1], $row[2], $row[3], $row[4], $row[5]);
 				}
 			}
+		?>
 
+		<!-- Edit options -->
+		<?php
 			// Delete album with id when Delete Album Form submitted
 			if (isset($_POST['deleteAlbum'])) {
 				$deleted_album_id = $_POST['deleteAlbumIdField'];
@@ -115,6 +128,7 @@
 				$deleted_photo_id = $_POST['deletePhotoIdField'];
 				$deleted_photo_album_id = $_POST['deletePhotoAlbumIdField'];
 				$deleted_connection = $mysqli->query("DELETE FROM PhotoInAlbum WHERE PhotoInAlbum.photo_id = $deleted_photo_id AND PhotoInAlbum.album_id = $deleted_photo_album_id");
+				$edited_album = $mysqli->query("UPDATE Albums SET Albums.album_date_modified = now() WHERE Albums.album_id = $deleted_photo_album_id");
 			}
 
 			// Delete photo from all albums when Delete All Photos Form submitted
@@ -123,7 +137,6 @@
 				$deleted_photo_album_id = $_POST['deleteAllPhotoAlbumIdField'];
 				$deleted_photos = $mysqli->query("DELETE FROM Photos WHERE Photos.photo_id = $deleted_photo_id");
 				$deleted_connections = $mysqli->query("DELETE FROM PhotoInAlbum WHERE PhotoInAlbum.photo_id = $deleted_photo_id");
-				$edited_album = $mysqli->query("UPDATE Albums SET Albums.album_date_modified = now() WHERE Albums.album_id = $deleted_photo_album_id");
 			}
 
 			// Add photo(s) to specific album when Add Photo Form submitted
@@ -147,7 +160,6 @@
 				$edited_photo_name = strip_tags($_POST['editPhotoName']);
 				$edited_photo_caption = strip_tags($_POST['editPhotoCaption']);
 				$edited_photo = $mysqli->query("UPDATE Photos SET Photos.photo_name = '$edited_photo_name', Photos.photo_caption = '$edited_photo_caption' WHERE Photos.photo_id = $edited_photo_id");
-				// FIX: Update album date modified when photo in album changed
 			}
 
 			$mysqli -> close();
@@ -184,7 +196,7 @@
 				    print "<h3 class='page-description'>OH NO! THIS ALBUM DOESN'T EXIST!</h3>
 				    <a href='gallery.php'><h3 class='back-button'>RETURN TO GALLERY</h3></a>";
 				} else {
-					print "<h3 class='photos-title'>ALBUM #{$album_id}: {$album_title}</h3>";
+					print "<h3 class='albums-title'>ALBUM #{$album_id}: {$album_title}</h3>";
 					if (isset($_SESSION['logged_user'])) { // If a user is logged in
 						print "<div class='edit-options-container'>
 							<div class='edit-options'>

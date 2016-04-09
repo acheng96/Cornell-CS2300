@@ -82,6 +82,30 @@ function validAddPhotoForm() {
 	return isValidForm;
 }
 
+// Validate all user input fields for edit album form
+function validEditAlbumForm() {
+	var isValidForm = validTextInput("edit-album-title-field", document.forms.editAlbumForm.editAlbumTitle.value); 
+
+	if (isValidForm) {
+		updateErrorMessage("edit-album-title-field", "");
+	}
+
+	return isValidForm;
+}
+
+// Validate all user input fields for edit photo form
+function validEditPhotoForm() {
+	var photoName = validTextInput("edit-photo-name-field", document.forms.editPhotoForm.editPhotoName.value); 
+	var photoCaption = validTextInput("edit-photo-caption-field", document.forms.editPhotoForm.editPhotoCaption.value); 
+	var isValidForm = (photoName && photoCaption);
+
+	if (isValidForm) {
+		updateErrorMessage("edit-photo-name-field", "");
+	}
+
+	return isValidForm;
+}
+
 // Validate all user input fields for search form
 function validSearchForm() {
 	var albumName = validSearchInput("search-album-name-field", document.forms.searchForm.searchAlbumName.value); 
@@ -123,6 +147,8 @@ function updateErrorMessage(id, errorMessage) {
 	console.log(id);
 	var albumFields = {"album-title-field": "Album Title", "album-photo-credit-field": "Album Photo Credit"};
 	var photoFields = {"photo-name-field": "Photo Name", "photo-caption-field": "Photo Location", "photo-credit-field": "Photo Credit"};
+	var editAlbumFields = {"edit-album-title-field": "Album Title"}
+	var editPhotoFields = {"edit-photo-name-field": "Photo Name", "edit-photo-caption-field": "Photo Caption"}
 	var searchFields = {"search-album-name-field": "Album Name", "search-photo-name-field": "Photo Name", "search-photo-caption-field": "Photo Caption"};
 	var loginFields = {"username-field": "Username", "password-field": "Password"};
 
@@ -130,6 +156,10 @@ function updateErrorMessage(id, errorMessage) {
 		document.getElementById("album-form-subtitle").innerHTML = (errorMessage == "") ? "" : (albumFields[id] + ": " + errorMessage);
 	} else if (id in photoFields) {
 		document.getElementById("photo-form-subtitle").innerHTML = (errorMessage == "") ? "" : (photoFields[id] + ": " + errorMessage);
+	} else if (id in editAlbumFields) {
+		document.getElementById("edit-album-form-subtitle").innerHTML = (errorMessage == "") ? "" : (editAlbumFields[id] + ": " + errorMessage);
+	} else if (id in editPhotoFields) {
+		document.getElementById("edit-photo-form-subtitle").innerHTML = (errorMessage == "") ? "" : (editPhotoFields[id] + ": " + errorMessage);
 	} else if (id in searchFields) {
 		document.getElementById("search-form-subtitle").innerHTML = (errorMessage == "") ? "" : (searchFields[id] + ": " + errorMessage);
 	} else if (id in loginFields) {
