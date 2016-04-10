@@ -29,7 +29,8 @@ function showDeletePhotoInAlbumPopup(photoId) {
 	var photo = document.getElementById('#' + photoId);
 	document.getElementById('delete-photo-in-album-confirmation').innerHTML = "Are you sure you want to delete the photo " + photo.dataset.photoName + " from this album?";
 	document.getElementById('deletePhotoIdField').value = photoId;
-	document.getElementById('deletePhotoAlbumIdField').value = photo.dataset.photoAlbumTitle;
+	document.getElementById('deletePhotoAlbumIdField').value = photo.dataset.photoAlbumId;
+	console.log(photo.dataset.photoAlbumId);
 }
 
 // Hide delete photo form popup

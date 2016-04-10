@@ -67,13 +67,11 @@
 
 				// Retrieve all photos not in the album with selected album_id
 				$existingPhotosResult = $mysqli->query(
-					"SELECT * FROM Photos 
-					INNER JOIN PhotoInAlbum 
-					ON Photos.photo_id = PhotoInAlbum.photo_id
-					INNER JOIN Albums
-					ON PhotoInAlbum.album_id = Albums.album_id
-					WHERE PhotoInAlbum.album_id <> $album_id
-					GROUP BY Photos.photo_id"
+					"SELECT * FROM Photos
+					 LEFT JOIN PhotoInAlbum
+				     ON Photos.photo_id = PhotoInAlbum.photo_id
+				     WHERE PhotoInAlbum.album_id IS NULL OR PhotoInAlbum.album_id <> $album_id
+				     GROUP BY Photos.photo_id"
 				);
 
 				// Populate photos array with retrieved photo results
@@ -235,7 +233,7 @@
 									<a href='gallery.php?photo_id={$photoId}'><img id='$photoId' class='photo-image' src='{$photoFilePath}' alt='{$altName}'></a>";
 							if (isset($_SESSION['logged_user'])) { 
 								print "<div class='blocked-edit-options'>
-											<button class='delete-photo-button' onclick='showDeletePhotoInAlbumPopup({$photoId})'><h3 id='#$photoId' data-photo-name='$photoName' data-photo-album-title='$album_id'>Delete Photo from THIS Album</h3></button>
+											<button class='delete-photo-button' onclick='showDeletePhotoInAlbumPopup({$photoId})'><h3 id='#$photoId' data-photo-name='$photoName' data-photo-album-id='$album_id'>Delete Photo from THIS Album</h3></button>
 										</div>";
 							}
 								print "</div>";
@@ -244,7 +242,7 @@
 					</div>";
 				}
 			} elseif (isset($_GET['photo_id'])) { // Show photo with specific photo id
-				# Display photo with photo_id = $photo_id
+				// Display photo with photo_id = $photo_id
 			    $photoId = $_GET['photo_id'];
 			    $photoName = $displayedPhoto->photoName;
 			    $altName = str_replace(' ', '', $photoName);

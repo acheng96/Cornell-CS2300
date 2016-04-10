@@ -77,9 +77,9 @@
 		<h3 id='search-form-subtitle' class='general-subtitle'><?php echo $searchMatchingTitle ?></h3>
 		<div class='search-form-container'>
 			<form class='search-form' name='searchForm' action='search.php' onsubmit="return validSearchForm();" method='POST'>
-			    <input id='search-album-name-field' type='text' placeholder='ALBUM NAME (DOES NOT INCLUDE ID #)' name='searchAlbumName'><br>
-			    <input id='search-photo-name-field' type='text' placeholder='PHOTO NAME (DOES NOT INCLUDE ID #)' name='searchPhotoName'><br>
-			    <input id='search-photo-caption-field' type='text' placeholder='PHOTO LOCATION' name='searchPhotoCaption'><br>
+			    <input id='search-album-name-field' type='text' placeholder='ALBUM NAME (DOES NOT INCLUDE ID #)' name='searchAlbumName' required title="Letters, numbers, spaces, dashes, commas, and underscores only."><br>
+			    <input id='search-photo-name-field' type='text' placeholder='PHOTO NAME (DOES NOT INCLUDE ID #)' name='searchPhotoName' required title="Letters, numbers, spaces, dashes, commas, and underscores only."><br>
+			    <input id='search-photo-caption-field' type='text' placeholder='PHOTO LOCATION' name='searchPhotoCaption' required title="Letters, numbers, spaces, dashes, commas, and underscores only."><br>
 			    <input type='submit' name='search' value='search'>
 			</form>
 		</div>

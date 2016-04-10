@@ -35,8 +35,8 @@
 					<h3 id='login-form-subtitle' class='general-subtitle'></h3>
 					<div class='login-form-container'>
 						<form class='login-form' name='loginForm' action='login.php' onsubmit='return validLoginForm();' method='POST'>
-						    <input id='username-field' type='text' placeholder='USERNAME' name='username' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
-						    <input id='password-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, numbers, spaces, dashes, and underscores only.'><br>
+						    <input id='username-field' type='text' placeholder='USERNAME' name='username' maxlength='50' required title='Letters, numbers, spaces, dashes, commas, and underscores only.'><br>
+						    <input id='password-field' type='password' placeholder='PASSWORD' name='password' maxlength='50' required title='Letters, numbers, spaces, dashes, commas, and underscores only.'><br>
 						    <input type='submit' name='login' value='login'>
 						</form>
 					</div>";

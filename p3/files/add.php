@@ -149,7 +149,7 @@
 							<span id='chosen-album-cover-photo'>CHOOSE AN ALBUM COVER PHOTO</span>
 							<input id="upload-album-photo-button" class="upload-button" type="file" name="newAlbumPhoto" onchange="changeFilename()"><br>
 						</label>
-					    <input id="album-title-field" type="text" placeholder="ALBUM TITLE" name="albumTitle" maxlength="50" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
+					    <input id="album-title-field" type="text" placeholder="ALBUM TITLE" name="albumTitle" maxlength="50" required title="Letters, numbers, spaces, dashes, commas, and underscores only."><br>
 					    <input id="album-photo-credit-field" type="text" placeholder="ALBUM PHOTO IMAGE ADDRESS/URL (Leave blank if own photo)" name="albumPhotoCredit"><br>
 					    <input type="submit" name="add" value="Add Album">
 					</form>
@@ -177,8 +177,8 @@
 							<span id='chosen-photo'>CHOOSE A PHOTO TO ADD</span>
 							<input id="upload-photo-button" class="upload-button" type="file" name="newPhoto" onchange="changePhotoFilename()"><br>
 						</label>
-					    <input id="photo-name-field" type="text" placeholder="PHOTO NAME" name="photoName" maxlength="20" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
-					    <input id="photo-caption-field" type="text" placeholder="PHOTO LOCATION" name="photoCaption" maxlength="50" required title="Letters, numbers, spaces, dashes, and underscores only."><br>
+					    <input id="photo-name-field" type="text" placeholder="PHOTO NAME" name="photoName" maxlength="20" required title="Letters, numbers, spaces, dashes, commas, and underscores only."><br>
+					    <input id="photo-caption-field" type="text" placeholder="PHOTO LOCATION" name="photoCaption" maxlength="50" required title="Letters, numbers, spaces, dashes, commas, and underscores only."><br>
 					    <input id="photo-credit-field" type="text" placeholder="PHOTO IMAGE ADDRESS/URL (Leave blank if own photo)" name="photoCredit"><br>
 					    <input type="submit" name="upload" value="Add Photo">
 					</form>

@@ -284,6 +284,7 @@ ul {
 }
 
 .photo-image {
+	display: block;
 	margin: auto;
 	width: 22w;
     height: 22vw;
