@@ -48,7 +48,6 @@ function showDeletePhotoPopup(photoId) {
 	var photo = document.getElementById('##' + photoId);
 	document.getElementById('delete-photo-confirmation').innerHTML = "Are you sure you want to delete the photo " + photo.dataset.allPhotoName + " from all albums?";
 	document.getElementById('deleteAllPhotoIdField').value = photoId;
-	document.getElementById('deleteAllPhotoAlbumIdField').value = photo.dataset.allPhotoAlbumTitle;
 }
 
 // Hide delete photo form popup
@@ -136,13 +135,3 @@ window.onclick = function(event) {
     	editPhotoPopup.style.display = "none";
     }
 }
-
-
-
-
-
-
-
-
-
-

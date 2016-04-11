@@ -38,17 +38,21 @@ function validSearchInput(id, text) {
 
 // Check image url field for existence of displayable image or if no url is inputted
 function validImageURL(id, url) {
-    var image = new Image();
-    image.src = url;
+	if (url.trim() == "") {
+		return true;
+	} else {
+		var image = new Image();
+	    image.src = url;
 
-    var isValidImageURL = (image.height != 0) || (url.trim() == ""); // Return False if no image
-    updateFieldBorder(id, isValidImageURL);
+	    var isValidImageURL = (image.height != 0); // Return False if no image
+	    updateFieldBorder(id, isValidImageURL);
 
-    if (!isValidImageURL) {
-   		updateErrorMessage(id, "Invalid Image URL.");
-    }
+	    if (!isValidImageURL) {
+	   		updateErrorMessage(id, "Invalid Image URL.");
+	    }
 
-    return isValidImageURL;
+	    return isValidImageURL;
+	}
 }
 
 /* ======================== *
