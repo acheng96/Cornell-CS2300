@@ -57,7 +57,7 @@
 						// Get the new album information
 						$album_title = htmlentities($_POST['albumTitle']);
 						$album_photo_file_path = "../assets/$fileName";
-						$album_photo_credit = htmlentities($_POST['albumPhotoCredit']);
+						$album_photo_credit = $_POST['albumPhotoCredit'];
 						$addAlbumQuery = "";
 
 						// Insert the new album into Albums
@@ -66,7 +66,7 @@
 						} else { // Album photo credit is provided
 							$addAlbumQuery = "INSERT INTO Albums (album_id, album_title, album_photo_file_path, album_photo_credit, album_date_created, album_date_modified) VALUES (NULL, '$album_title', '$album_photo_file_path', '$album_photo_credit', now(), now())";
 						}
-						
+
 				        $addAlbumResult = $mysqli -> query($addAlbumQuery);
 				        $addAlbumSucceeded = true;
 					} else { // If photo upload error
@@ -95,7 +95,7 @@
 						$photo_name = htmlentities($_POST['photoName']);
 						$photo_caption = htmlentities($_POST['photoCaption']);
 						$photo_file_path = "../assets/$fileName";
-						$photo_credit = htmlentities($_POST['photoCredit']);
+						$photo_credit = $_POST['photoCredit'];
 						$addPhotoQuery = "";
 
 						// Insert the new photo into Photos

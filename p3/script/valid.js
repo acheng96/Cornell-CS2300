@@ -41,17 +41,25 @@ function validImageURL(id, url) {
 	if (url.trim() == "") {
 		return true;
 	} else {
-		var image = new Image();
-	    image.src = url;
+		/* NOTE: Below is code for checking if an image url actually returns an image. 
+		   However, this code should be run asynchronously. Due to time constraints,
+		   I have chosen not to implement this validation functionality for this 
+		   milestone. 
+		*/
 
-	    var isValidImageURL = (image.height != 0); // Return False if no image
-	    updateFieldBorder(id, isValidImageURL);
+		// var image = new Image();
+		//    image.src = url;
 
-	    if (!isValidImageURL) {
-	   		updateErrorMessage(id, "Invalid Image URL.");
-	    }
+		//    var isValidImageURL = (image.height != 0); // Return False if no image
+		//    updateFieldBorder(id, isValidImageURL);
 
-	    return isValidImageURL;
+		//    if (!isValidImageURL) {
+		//   		updateErrorMessage(id, "Invalid Image URL.");
+		//    }
+
+		//    return isValidImageURL;
+
+	    return true;
 	}
 }
 
